@@ -32,10 +32,7 @@
                 </div>
             </section>
             <section class="section-About">
-                <div class="AboutTitle">
-                    <h2 id="About">About</h2>
-                    <hr>
-                </div>
+                <h2 id="About">About</h2>
                 <p class="main-text">The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside </p>
                 <div class="AboutImage">
                     <div class="Image1"></div>
@@ -55,34 +52,78 @@
                 </form>
             </section>
             <section class="section-Favorites">
-                <div class="FavoritesTitle">
-                    <h2 id="Favorites">Favorites</h2>
-                    <hr>
-                </div>
+                <h2 id="Favorites">Favorites</h2>
                 <p class="SpecificText">Pick favorites of season</p>
                 <form class="FavoritesSeasons">
-                    <label>
-                        <input class="season" checked type="radio" name="Favorites">
-                        Winter
-                    </label>
-                    <label>
-                        <input class="season" type="radio" name="Favorites">
-                        Spring
-                    </label>
-                    <label>
-                        <input class="season" type="radio" name="Favorites">
-                        Summer
-                    </label>
-                    <label>
-                        <input class="season" type="radio" name="Favorites">
-                        Autumn
-                    </label>
+                    <div class="SeasonButton Win">
+                    <input class="season" id="Winter" checked type="radio" name="Favorites">
+                    <label for="Winter">Winter</label>
+                    </div>
+                    <div class="SeasonButton Spr">
+                    <input class="season" id="Spring" type="radio" name="Favorites">
+                    <label for="Spring">Spring</label>
+                    </div>
+                    <div class="SeasonButton Sum">
+                    <input class="season" id="Summer" type="radio" name="Favorites">
+                    <label for="Summer">Summer</label>
+                    </div>
+                    <div class="SeasonButton Aut">
+                    <input class="season" id="Autumn" type="radio" name="Favorites">
+                    <label for="Autumn">Autumn</label>
+                    </div>
                 </form>
+                <div class="SeasonsBooks">
+                    <div class="Books1">
+                    <div class="BookGroup">
+                        <img class="BookImage" src="assets/img/Winter1.png" alt="Book">
+                        <div class="BookDescription">
+                            <p class="note">Staff Picks</p>
+                            <p class="BookName">THE BOOK EATERS</p>
+                            <p class="BookAuthor">By Sunyi Dean</p>
+                            <p class="BookText H320">An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death. Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart.</p>
+                            <button class="BuyButton">Buy</button>
+                        </div>
+                    </div>
+                    <div class="BookGroup">
+                        <img class="BookImage" src="assets/img/Winter2.png" alt="Book">
+                        <div class="BookDescription">
+                            <p class="note">Staff Picks</p>
+                            <p class="BookName">CACKLE</p>
+                            <p class="BookAuthor">By Rachel Harrison</p>
+                            <p class="BookText H280">Are your Halloween movies of choice The Witches of Eastwick and Practical Magic? Look no further than here - where a woman recovering from a breakup moves to a quaint town in upstate New York and befriends a beautiful witch.</p>
+                            <button class="BuyButton">Buy</button>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="Books2">
+                        <div class="BookGroup">
+                            <img class="BookImage" src="assets/img/Winter3.png" alt="Book">
+                            <div class="BookDescription">
+                                <p class="note">Staff Picks</p>
+                                <p class="BookName">Dante: Poet of the Secular World</p>
+                                <p class="BookAuthor">By Erich Auerbach</p>
+                                <p class="BookText H320">Auerbach's engaging book places the 'Comedy' within the tradition of epic, tragedy, and philosophy in general, arguing for Dante's uniqueness as one who raised the individual and his drama of soul into something of divine significance—an inspired introduction to Dante's main themes.</p>
+                                <button class="BuyButton">Buy</button>
+                            </div>
+                        </div>
+                        <div class="BookGroup">
+                            <img class="BookImage" src="assets/img/Winter4.png" alt="Book">
+                            <div class="BookDescription">
+                                <p class="note">Staff Picks</p>
+                                <p class="BookName">The Last Queen</p>
+                                <p class="BookAuthor">By Clive Irving</p>
+                                <p class="BookText H240">A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.</p>
+                                <button disabled class="OwnButton">Own</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section-CoffeeShop">
+                <h2 id="CoffeeShop">Coffee Shop</h2>
             </section>
         </main>
         <footer class="main-footer">
-            123
-            <p>456</p>
         </footer>
     </div>
 </body>
