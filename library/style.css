@@ -156,6 +156,7 @@ h2::after {
     display: block;
     position: relative;
     top: 20px;
+    right: 1px;
     margin: 0 auto;
     flex-shrink: 0;
     content: '';
@@ -388,7 +389,7 @@ h2::after {
     line-height: 40px;
     letter-spacing: 2px;
     text-transform: capitalize;
-    margin-top: 0px;
+    margin-top: 1px;
 }
 
 .note::after {
@@ -399,7 +400,7 @@ h2::after {
     bottom: 1px;
     flex-shrink: 0;
     content: '';
-    background: #BB945F;;
+    background: #BB945F;
 }
 
 .BookName {
@@ -410,6 +411,7 @@ h2::after {
     line-height: 40px;
     letter-spacing: 2px;
     text-transform: uppercase;
+    margin-top: -1px;
 }
 
 .BookAuthor {
@@ -500,11 +502,117 @@ h2::after {
 
 .section-CoffeeShop {
     display: flex;
-    padding: 20px 20px 40px 20px;
+    padding: 0px 20px 40px 20px;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
 }
+
+.main-text2 {
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-top: 26px;
+    margin-left: 2px;
+}
+
+/* MENU \/ */
+
+.menu {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.drinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 40px;
+}
+
+.desserts {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    row-gap: 40px;
+    margin-right: -1px;
+}
+
+.MenuTitle {
+    height: 40px;
+    color: #BB945F;
+    font-family: Forum;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    margin: 0;
+}
+
+.MenuTitleRight {
+    margin-right: 2px;
+}
+
+.MenuItem {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 60px;
+}
+
+.MenuText {
+    width: 199px;
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.MenuTextRight {
+    width: 214px;
+    text-align: right;
+}
+
+.MenuLine {
+    width: 100px;
+    margin-left: -2px;
+}
+
+.MenuLine::after {
+    width: 100px;
+    height: 1px;
+    display: block;
+    content: '';
+    background: #BB945F;
+}
+
+.MenuPrice {
+    color: #000;
+    font-family: Forum;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+}
+
+/* MENU /\ */
 
 .main-footer {
     height: 250px;
