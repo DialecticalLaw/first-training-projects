@@ -614,8 +614,330 @@ h2::after {
 
 /* MENU /\ */
 
+.section-Contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px 37px 20px;
+    gap: 40px;
+}
+
+.ContactsInfo {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 199px;
+    margin-top: -13px;
+}
+
+.main-textBold {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.BoldCon {
+    margin: 0;
+}
+
+.ContactsText {
+    width: 505px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 40px;
+    margin-left: 1px;
+}
+
+.PhoneInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 20px;
+}
+
+.main-textCon {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    margin: 0;
+}
+
+.ContactsLink {
+    color: #000;
+    text-decoration: none;
+}
+
+.senior-staff {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 20px;
+}
+
+.ContactsMap {
+    width: 696px;
+    height: 414px;
+    background: url(assets/img/map.png), lightgray 50% / cover no-repeat;
+}
+
+.section-LibraryCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 40px;
+    margin-top: -17px;
+}
+
+.CardBlocks {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 27px;
+}
+
+/* Find Card \/ */
+
+.FindCard {
+    width: 600px;
+    height: 453px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 30px;
+}
+
+.FindCardTitle {
+    color: #000;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.6px;
+    margin: 0;
+}
+
+.FindBorder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    height: 386px;
+    border: 3px solid #BB945F;
+    padding: 20px 20px 30px 20px;
+    row-gap: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.FindCardButton {
+    width: 242px;
+    height: 44px;
+    padding: 10px 38px;
+    color: #0C0C0E;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid #0C0C0E;
+    background-color: #fff;
+}
+
+.gold-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 560px;
+    height: 272px;
+    background: #BB945F;
+    padding: 17px 20px 25px 20px;
+    row-gap: 20px;
+}
+
+.gold-areaTitle {
+    color: #000;
+    font-family: Forum;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 0.6px;
+    margin: 0;
+}
+
+.CardFindForms {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+}
+
+.FindForm {
+    width: 520px;
+    height: 66px;
+    border: 0px;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 10px 0 0 20px;
+}
+
+.FindForm::placeholder {
+    width: 182px;
+    height: 50px;
+    color: #8E8E8E;
+    font-family: Forum;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 0.6px;
+}
+
+/* Find Card /\ */
+
+.GetCard {
+    width: 456px;
+    height: 253px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    row-gap: 35px;
+    column-gap: 20px;
+}
+
+.GetTitle {
+    color: #000;
+    text-align: center;
+    font-family: Forum;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.6px;
+    margin: 0;
+}
+
+.TextRight {
+    width: 456px;
+    text-align: right;
+    letter-spacing: 0.4px;
+    margin: 0;
+}
+
+.GetButtons {
+    display: flex;
+    column-gap: 20px;
+}
+
+/* FOOTER \/ */
+
 .main-footer {
     height: 250px;
     background-color: #0C0C0E;
+    padding: 20px;
+    margin-top: -20px;
 }
 
+.LibraryInfo {
+    row-gap: 10px;
+}
+
+.LibraryInfo1 {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.FooterText {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.FooterAddress {
+    width: 229px;
+}
+
+.AddressLink {
+    text-decoration: none;
+}
+
+.schedule {
+    width: 149px;
+    text-align: right;
+}
+
+.LibraryInfo2 {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-list {
+    width: 102px;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding-left: 0;
+}
+
+.FooterLine {
+    width: 1400px;
+    height: 1px;
+    background-color: #fff;
+    margin-top: 18px;
+}
+
+.FooterEnd {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    margin-top: 26px;
+}
+
+.FooterEndText {
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 2px;
+}
+
+.GitHubName {
+    text-decoration: none;
+    line-height: 40px;
+}
+
+/* FOOTER /\ */
+
+.margin0 {
+    margin: 0;
+}
