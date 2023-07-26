@@ -6,6 +6,7 @@
     <title>Brooklyn Public Library</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/favicon.ico">
+    <script src="index.js"></script>
 </head>
 <body>
     <div class="container">
@@ -27,8 +28,10 @@
         <main class="main-main">
             <section class="section-Welcome">
                 <div class="overlay"></div>
+                <div class="wrapper">
                 <div class="Welcome">
-                    <div class="WelcomeText">Welcome&nbsp;<br>to the Brooklyn<br>Library</div>
+                    <h2 class="WelcomeText">Welcome&nbsp;<br>to the Brooklyn<br>Library</h2>
+                </div>
                 </div>
             </section>
             <section class="section-About">
@@ -197,20 +200,20 @@
                     <div class="ContactsText">
                         <p class="main-textBold BoldCon">For all Library inquiries:</p>
                         <div class="PhoneInfo">
-                            <p class="main-textCon">Please call <a class="ContactsLink" href="tel:+6177302370">(617) 730-2370</a></p>
-                            <p class="main-textCon">For TTY service, please call <a class="ContactsLink" href="tel:+6177302370">(617) 730-2370</a></p>
-                            <p class="main-textCon">Putterham Library: <a class="ContactsLink" href="tel:+6177302385">(617) 730-2385</a></p>
+                            <p class="main-textCon">Please call <a class="ContactsLink" href="tel:+6177302370">(617) 730-2370 <img class="ConImg" src="assets/img/phone.svg" alt="phone"></a></p>
+                            <p class="main-textCon">For TTY service, please call <a class="ContactsLink" href="tel:+6177302370">(617) 730-2370 <img class="ConImg" src="assets/img/phone.svg" alt="phone"></a></p>
+                            <p class="main-textCon">Putterham Library: <a class="ContactsLink" href="tel:+6177302385">(617) 730-2385 <img class="ConImg" src="assets/img/phone.svg" alt="phone"></a></p>
                         </div>
                         <div class="senior-staff">
                             <p class="main-textBold BoldCon">Senior Staff</p>
-                            <p class="main-textCon">Library Director: <a class="ContactsLink main-textBold" href="mailto:AmandaHirst@gmail.com">Amanda Hirst</a></p>
+                            <p class="main-textCon">Library Director: <a class="ContactsLink main-textBold" href="mailto:AmandaHirst@gmail.com">Amanda Hirst <img class="ConImg" src="assets/img/email.svg" alt="mail"></a></p>
                         </div>
                     </div>
                     <div class="ContactsMap"></div>
                 </div>
             </section>
             <section class="section-LibraryCard">
-                <h2 id="LibraryCard margin0">Digital Library Cards</h2>
+                <h2 id="LibraryCard">Digital Library Cards</h2>
                 <div class="CardBlocks">
                 <div class="FindCard">
                     <p class="FindCardTitle">Find your Library card</p>
@@ -220,7 +223,7 @@
                             <div class="CardFindForms">
                             <form class="CardFindForm1">
                                 <label>
-                                    <input class="FindForm" type="name" placeholder="Reader's name">
+                                    <input class="FindForm" type="text" placeholder="Reader's name">
                                 </label>
                             </form>
                             <form class="CardFindForm2">
@@ -236,10 +239,10 @@
                 <div class="GetCard">
                     <p class="GetTitle">Get a reader card</p>
                     <p class="main-text2 TextRight">You will be able to see a reader card after logging into account or you can register a new account</p>
-                    <div class="GetButtons">
+                    <form class="GetButtons">
                         <button class="BuyButton">Sign Up</button>
                         <button class="BuyButton">Log In</button>
-                    </div>
+                    </form>
                 </div>
                 </div>
             </section>
@@ -247,7 +250,7 @@
         <footer class="main-footer">
             <div class="LibraryInfo">
                 <div class="LibraryInfo1">
-                    <div class="FooterAddress"><a class="FooterText AddressLink" href="https://goo.gl/maps/vMBVB7jYXpCtW7zA9">286 Cadman Plaza, New York, NY 11238, United States</a></div>
+                    <div class="FooterAddress"><a class="FooterText AddressLink" href="https://goo.gl/maps/vMBVB7jYXpCtW7zA9" target="_blank">286 Cadman Plaza, New York, NY 11238, United States</a></div>
                     <div class="schedule FooterText">Mon - Fri<br>08:00 am - 07:00 pm</div>
                 </div>
                 <div class="LibraryInfo2">
@@ -262,7 +265,7 @@
             <hr class="FooterLine">
             <div class="FooterEnd">
                 <p class="FooterEndText">2023</p>
-                <p class="FooterEndText">The Rolling Scopes School</p>
+                <a class="FooterEndText rs-school" href="https://rs.school/js-stage0/" target="_blank" >The Rolling Scopes School</a>
                 <a class="FooterEndText GitHubName" href="https://github.com/DialecticalLaw" target="_blank">DialecticalLaw</a>
             </div>
         </footer>
