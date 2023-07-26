@@ -1,0 +1,1083 @@
+@font-face {
+    font-family: Forum;
+    src: url(assets/fonts/Forum-Regular.ttf)
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
+html {
+    scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {    
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0;
+    background-color: #0C0C0E;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    width: 1440px;
+    margin: 0 auto;
+    height: 90px;
+    background-color: #0C0C0E;
+}
+
+h1 {
+    Color: #fff;
+    margin: 20px;
+    font-family: Forum;
+    Font-size: 30px;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 0.6px;
+}
+
+.profile {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav {
+    margin-right: 26px;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.nav-item a {
+    text-decoration: none;
+    font-family: Inter;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 50px;    
+    margin: 0 15px;
+    padding-bottom: 8px;
+    position: relative;
+    transition: 0.4s color;
+}
+
+.nav-item a::before {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    transform: scaleX(0);
+    transition: 0.5s ease;
+}
+
+.nav-item a:hover {
+    color: #BB945F;
+}
+
+.nav-item a:hover:before {
+    background-color: #BB945F;
+    transform: scaleX(1.2);
+}
+
+.icon-profile {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.icon-profile:hover {
+    transform: scale(1.2);
+}
+
+.main-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto 20px auto;
+    background: #fff;
+}
+
+.section-Welcome {
+    height: 600px;
+    width: 100%;
+    background: url(assets/img/Welcome.png), lightgray 50% / cover no-repeat;
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: center;
+    margin-bottom: auto;
+    flex-shrink: 0;
+}
+
+.wrapper {
+    width: 1440px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.overlay {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(180deg, #0C0C0E 0%, #0C0C0E 0.01%, rgba(18, 18, 21, 0.10) 100%);
+    margin-bottom: -80px;
+    flex-shrink: 0;
+}
+
+.Welcome {
+    width: 600px;
+    height: 220px;
+    padding: 35px 42px 35px 41.5px;
+    background: #0C0C0E;
+}
+
+.WelcomeText {
+    width: 520px;
+    height: 150px;
+    color: #fff;
+    text-align: center;
+    font-family: Forum;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.section-About {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1440px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    background: #fff;
+}
+
+h2 {
+    color: #0C0C0E;
+    font-family: Forum;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    align-self: center;
+    margin-top: 20px;
+    margin-left: 2px;
+}
+
+h2::after {
+    width: 50px;
+    height: 1px;
+    display: block;
+    position: relative;
+    top: 20px;
+    right: 1px;
+    margin: 0 auto;
+    flex-shrink: 0;
+    content: '';
+    background: #0C0C0E;
+}
+
+.main-text {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 40px;
+    margin-top: 27px;
+}
+
+.AboutImage {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.Image1 {
+    width: 450px;
+    height: 560px;
+    flex-shrink: 0;
+    background: url(assets/img/image\ 1.png), lightgray 50% / cover no-repeat;
+    margin: auto 5px;
+}
+
+.Image2 {
+    width: 450px;
+    height: 560px;
+    flex-shrink: 0;
+    background: url(assets/img/image\ 2.png), lightgray 50% / cover no-repeat;
+    margin: auto 5px;
+}
+
+.Image3 {
+    width: 450px;
+    height: 560px;
+    flex-shrink: 0;
+    background: url(assets/img/image\ 3.png), lightgray 50% / cover no-repeat;
+    margin: auto 5px;
+}
+
+.PaginationAbout {
+    align-self: center;
+    height: 16px;
+    margin-top: 34px;
+    flex-shrink: 0;
+}
+
+.pagination {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    margin-right: 0px;
+    margin-left: 0px;
+    appearance: none;
+}
+
+.pagination::after {
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    top: 3px;
+    left: 3.3px;
+    position: relative;
+    background-color: #0C0C0E;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+}
+
+.pagination:checked:after {
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    top: 3px;
+    left: 3.3px;
+    position: relative;
+    background-color: #BB945F;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+}
+
+.section-Favorites {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1440px;
+    margin: 0 auto;
+    padding: 6px 20px 40px 20px;
+    background: #fff;
+}
+
+.SpecificText {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    align-self: flex-start;
+    margin-top: 27px;
+}
+
+/*SEASON_BUTTON \/'*/
+
+.FavoritesSeasons {
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+    height: 24px;
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 19px;
+}
+
+.SeasonButton {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Win {
+    width: 104px;
+}
+
+.Spr {
+    width: 99px;
+}
+
+.Sum {
+    width: 116px;
+}
+
+.Aut {
+    width: 111px;
+}
+
+.season {
+    margin-left: -4px;
+    margin-top: 2px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    appearance: none;
+}
+
+.season:checked + label {
+    font-weight: 700;
+    margin-left: -2.5px;
+    margin-right: -2.5px;
+    margin-right: 0.5px;
+    margin-top: 1px;
+}
+
+.season + label {
+    margin-right: 0.5px;
+    margin-top: 1px;
+    cursor: pointer;
+}
+
+.season::after {
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    position: relative;
+    background: url(assets/img/NoChecked.svg) 0 0 no-repeat;
+    border-radius: 17px;
+    top: 4px;
+    left: 4px;
+    position: relative;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+}
+
+.season:checked::after {
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    position: relative;
+    background: url(assets/img/Checked.svg) 0 0 no-repeat;
+    border-radius: 17px;
+    top: 4px;
+    left: 4px;
+    position: relative;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+}
+
+/*SEASON_BUTTON /\*/
+
+/* BOOKS \/ */
+
+.SeasonsBooks {
+    height: 1150px;
+    margin-top: 41px;
+}
+
+.BookGroup {
+    position: relative;
+    width: 590px;
+    height: 555px;
+}
+
+.BookImage {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.BookDescription {
+    width: 550px;
+    height: 555px;
+    border: 1px solid #000;
+    padding: 13px 19px;
+}
+
+.note {
+    color: #000;
+    font-family: Forum;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    margin-top: 1px;
+}
+
+.note::after {
+    width: 60px;
+    height: 1px;
+    display: block;
+    position: relative;
+    bottom: 1px;
+    flex-shrink: 0;
+    content: '';
+    background: #BB945F;
+}
+
+.BookName {
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: -1px;
+}
+
+.BookAuthor {
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 2px;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+
+.BookText {
+    width: 356.5px;
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+
+.H320 {
+    height: 320px;
+}
+
+.H280 {
+    height: 280px;
+    margin-bottom: 55px;
+}
+
+.H240 {
+    height: 240px;
+    margin-bottom: 95px;
+}
+
+.BuyButton {
+    width: 75px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 2px;
+    border: 1px solid #0C0C0E;
+    color: #0C0C0E;
+    background-color: #fff;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.BuyButton:hover {
+    background-color: #BB945F;
+    border: 1px solid #BB945F;
+}
+
+.OwnButton {
+    width: 75px;
+    height: 30px;
+    flex-shrink: 0;
+    color: #BB945F;
+    border-radius: 2px;
+    border: 1px solid #BB945F;
+    background-color: #fff;
+    color: #BB945F;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+}
+
+.Books1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.Books2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* BOOKS /\ */
+
+.section-CoffeeShop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    padding: 0px 20px 40px 20px;
+    width: 1440px;
+    margin: 0 auto;
+    background: #fff;
+}
+
+.main-text2 {
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-top: 26px;
+    margin-left: 2px;
+}
+
+/* MENU \/ */
+
+.menu {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.drinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 40px;
+}
+
+.desserts {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    row-gap: 40px;
+    margin-right: -1px;
+}
+
+.MenuTitle {
+    height: 40px;
+    color: #BB945F;
+    font-family: Forum;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    margin: 0;
+}
+
+.MenuTitleRight {
+    margin-right: 2px;
+}
+
+.MenuItem {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 60px;
+}
+
+.MenuText {
+    width: 199px;
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.MenuTextRight {
+    width: 214px;
+    text-align: right;
+}
+
+.MenuLine {
+    width: 100px;
+    margin-left: -2px;
+}
+
+.MenuLine::after {
+    width: 100px;
+    height: 1px;
+    display: block;
+    content: '';
+    background: #BB945F;
+}
+
+.MenuPrice {
+    color: #000;
+    font-family: Forum;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+}
+
+/* MENU /\ */
+
+.section-Contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px 37px 20px;
+    gap: 40px;
+    background: #fff;
+}
+
+.ContactsInfo {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 167px;
+    margin-top: -13px;
+}
+
+.main-textBold {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.BoldCon {
+    margin: 0;
+}
+
+.ContactsText {
+    width: 537px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 40px;
+    margin-left: 1px;
+}
+
+.PhoneInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 20px;
+}
+
+.main-textCon {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    margin: 0;
+}
+
+.ContactsLink {
+    color: #000;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.ContactsLink:hover {
+    color: #BB945F;
+}
+
+.ConImg {
+    width: 24px;
+    height: 24px;
+    margin-bottom: -4px;
+    display: none;
+}
+
+.ContactsLink:hover .ConImg {
+    display: inline;
+}
+
+.senior-staff {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 20px;
+}
+
+.ContactsMap {
+    width: 696px;
+    height: 414px;
+    background: url(assets/img/map.png), lightgray 50% / cover no-repeat;
+}
+
+.section-LibraryCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1440px;
+    padding: 20px;
+    margin: -17px auto 20px auto;
+    background: #fff;
+}
+
+.CardBlocks {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 27px;
+}
+
+/* Find Card \/ */
+
+.FindCard {
+    width: 600px;
+    height: 453px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 30px;
+}
+
+.FindCardTitle {
+    color: #000;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.6px;
+    margin: 0;
+}
+
+.FindBorder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    height: 386px;
+    border: 3px solid #BB945F;
+    padding: 20px 20px 30px 20px;
+    row-gap: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.FindCardButton {
+    width: 242px;
+    height: 44px;
+    padding: 10px 38px;
+    color: #0C0C0E;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid #0C0C0E;
+    background-color: #fff;
+    transition: 0.5s;
+}
+
+.FindCardButton:hover {
+    background-color: #BB945F;
+    border: 1px solid #BB945F;
+}
+
+.gold-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 560px;
+    height: 272px;
+    background: #BB945F;
+    padding: 17px 20px 25px 20px;
+    row-gap: 20px;
+}
+
+.gold-areaTitle {
+    color: #000;
+    font-family: Forum;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 0.6px;
+    margin: 0;
+}
+
+.CardFindForms {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+}
+
+.FindForm {
+    width: 520px;
+    height: 66px;
+    border: 0px;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 10px 0 0 20px;
+}
+
+.FindForm::placeholder {
+    width: 182px;
+    height: 50px;
+    color: #8E8E8E;
+    font-family: Forum;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: 0.6px;
+}
+
+/* Find Card /\ */
+
+.GetCard {
+    width: 456px;
+    height: 253px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    row-gap: 35px;
+    column-gap: 20px;
+}
+
+.GetTitle {
+    color: #000;
+    text-align: center;
+    font-family: Forum;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.6px;
+    margin: 0;
+}
+
+.TextRight {
+    width: 456px;
+    text-align: right;
+    letter-spacing: 0.4px;
+    margin: 0;
+}
+
+.GetButtons {
+    display: flex;
+    column-gap: 20px;
+}
+
+/* FOOTER \/ */
+
+.main-footer {
+    height: 250px;
+    width: 1440px;
+    margin: -20px auto 0px auto;
+    background-color: #0C0C0E;
+    padding: 20px;
+}
+
+.LibraryInfo {
+    row-gap: 10px;
+}
+
+.LibraryInfo1 {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.FooterText {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.FooterAddress {
+    width: 229px;
+}
+
+.AddressLink {
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.AddressLink:hover {
+    color: #BB945F;
+}
+
+.schedule {
+    width: 149px;
+    text-align: right;
+}
+
+.LibraryInfo2 {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-list {
+    width: 102px;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding-left: 0;
+}
+
+.social-item {
+    transition: 0.4s;
+}
+
+.social-item:hover {
+    transition: 0.4s;
+    transform: scale(1.5);
+}
+
+.social-item:hover * {
+    transition: 0.4s;
+    filter: drop-shadow(0.5px 0.5px 8px gray);
+}
+
+.FooterLine {
+    width: 1400px;
+    height: 1px;
+    background-color: #fff;
+    margin-top: 18px;
+}
+
+.FooterEnd {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    margin-top: 26px;
+}
+
+.FooterEndText {
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 2px;
+}
+
+.rs-school {
+    text-decoration: none;
+    padding: 10px 0;
+    transition: 0.4s;
+}
+
+.rs-school:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0.7px 0.7px 8px white);
+}
+
+.GitHubName {
+    text-decoration: none;
+    line-height: 40px;
+    position: relative;
+    transition: 0.4s ease;
+    overflow: hidden;
+}
+
+.GitHubName::before {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    content: '';
+    bottom: 0;
+    right: 0;
+    background-color: #FFF;
+    transform: translateX(100%);
+    transition: 0.4s ease-out;
+}
+
+.GitHubName:hover {
+    color: #BB945F;
+    transform: scale(1.1);
+}
+
+.GitHubName:hover::before {
+    background-color: #BB945F;
+    transform: translateX(0);
+}
+
+/* FOOTER /\ */
+
+.margin0 {
+    margin: 0;
+}

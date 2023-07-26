@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brooklyn Public Library</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/favicon.ico">
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <h1>Brooklyn Public Library</h1>
+            <div class="profile">
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="#About" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="#Favorites" class="nav-link">Favorites</a></li>
+                        <li class="nav-item"><a href="#CoffeeShop" class="nav-link">Coffee shop</a></li>
+                        <li class="nav-item"><a href="#Contacts" class="nav-link">Contacts</a></li>
+                        <li class="nav-item"><a href="#LibraryCard" class="nav-link">Library Card</a></li>
+                      </ul>
+                </nav>
+                <img class="icon-profile" src="assets/img/icon_profile.svg" alt="icon_profile">
+            </div>
+        </header>
+        <main class="main-main">
+            <section class="section-Welcome">
+                <div class="overlay"></div>
+                <div class="wrapper">
+                <div class="Welcome">
+                    <h2 class="WelcomeText">Welcome&nbsp;<br>to the Brooklyn<br>Library</h2>
+                </div>
+                </div>
+            </section>
+            <section class="section-About">
+                <h2 id="About">About</h2>
+                <p class="main-text">The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside </p>
+                <div class="AboutImage">
+                    <div class="Image1"></div>
+                    <div class="Image2"></div>
+                    <div class="Image3"></div>
+                </div>
+                <form class="PaginationAbout">
+                    <label>
+                        <input class="pagination" checked type="radio" name="About">
+                    </label>
+                    <label>
+                        <input class="pagination" type="radio" name="About">
+                    </label>
+                    <label>
+                        <input class="pagination" type="radio" name="About">
+                    </label>
+                </form>
+            </section>
+            <section class="section-Favorites">
+                <h2 id="Favorites">Favorites</h2>
+                <p class="SpecificText">Pick favorites of season</p>
+                <form class="FavoritesSeasons">
+                    <div class="SeasonButton Win">
+                    <input class="season" id="Winter" checked type="radio" name="Favorites">
+                    <label for="Winter">Winter</label>
+                    </div>
+                    <div class="SeasonButton Spr">
+                    <input class="season" id="Spring" type="radio" name="Favorites">
+                    <label for="Spring">Spring</label>
+                    </div>
+                    <div class="SeasonButton Sum">
+                    <input class="season" id="Summer" type="radio" name="Favorites">
+                    <label for="Summer">Summer</label>
+                    </div>
+                    <div class="SeasonButton Aut">
+                    <input class="season" id="Autumn" type="radio" name="Favorites">
+                    <label for="Autumn">Autumn</label>
+                    </div>
+                </form>
+                <div class="SeasonsBooks">
+                    <div class="Books1">
+                    <div class="BookGroup">
+                        <img class="BookImage" src="assets/img/Winter1.png" alt="Book">
+                        <div class="BookDescription">
+                            <p class="note">Staff Picks</p>
+                            <p class="BookName">THE BOOK EATERS</p>
+                            <p class="BookAuthor">By Sunyi Dean</p>
+                            <p class="BookText H320">An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death. Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart.</p>
+                            <button class="BuyButton">Buy</button>
+                        </div>
+                    </div>
+                    <div class="BookGroup">
+                        <img class="BookImage" src="assets/img/Winter2.png" alt="Book">
+                        <div class="BookDescription">
+                            <p class="note">Staff Picks</p>
+                            <p class="BookName">CACKLE</p>
+                            <p class="BookAuthor">By Rachel Harrison</p>
+                            <p class="BookText H280">Are your Halloween movies of choice The Witches of Eastwick and Practical Magic? Look no further than here - where a woman recovering from a breakup moves to a quaint town in upstate New York and befriends a beautiful witch.</p>
+                            <button class="BuyButton">Buy</button>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="Books2">
+                        <div class="BookGroup">
+                            <img class="BookImage" src="assets/img/Winter3.png" alt="Book">
+                            <div class="BookDescription">
+                                <p class="note">Staff Picks</p>
+                                <p class="BookName">Dante: Poet of the Secular World</p>
+                                <p class="BookAuthor">By Erich Auerbach</p>
+                                <p class="BookText H320">Auerbach's engaging book places the 'Comedy' within the tradition of epic, tragedy, and philosophy in general, arguing for Dante's uniqueness as one who raised the individual and his drama of soul into something of divine significance—an inspired introduction to Dante's main themes.</p>
+                                <button class="BuyButton">Buy</button>
+                            </div>
+                        </div>
+                        <div class="BookGroup">
+                            <img class="BookImage" src="assets/img/Winter4.png" alt="Book">
+                            <div class="BookDescription">
+                                <p class="note">Staff Picks</p>
+                                <p class="BookName">The Last Queen</p>
+                                <p class="BookAuthor">By Clive Irving</p>
+                                <p class="BookText H240">A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.</p>
+                                <button disabled class="OwnButton">Own</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section-CoffeeShop">
+                <h2 id="CoffeeShop">Coffee Shop</h2>
+                <p class="main-text2">In our library, we have of cozy coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation.&nbsp; You can get a favorite book and read in coffee shop. our barista to cook you best coffee, and also you can try desserts from bakery.</p>
+                <div class="menu">
+                    <div class="drinks">
+                        <p class="MenuTitle">Coffee & Tea</p>
+                        <div class="MenuItem">
+                            <p class="MenuText">Cold Brew Coffee</p>
+                            <div class="MenuLine"></div>
+                            <p class="MenuPrice">$3</p>
+                        </div>
+                        <div class="MenuItem">
+                            <p class="MenuText">French Press Pot</p>
+                            <div class="MenuLine"></div>
+                            <p class="MenuPrice">$5</p>
+                        </div>
+                        <div class="MenuItem">
+                            <p class="MenuText">Espresso</p>
+                            <div class="MenuLine"></div>
+                            <p class="MenuPrice">$2</p>
+                        </div>
+                        <div class="MenuItem">
+                            <p class="MenuText">Cappuccino</p>
+                            <div class="MenuLine"></div>
+                            <p class="MenuPrice">$4</p>
+                        </div>
+                        <div class="MenuItem">
+                            <p class="MenuText">Hot Tea</p>
+                            <div class="MenuLine"></div>
+                            <p class="MenuPrice">$2</p>
+                        </div>
+                        <div class="MenuItem">
+                            <p class="MenuText">Cold Tea</p>
+                            <div class="MenuLine"></div>
+                            <p class="MenuPrice">$2</p>
+                        </div>
+                    </div>
+                    <div class="desserts">
+                        <p class="MenuTitle MenuTitleRight">Desserts & Cakes</p>
+                        <div class="MenuItem">
+                            <p class="MenuText MenuTextRight">Forest Gateau</p>
+                            <div class="MenuLine"></div>
+                            <p class="MenuPrice">$16</p>
+                        </div>
+                        <div class="MenuItem">
+                            <p class="MenuText MenuTextRight">Blue Moon</p>
+                            <div class="MenuLine"></div>
+                            <p class="MenuPrice">$16</p>
+                        </div>
+                        <div class="MenuItem">
+                            <p class="MenuText MenuTextRight">Truffle Cake</p>
+                            <div class="MenuLine"></div>
+                            <p class="MenuPrice">$15</p>
+                        </div>
+                        <div class="MenuItem">
+                            <p class="MenuText MenuTextRight">Chocolate Cake</p>
+                            <div class="MenuLine"></div>
+                            <p class="MenuPrice">$18</p>
+                        </div>
+                        <div class="MenuItem">
+                            <p class="MenuText MenuTextRight">Poet’s Dream Cake</p>
+                            <div class="MenuLine"></div>
+                            <p class="MenuPrice">$16</p>
+                        </div>
+                        <div class="MenuItem">
+                            <p class="MenuText MenuTextRight">Pineapple Cake</p>
+                            <div class="MenuLine"></div>
+                            <p class="MenuPrice">$14</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section-Contacts">
+                <h2 id="Contacts">Our Contacts</h2>
+                <div class="ContactsInfo">
+                    <div class="ContactsText">
+                        <p class="main-textBold BoldCon">For all Library inquiries:</p>
+                        <div class="PhoneInfo">
+                            <p class="main-textCon">Please call <a class="ContactsLink" href="tel:+6177302370">(617) 730-2370 <img class="ConImg" src="assets/img/phone.svg" alt="phone"></a></p>
+                            <p class="main-textCon">For TTY service, please call <a class="ContactsLink" href="tel:+6177302370">(617) 730-2370 <img class="ConImg" src="assets/img/phone.svg" alt="phone"></a></p>
+                            <p class="main-textCon">Putterham Library: <a class="ContactsLink" href="tel:+6177302385">(617) 730-2385 <img class="ConImg" src="assets/img/phone.svg" alt="phone"></a></p>
+                        </div>
+                        <div class="senior-staff">
+                            <p class="main-textBold BoldCon">Senior Staff</p>
+                            <p class="main-textCon">Library Director: <a class="ContactsLink main-textBold" href="mailto:AmandaHirst@gmail.com">Amanda Hirst <img class="ConImg" src="assets/img/email.svg" alt="mail"></a></p>
+                        </div>
+                    </div>
+                    <div class="ContactsMap"></div>
+                </div>
+            </section>
+            <section class="section-LibraryCard">
+                <h2 id="LibraryCard">Digital Library Cards</h2>
+                <div class="CardBlocks">
+                <div class="FindCard">
+                    <p class="FindCardTitle">Find your Library card</p>
+                    <div class="FindBorder">
+                        <div class="gold-area">
+                            <p class="gold-areaTitle">Brooklyn Public Library</p>
+                            <div class="CardFindForms">
+                            <form class="CardFindForm1">
+                                <label>
+                                    <input class="FindForm" type="text" placeholder="Reader's name">
+                                </label>
+                            </form>
+                            <form class="CardFindForm2">
+                                <label>
+                                    <input class="FindForm" type="text" placeholder="Card number">
+                                </label>
+                            </form>
+                            </div>
+                        </div>
+                        <button class="FindCardButton">Check the card</button>
+                    </div>
+                </div>
+                <div class="GetCard">
+                    <p class="GetTitle">Get a reader card</p>
+                    <p class="main-text2 TextRight">You will be able to see a reader card after logging into account or you can register a new account</p>
+                    <form class="GetButtons">
+                        <button class="BuyButton">Sign Up</button>
+                        <button class="BuyButton">Log In</button>
+                    </form>
+                </div>
+                </div>
+            </section>
+        </main>
+        <footer class="main-footer">
+            <div class="LibraryInfo">
+                <div class="LibraryInfo1">
+                    <div class="FooterAddress"><a class="FooterText AddressLink" href="https://goo.gl/maps/vMBVB7jYXpCtW7zA9" target="_blank">286 Cadman Plaza, New York, NY 11238, United States</a></div>
+                    <div class="schedule FooterText">Mon - Fri<br>08:00 am - 07:00 pm</div>
+                </div>
+                <div class="LibraryInfo2">
+                    <ul class="social-list">
+                        <li class="social-item"><a class="social-link" href="https://twitter.com/elonmusk" target="_blank"><img src="assets/img/u_twitter-alt.svg" alt="twitter"></a></li>
+                        <li class="social-item"><a class="social-link" href="https://www.instagram.com/misha_des/?hl=ru" target="_blank"><img src="assets/img/u_instagram.svg" alt="instagram"></a></li>
+                        <li class="social-item"><a class="social-link" href="https://www.facebook.com/profile.php?id=100092026832914" target="_blank"><img src="assets/img/u_facebook-f.svg" alt="facebook"></a></li>
+                    </ul>
+                    <div class="schedule FooterText">Sat - Sun<br>10:00 am - 06:00 pm</div>
+                </div>
+            </div>
+            <hr class="FooterLine">
+            <div class="FooterEnd">
+                <p class="FooterEndText">2023</p>
+                <a class="FooterEndText rs-school" href="https://rs.school/js-stage0/" target="_blank" >The Rolling Scopes School</a>
+                <a class="FooterEndText GitHubName" href="https://github.com/DialecticalLaw" target="_blank">DialecticalLaw</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
