@@ -1044,6 +1044,7 @@ h2::after {
 .rs-school {
     text-decoration: none;
     padding: 10px 0;
+    margin-left: 110px;
     transition: 0.4s;
 }
 
