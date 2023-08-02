@@ -39,7 +39,7 @@ body {
 .main-header {
     display: flex;
     justify-content: space-between;
-    width: 1440px;
+    width: 100%;
     margin: 0 auto;
     height: 90px;
     background-color: #0C0C0E;
@@ -170,7 +170,6 @@ h1 {
     line-height: 50px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    flex-shrink: 0;
     margin: 0;
 }
 
@@ -178,7 +177,7 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 1440px;
+    width: 100%;
     margin: 0 auto;
     padding-bottom: 40px;
     background: #fff;
@@ -294,7 +293,7 @@ h2::after {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 1440px;
+    width: 100%;
     margin: 0 auto;
     padding: 6px 20px 40px 20px;
     background: #fff;
@@ -560,7 +559,7 @@ h2::after {
     flex-direction: column;
     align-items: center;    
     padding: 0px 20px 40px 20px;
-    width: 1440px;
+    width: 100%;
     margin: 0 auto;
     background: #fff;
 }
@@ -581,7 +580,7 @@ h2::after {
 /* MENU \/ */
 
 .menu {
-    width: 1400px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
@@ -676,18 +675,18 @@ h2::after {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1440px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 20px 37px 20px;
+    padding: 0 20px 37px 19px;
     gap: 40px;
     background: #fff;
 }
 
 .ContactsInfo {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: 167px;
+    width: 100%;
     margin-top: -13px;
 }
 
@@ -773,7 +772,7 @@ h2::after {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1440px;
+    width: 100%;
     padding: 20px;
     margin: -17px auto 20px auto;
     background: #fff;
@@ -941,7 +940,7 @@ h2::after {
 
 .main-footer {
     height: 250px;
-    width: 1440px;
+    width: 100%;
     margin: -20px auto 0px auto;
     background-color: #0C0C0E;
     padding: 20px;
@@ -952,7 +951,7 @@ h2::after {
 }
 
 .LibraryInfo1 {
-    width: 1400px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -986,7 +985,7 @@ h2::after {
 }
 
 .LibraryInfo2 {
-    width: 1400px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1022,7 +1021,7 @@ h2::after {
 }
 
 .FooterEnd {
-    width: 1400px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1087,4 +1086,44 @@ h2::after {
 
 .margin0 {
     margin: 0;
+}
+
+@media only screen and (max-width:1240px) {
+    .section-Favorites {
+        min-height: 2629px;
+    }
+
+    .SeasonsBooks {
+        min-height: 2340px;
+    }
+
+    .Books1, .Books2 {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .ContactsInfo {
+        flex-direction: column;
+        gap: 100px;
+    }
+
+    .CardBlocks {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .GetCard {
+        align-items: center;
+    }
+
+    .TextRight {
+        text-align: center;
+    }
 }
