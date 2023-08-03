@@ -38,7 +38,9 @@ body {
 
 .main-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
     width: 100%;
     margin: 0 auto;
     height: 90px;
@@ -46,7 +48,9 @@ body {
 }
 
 h1 {
-    Color: #fff;
+    position: absolute;
+    left: 0;
+    color: #fff;
     margin: 20px;
     font-family: Forum;
     Font-size: 30px;
@@ -55,9 +59,12 @@ h1 {
     letter-spacing: 0.6px;
 }
 
-.profile {
+.header_burger {
+    display: none;
+}
+
+.header_menu {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
 }
 
@@ -69,6 +76,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     list-style: none;
+    padding-left: 0;
 }
 
 .nav-item a {
@@ -1014,7 +1022,7 @@ h2::after {
 }
 
 .FooterLine {
-    width: 1400px;
+    width: 100%;
     height: 1px;
     background-color: #fff;
     margin-top: 18px;
@@ -1088,7 +1096,14 @@ h2::after {
     margin: 0;
 }
 
-@media only screen and (max-width:1240px) {
+@media only screen and (max-width: 1240px) {
+    .section-Welcome {
+        background: url(assets/img/Welcome768.png), lightgray 50% / cover no-repeat;
+        background-repeat: no-repeat; 
+        background-size: cover; 
+        background-position: center;
+    }
+
     .section-Favorites {
         min-height: 2629px;
     }
@@ -1103,6 +1118,10 @@ h2::after {
         gap: 40px;
     }
 
+    .coffeeShopMainText2 {
+        width: 729px;
+    }
+
     .menu {
         flex-direction: column;
         gap: 40px;
@@ -1111,6 +1130,10 @@ h2::after {
     .ContactsInfo {
         flex-direction: column;
         gap: 100px;
+    }
+
+    .ContactsMap {
+        align-self: center;
     }
 
     .CardBlocks {
@@ -1125,5 +1148,39 @@ h2::after {
 
     .TextRight {
         text-align: center;
+        width: 600px;
     }
 }
+
+@media only screen and (max-width: 1024px) {
+    .header_burger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        top: 30px;
+        width: 45px;
+        height: 20px;
+    }
+
+    .header_burger > span {
+    display: block;
+    width: 45px;
+    height: 1px;
+    background-color: #fff;
+    }
+
+    .header_menu {
+        justify-content: flex-end;
+        width: 332px;
+        height: 570px;
+        background-color: #000;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
+
