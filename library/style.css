@@ -257,11 +257,33 @@ h2::after {
     margin: auto 5px;
 }
 
+.Image4 {
+    display: none;
+    width: 450px;
+    height: 560px;
+    flex-shrink: 0;
+    background: url(assets/img/image\ 4.png), lightgray 50% / cover no-repeat;
+    margin: auto 5px;
+}
+
+.Image5 {
+    display: none;
+    width: 450px;
+    height: 560px;
+    flex-shrink: 0;
+    background: url(assets/img/image\ 5.png), lightgray 50% / cover no-repeat;
+    margin: auto 5px;
+}
+
 .PaginationAbout {
     align-self: center;
     height: 16px;
     margin-top: 34px;
     flex-shrink: 0;
+}
+
+.arrow1, .arrow2 {
+    display: none;
 }
 
 .pagination {
@@ -271,6 +293,10 @@ h2::after {
     margin-right: 0px;
     margin-left: 0px;
     appearance: none;
+}
+
+.PaginationAbout :nth-child(4), .PaginationAbout :nth-child(5){
+    display: none;
 }
 
 .pagination::after {
@@ -1099,8 +1125,38 @@ h2::after {
 
 /* FOOTER /\ */
 
-.margin0 {
-    margin: 0;
+@media only screen and (max-width: 1372px) {
+    .Image2, .Image3, .Image4, .Image5 {
+        display: none;
+    }
+
+    .AboutImage {
+        align-items: center;
+    }
+
+    .PaginationAbout {
+        margin-top: 19px
+    }
+
+    .PaginationAbout :nth-child(4), .PaginationAbout :nth-child(5){
+        display: inline;
+    }
+
+    .arrow1, .arrow2 {
+        display: inline;
+        width: 24px;
+        height: 24px;
+        margin-top: 40px;
+        cursor: pointer;
+    }
+
+    .arrow1 {
+        margin-left: 25px;
+    }
+
+    .arrow2 {
+        margin-right: 25px;
+    }
 }
 
 @media only screen and (max-width: 1240px) {
@@ -1134,6 +1190,14 @@ h2::after {
         gap: 40px;
     }
 
+    .section-Contacts {
+        padding-left: 20px;
+    }
+
+    .section-LibraryCard {
+        padding-left: 22px;
+    }
+
     .ContactsInfo {
         flex-direction: column;
         gap: 100px;
@@ -1141,6 +1205,11 @@ h2::after {
 
     .ContactsMap {
         align-self: center;
+    }
+
+    .section-LibraryCard {
+        margin-bottom: 10px;
+        padding-bottom: 0;
     }
 
     .CardBlocks {
@@ -1156,6 +1225,15 @@ h2::after {
     .TextRight {
         text-align: center;
         width: 600px;
+        margin-top: 5px;
+    }
+
+    .GetButtons {
+        margin-top: 5px;
+    }
+
+    .rs-school {
+        margin-left: 52px;
     }
 }
 
