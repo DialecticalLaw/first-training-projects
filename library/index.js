@@ -1,1 +1,43 @@
-console.log('Score 100 / 100\nПриветствую\nВ ходе самопроверки не заметил каких-либо нарушений (все сдвиги в пределах 10px), но есть несколько моментов, которые стоит обозначить дабы избежать недопонимания.\nМожно заметить, что header и footer как будто тянутся на всю ширину страницы, хотя в требованиях сказано, что вся верстка (контент и фоны) не должны тянуться на всю страницу. Я не считаю ошибкой хотя бы потому, что header и footer фактически и не тянутся, это можно проверить через браузер. То, что тянется после footer и header - container, в который они входят. Сама вёрстка находится в центре. Сделал я это из-за того, что так просто намного симпатичнее смотрится.\nРассчитываю на ваше понимание\nХорошего кросс-чека!')
+const nav = document.querySelector('.nav');
+const burger = document.querySelector('.header_burger');
+const navList = document.querySelector('.nav-list');
+const header = document.querySelector('.main-header');
+const main = document.querySelector('.main-main');
+const footer = document.querySelector('.main-footer');
+const body = document.body;
+
+if (nav && burger) {
+    burger.addEventListener('click', e => {
+        nav.classList.toggle('active')
+        burger.classList.toggle('active')
+        body.classList.toggle('lock')
+    })
+};
+
+if (nav && burger) {
+    navList.addEventListener('click', e => {
+        nav.classList.remove('active')
+        burger.classList.remove('active')
+        body.classList.remove('lock')
+    })
+};
+
+if (nav && burger) {
+    main.addEventListener('click', e => {
+        nav.classList.remove('active')
+        burger.classList.remove('active')
+        body.classList.remove('lock')
+    })
+};
+
+document.addEventListener('click', e => {
+    if (nav && burger && nav.classList.contains('active') && burger.classList.contains('active')) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+            nav.classList.remove('active')
+            burger.classList.remove('active')
+            body.classList.remove('lock')
+        }
+    }
+});
+
+console.log('Score 50/50');
