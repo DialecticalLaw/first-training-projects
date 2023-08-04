@@ -39,3 +39,5 @@ document.addEventListener('click', e => {
         }
     }
 });
+
+console.log('Score 50/50');
