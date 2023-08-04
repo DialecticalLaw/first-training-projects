@@ -1331,3 +1331,20 @@ h2::after {
     }
 }
 
+@media only screen and (max-width: 730px) {
+    .coffeeShopMainText2 {
+        width: 100%;
+    }
+
+    .FavoritesSeasons {
+        width: 100%;
+    }
+
+    iframe, .ContactsMap {
+        width: 100%;
+    }
+
+    .rs-school {
+        margin-left: 0px;
+    }
+}
