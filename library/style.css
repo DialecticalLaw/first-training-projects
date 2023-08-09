@@ -1254,8 +1254,8 @@ h2::after {
     }
 
     .icon-profile {
-        margin-right: 40px;
-        z-index: 1;
+        margin-right: 42px;
+        z-index: 2;
     }
 
     .header_burger > span {
@@ -1269,9 +1269,9 @@ h2::after {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 345px;
+        width: 332px;
         height: 570px;
-        background-color: #000;
+        background-color: #0C0C0E;
         position: absolute;
         top: 0;
         right: 0;
@@ -1295,11 +1295,6 @@ h2::after {
     .header_burger.active {
         width: 45px;
         height: 32px;
-        margin-right: 10px;
-    }
-
-    .nav.active + .icon-profile {
-        margin-right: 30px;
     }
 
     .header_burger :nth-child(1), .header_burger :nth-child(3) {
@@ -1328,6 +1323,11 @@ h2::after {
     .header_burger.active :nth-child(2) {
         transition: 0.1s;
         transform: scaleX(0);
+    }
+
+    .aboutText {
+        max-width: 728px;
+        align-self: center;
     }
 }
 
