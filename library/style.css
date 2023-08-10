@@ -1276,12 +1276,12 @@ h2::after {
         top: 0;
         right: 0;
         margin-right: 0;
-        transform: translateY(-100%);
+        transform: translateX(100%);
         transition: 0.4s ease;
     }
 
     .nav.active {
-        transform: translateY(0);
+        transform: translateX(0);
     }
 
     .nav-list {
