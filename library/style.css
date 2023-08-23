@@ -25,6 +25,10 @@ body {
     overflow-x: hidden;
 }
 
+.lock {
+    overflow-y: hidden;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -230,7 +234,11 @@ h2::after {
 
 .AboutImage {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    overflow: hidden;
+    gap: 25px;
+    position: relative;
+    margin-left: 20px;
 }
 
 .Image1 {
@@ -238,7 +246,6 @@ h2::after {
     height: 560px;
     flex-shrink: 0;
     background: url(assets/img/image\ 1.png), lightgray 50% / cover no-repeat;
-    margin: auto 5px;
 }
 
 .Image2 {
@@ -246,7 +253,6 @@ h2::after {
     height: 560px;
     flex-shrink: 0;
     background: url(assets/img/image\ 2.png), lightgray 50% / cover no-repeat;
-    margin: auto 5px;
 }
 
 .Image3 {
@@ -254,25 +260,25 @@ h2::after {
     height: 560px;
     flex-shrink: 0;
     background: url(assets/img/image\ 3.png), lightgray 50% / cover no-repeat;
-    margin: auto 5px;
 }
 
 .Image4 {
-    display: none;
     width: 450px;
     height: 560px;
     flex-shrink: 0;
     background: url(assets/img/image\ 4.png), lightgray 50% / cover no-repeat;
-    margin: auto 5px;
 }
 
 .Image5 {
-    display: none;
     width: 450px;
     height: 560px;
     flex-shrink: 0;
     background: url(assets/img/image\ 5.png), lightgray 50% / cover no-repeat;
-    margin: auto 5px;
+}
+
+.AloneImage {
+    position: relative;
+    transition: 0.8s ease;
 }
 
 .PaginationAbout {
@@ -405,6 +411,7 @@ h2::after {
 .season + label {
     margin-right: 0.5px;
     margin-top: 1px;
+    padding-left: 21px;
     cursor: pointer;
 }
 
@@ -1125,13 +1132,22 @@ h2::after {
 
 /* FOOTER /\ */
 
-@media only screen and (max-width: 1372px) {
-    .Image2, .Image3, .Image4, .Image5 {
+@media only screen and (max-width: 1400px) {
+    /*.Image2, .Image3, .Image4, .Image5 {
         display: none;
+    }*/
+
+    .AboutCarousel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .AboutImage {
+        justify-content: flex-start;
         align-items: center;
+        margin-left: 0;
+        width: 450px;
     }
 
     .PaginationAbout {
@@ -1146,16 +1162,20 @@ h2::after {
         display: inline;
         width: 24px;
         height: 24px;
-        margin-top: 40px;
         cursor: pointer;
+        margin-top: 40px;
     }
 
     .arrow1 {
-        margin-left: 25px;
+        margin-right: 58px;
     }
 
     .arrow2 {
-        margin-right: 25px;
+        margin-left: 58px;
+    }
+
+    .DisabledArrow {
+        opacity: 0.3;
     }
 }
 
