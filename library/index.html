@@ -6,7 +6,7 @@
     <title>Brooklyn Public Library</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/favicon.ico">
-    <script defer src="index.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -40,30 +40,32 @@
             <section class="section-About">
                 <h2 id="About">About</h2>
                 <p class="main-text aboutText">The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside </p>
-                <div class="AboutImage">
-                    <img class="arrow1" src="assets/img/Carret_Left.svg" alt="left">
-                    <div class="Image1"></div>
-                    <div class="Image2"></div>
-                    <div class="Image3"></div>
-                    <div class="Image4"></div>
-                    <div class="Image5"></div>
-                    <img class="arrow2" src="assets/img/Carret_Right.svg" alt="right">
+                <div class="AboutCarousel">
+                    <svg class="arrow1" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="Carret_Left"><path id="Vector" d="M15 7.5L9 12.5L15 17.5" stroke="black" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+                    <div class="AboutImage">
+                        <div class="Image1 AloneImage" style="right: 0;"></div>
+                        <div class="Image2 AloneImage" style="right: 0;"></div>
+                        <div class="Image3 AloneImage" style="right: 0;"></div>
+                        <div class="Image4 AloneImage" style="right: 0;"></div>
+                        <div class="Image5 AloneImage" style="right: 0;"></div>
+                    </div>
+                    <svg class="arrow2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="Carret_Right"><path id="Vector" d="M9 17.5L15 12.5L9 7.5" stroke="black" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
                 </div>
                 <form class="PaginationAbout">
-                    <label>
-                        <input class="pagination" checked type="radio" name="About">
+                    <label class="lab1">
+                        <input class="pagination pag1" checked type="radio" name="About">
                     </label>
-                    <label>
-                        <input class="pagination" type="radio" name="About">
+                    <label class="lab2">
+                        <input class="pagination pag2" type="radio" name="About">
                     </label>
-                    <label>
-                        <input class="pagination" type="radio" name="About">
+                    <label class="lab3">
+                        <input class="pagination pag3" type="radio" name="About">
                     </label>
-                    <label>
-                        <input class="pagination" type="radio" name="About">
+                    <label class="lab4">
+                        <input class="pagination pag4" type="radio" name="About">
                     </label>
-                    <label>
-                        <input class="pagination" type="radio" name="About">
+                    <label class="lab5">
+                        <input class="pagination pag5" type="radio" name="About">
                     </label>
                 </form>
             </section>
@@ -283,5 +285,6 @@
             </div>
         </footer>
     </div>
+    <script src="index.js"></script>
 </body>
 </html>
