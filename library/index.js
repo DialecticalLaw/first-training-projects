@@ -10,6 +10,8 @@ const header = document.querySelector('.main-header');
 const main = document.querySelector('.main-main');
 const footer = document.querySelector('.main-footer');
 
+// Бургер меню - начало
+
 if (nav && burger) {
     burger.addEventListener('click', e => {
         nav.classList.toggle('active')
@@ -48,6 +50,8 @@ document.addEventListener('click', e => {
     }
 });
 
+// Бургер меню - конец
+
 const image1 = document.querySelector('.Image1');
 const image2 = document.querySelector('.Image2');
 const image3 = document.querySelector('.Image3');
@@ -78,6 +82,8 @@ window.addEventListener('resize', (e) => {
     }
     aboutImage.style['margin-left'] = (body.clientWidth - 1400) / 2 + 'px';
 })
+
+// Слайдер About - начало
 
 paginationAbout.addEventListener('click', function(event) {
     if (body.offsetWidth > 1400) {
@@ -134,13 +140,14 @@ paginationAbout.addEventListener('click', function(event) {
     }
 })
 
-function sizeToNumber(str) {
+function sizeToNumber(str) {         // функция для удаления "px" из строки вида "123px" и возвращения числа 123
     return Number(str.slice(0, -2));
 }
 
 function highlightButton(oldRight, newRight) {
     if (oldRight === 0) {
         pag1.checked = false;
+        leftArrow.classList.remove('DisabledArrow')
     } else if (oldRight === 475) {
         pag2.checked = false;
     } else if (oldRight === 950) {
@@ -149,10 +156,12 @@ function highlightButton(oldRight, newRight) {
         pag4.checked = false;
     } else if (oldRight === 1900) {
         pag5.checked = false;
+        rightArrow.classList.remove('DisabledArrow')
     }
 
     if (newRight === 0) {
         pag1.checked = true;
+        leftArrow.classList.add('DisabledArrow')
     } else if (newRight === 475) {
         pag2.checked = true;
     } else if (newRight === 950) {
@@ -161,6 +170,7 @@ function highlightButton(oldRight, newRight) {
         pag4.checked = true;
     } else if (newRight === 1900) {
         pag5.checked = true;
+        rightArrow.classList.add('DisabledArrow')
     }
 }
 
@@ -190,3 +200,111 @@ aboutCarousel.addEventListener('click', function(event) {
         }
     }
 })
+
+// Слайдер About - конец
+
+const favSeasons = document.querySelector('.FavoritesSeasons');
+
+const winButton = document.getElementById('Winter')
+const sprButton = document.getElementById('Spring')
+const sumButton = document.getElementById('Summer')
+const autButton = document.getElementById('Autumn')
+
+const winter = document.querySelectorAll('.Winter');
+const spring = document.querySelectorAll('.Spring');
+const summer = document.querySelectorAll('.Summer');
+const autumn = document.querySelectorAll('.Autumn');
+
+// Слайдер Favorites - начало
+
+function reappearance(par, item) {
+    if (par === 'show') {
+        item.style.display = '';
+    } else if (par === 'hide') {
+        item.style.display = 'none';
+    }
+}
+
+function smoothDisplay(item) {
+    item.style.opacity = '1'
+}
+
+favSeasons.addEventListener('click', function(event) {
+    if (event.target === winButton) {
+        for (let book of winter) {
+            setTimeout(reappearance, 300, 'show', book)
+            setTimeout(smoothDisplay, 350, book)
+        }
+        for (let book of spring) {
+            setTimeout(reappearance, 300, 'hide', book)
+            book.style.opacity = '0';
+        }
+        for (let book of summer) {
+            setTimeout(reappearance, 300, 'hide', book)
+            book.style.opacity = '0';
+        }
+        for (let book of autumn) {
+            setTimeout(reappearance, 300, 'hide', book)
+            book.style.opacity = '0';
+        }
+    }
+
+    if (event.target === sprButton) {
+        for (let book of spring) {
+            setTimeout(reappearance, 300, 'show', book)
+            setTimeout(smoothDisplay, 350, book)
+        }
+        for (let book of winter) {
+            setTimeout(reappearance, 300, 'hide', book)
+            book.style.opacity = '0';
+        }
+        for (let book of summer) {
+            setTimeout(reappearance, 300, 'hide', book)
+            book.style.opacity = '0';
+        }
+        for (let book of autumn) {
+            setTimeout(reappearance, 300, 'hide', book)
+            book.style.opacity = '0';
+        }
+    }
+
+    if (event.target === sumButton) {
+        for (let book of summer) {
+            setTimeout(reappearance, 300, 'show', book)
+            setTimeout(smoothDisplay, 350, book)
+        }
+        for (let book of spring) {
+            setTimeout(reappearance, 300, 'hide', book)
+            book.style.opacity = '0';
+        }
+        for (let book of autumn) {
+            setTimeout(reappearance, 300, 'hide', book)
+            book.style.opacity = '0';
+        }
+        for (let book of winter) {
+            setTimeout(reappearance, 300, 'hide', book)
+            book.style.opacity = '0';
+        }
+    }
+
+    if (event.target === autButton) {
+        for (let book of autumn) {
+            setTimeout(reappearance, 300, 'show', book)
+            setTimeout(smoothDisplay, 350, book)
+        }
+        for (let book of winter) {
+            setTimeout(reappearance, 300, 'hide', book)
+            book.style.opacity = '0';
+        }
+        for (let book of spring) {
+            setTimeout(reappearance, 300, 'hide', book)
+            book.style.opacity = '0';
+        }
+        for (let book of summer) {
+            setTimeout(reappearance, 300, 'hide', book)
+            book.style.opacity = '0';
+        }
+    }
+})
+
+// Слайдер Favorites - конец
