@@ -454,6 +454,10 @@ h2::after {
     margin-top: 41px;
 }
 
+.Winter, .Spring, .Summer, .Autumn {
+    transition: 0.3s ease;
+}
+
 .BookGroup {
     position: relative;
     width: 590px;
@@ -542,6 +546,16 @@ h2::after {
 .H240 {
     height: 240px;
     margin-bottom: 95px;
+}
+
+.H200 {
+    height: 200px;
+    margin-bottom: 135px;
+}
+
+.H160 {
+    height: 160px;
+    margin-bottom: 175px;
 }
 
 .BuyButton {
