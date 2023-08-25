@@ -10,7 +10,7 @@ const header = document.querySelector('.main-header');
 const main = document.querySelector('.main-main');
 const footer = document.querySelector('.main-footer');
 
-// Бургер меню - начало
+// Burger menu - start
 
 if (nav && burger) {
     burger.addEventListener('click', e => {
@@ -40,17 +40,21 @@ if (nav && burger) {
 };
 
 document.addEventListener('click', e => {
-    if (nav && burger && nav.classList.contains('active') && burger.classList.contains('active')) {
+    if (nav && burger && nav.classList.contains('active') && burger.classList.contains('active')) { // закрыть бургер меню при клике вне его области
         if (!nav.contains(e.target) && !burger.contains(e.target)) {
             nav.classList.remove('active')
             burger.classList.remove('active')
             body.classList.remove('lock')
             html.classList.remove('lock')
         }
+    } else if (dropMenu.classList.contains('active-drop-menu')) { // закрыть dropMenu при клике вне его области
+        if (!dropMenu.contains(e.target) && !iconProfile.contains(e.target)) {
+            dropMenu.classList.remove('active-drop-menu');
+        }
     }
 });
 
-// Бургер меню - конец
+// Burger menu - end
 
 const image1 = document.querySelector('.Image1');
 const image2 = document.querySelector('.Image2');
@@ -83,7 +87,7 @@ window.addEventListener('resize', (e) => {
     aboutImage.style['margin-left'] = (body.clientWidth - 1400) / 2 + 'px';
 })
 
-// Слайдер About - начало
+// Slider About - start
 
 paginationAbout.addEventListener('click', function(event) {
     if (body.offsetWidth > 1400) {
@@ -201,7 +205,7 @@ aboutCarousel.addEventListener('click', function(event) {
     }
 })
 
-// Слайдер About - конец
+// Slider About - end
 
 const favSeasons = document.querySelector('.FavoritesSeasons');
 
@@ -215,7 +219,7 @@ const spring = document.querySelectorAll('.Spring');
 const summer = document.querySelectorAll('.Summer');
 const autumn = document.querySelectorAll('.Autumn');
 
-// Слайдер Favorites - начало
+// Slider Favorites - start
 
 function reappearance(par, item) {
     if (par === 'show') {
@@ -307,4 +311,21 @@ favSeasons.addEventListener('click', function(event) {
     }
 })
 
-// Слайдер Favorites - конец
+// Slider Favorites - end
+
+// drop menu - start
+
+const dropMenu = document.querySelector('.drop-menu-profile');
+const iconProfile = document.querySelector('.icon-profile');
+const dropMenuActive = document.querySelector('.active-drop-menu');
+
+/*header.addEventListener('click', function (event) {
+    if (event.target  === iconProfile) {
+        dropMenu.style.transform = 'translateY(200%)';
+        dropMenu.classList.add('drop-menu-profile-on')
+    }
+})*/
+
+iconProfile.addEventListener('click', function (event) {
+    dropMenu.classList.toggle('active-drop-menu')
+})

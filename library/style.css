@@ -50,6 +50,7 @@ body {
     margin: 0 auto;
     height: 90px;
     background-color: #0C0C0E;
+    z-index: 3;
 }
 
 h1 {
@@ -118,6 +119,70 @@ h1 {
     transform: scaleX(1.2);
 }
 
+.drop-menu-wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+    bottom: 25px;
+    z-index: 2;
+}
+
+.drop-menu-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    height: 115px;
+    background-color: #fff;
+    transition: 0.3s ease-out;
+    transform: translateY(0);
+}
+
+.active-drop-menu {
+    transform: translateY(200%);
+}
+
+.drop-menu-title-text {
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+.drop-menu-title-text::after {
+    width: 40px;
+    height: 1px;
+    display: block;
+    content: '';
+    background: #BB945F;
+    margin: 5px auto 0 auto;
+}
+
+.drop-menu-text {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 43px;
+}
+
+.drop-menu-text2 {
+    margin-top: -33px;
+}
+
 .icon-profile {
     flex-shrink: 0;
     width: 28px;
@@ -125,6 +190,7 @@ h1 {
     margin-right: 20px;
     cursor: pointer;
     transition: 0.5s;
+    z-index: 2;
 }
 
 .icon-profile:hover {
@@ -138,6 +204,7 @@ h1 {
     width: 100%;
     margin: 0 auto 20px auto;
     background: #fff;
+    z-index: 1;
 }
 
 .section-Welcome {
@@ -1203,6 +1270,18 @@ h2::after {
 
     .section-Favorites {
         min-height: 2629px;
+    }
+
+    .WrapperForSeasons {
+        height: 2424px;
+        overflow: scroll;
+        position: relative;
+    }
+
+    .FavoritesSeasons {
+        position: sticky;
+        top: 0;
+        z-index: 1;
     }
 
     .SeasonsBooks {
