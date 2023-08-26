@@ -12,32 +12,20 @@ const footer = document.querySelector('.main-footer');
 
 // Burger menu - start
 
-if (nav && burger) {
-    burger.addEventListener('click', e => {
-        nav.classList.toggle('active')
-        burger.classList.toggle('active')
-        body.classList.toggle('lock')
-        html.classList.toggle('lock')
-    })
-};
+burger.addEventListener('click', e => {
+    nav.classList.toggle('active')
+    burger.classList.toggle('active')
+    body.classList.toggle('lock')
+    html.classList.toggle('lock')
+});
 
-if (nav && burger) {
-    navList.addEventListener('click', e => {
-        nav.classList.remove('active')
-        burger.classList.remove('active')
-        body.classList.remove('lock')
-        html.classList.remove('lock')
-    })
-};
 
-if (nav && burger) {
-    main.addEventListener('click', e => {
-        nav.classList.remove('active')
-        burger.classList.remove('active')
-        body.classList.remove('lock')
-        html.classList.remove('lock')
-    })
-};
+navList.addEventListener('click', e => {
+    nav.classList.remove('active')
+    burger.classList.remove('active')
+    body.classList.remove('lock')
+    html.classList.remove('lock')
+});
 
 document.addEventListener('click', e => {
     if (nav && burger && nav.classList.contains('active') && burger.classList.contains('active')) { // закрыть бургер меню при клике вне его области
@@ -48,11 +36,26 @@ document.addEventListener('click', e => {
             html.classList.remove('lock')
         }
     } else if (dropMenu.classList.contains('active-drop-menu')) { // закрыть dropMenu при клике вне его области
-        if (!dropMenu.contains(e.target) && !iconProfile.contains(e.target)) {
+        if (!iconProfile.contains(e.target)) {
             dropMenu.classList.remove('active-drop-menu');
         }
-    }
-});
+    } else if (registerMenu.classList.contains('modal-register-menu-on')) { // закрыть register menu при клике вне его области
+        if (!registerMenu.contains(e.target) && !closeRegisterSvg.contains(e.target)) {
+            registerMenu.classList.remove('modal-register-menu-on');
+            registerWrapper.classList.remove('modal-register-wrapper-on');
+            registerWrapper.classList.remove('modal-register-wrapper-blackout')
+            body.classList.remove('lock')
+            html.classList.remove('lock')
+        }
+    } else if (loginMenu.classList.contains('modal-login-menu-on')) { // закрыть login menu при клике вне его области
+        if (!loginMenu.contains(e.target) && !closeLoginSvg.contains(e.target)) {
+            loginMenu.classList.remove('modal-login-menu-on');
+            loginWrapper.classList.remove('modal-login-wrapper-on');
+            loginWrapper.classList.remove('modal-login-wrapper-blackout')
+            body.classList.remove('lock')
+            html.classList.remove('lock')
+        }
+}});
 
 // Burger menu - end
 
@@ -319,13 +322,78 @@ const dropMenu = document.querySelector('.drop-menu-profile');
 const iconProfile = document.querySelector('.icon-profile');
 const dropMenuActive = document.querySelector('.active-drop-menu');
 
-/*header.addEventListener('click', function (event) {
-    if (event.target  === iconProfile) {
-        dropMenu.style.transform = 'translateY(200%)';
-        dropMenu.classList.add('drop-menu-profile-on')
-    }
-})*/
-
 iconProfile.addEventListener('click', function (event) {
-    dropMenu.classList.toggle('active-drop-menu')
+    dropMenu.classList.toggle('active-drop-menu');
 })
+
+// open register - start
+
+const openRegisterMenu = document.querySelector('.drop-menu-text2');
+const registerMenu = document.querySelector('.modal-register-menu');
+const closeRegisterSvg = document.querySelector('.modal-register-svg');
+const registerWrapper = document.querySelector('.modal-register-wrapper')
+const loginWrapper = document.querySelector('.modal-login-wrapper')
+const libraryRegButton = document.querySelector('.library-reg-button')
+const libraryLogButton = document.querySelector('.library-log-button')
+
+function toggleClass(item, newClass) {
+    item.classList.toggle(newClass);
+}
+
+openRegisterMenu.addEventListener('click', function () {
+    registerWrapper.classList.toggle('modal-register-wrapper-on');
+    setTimeout(toggleClass, 100, registerWrapper, 'modal-register-wrapper-blackout'); 
+    setTimeout(toggleClass, 100, registerMenu, 'modal-register-menu-on');
+    body.classList.toggle('lock');
+    html.classList.toggle('lock');
+})
+
+libraryRegButton.addEventListener('click', function () {
+    registerWrapper.classList.toggle('modal-register-wrapper-on');
+    setTimeout(toggleClass, 100, registerWrapper, 'modal-register-wrapper-blackout');
+    setTimeout(toggleClass, 100, registerMenu, 'modal-register-menu-on');
+    body.classList.toggle('lock');
+    html.classList.toggle('lock');
+})
+
+closeRegisterSvg.addEventListener('click', function () {
+    registerMenu.classList.remove('modal-register-menu-on');
+    registerWrapper.classList.remove('modal-register-wrapper-on');
+    registerWrapper.classList.remove('modal-register-wrapper-blackout')
+    body.classList.remove('lock');
+    html.classList.remove('lock');
+})
+
+// open register - end
+
+// open login - start
+
+const openLoginMenu = document.querySelector('.drop-menu-text1');
+const loginMenu = document.querySelector('.modal-login-menu');
+const closeLoginSvg = document.querySelector('.modal-login-svg');
+
+openLoginMenu.addEventListener('click', function () {
+    loginWrapper.classList.toggle('modal-login-wrapper-on');
+    setTimeout(toggleClass, 100, loginWrapper, 'modal-login-wrapper-blackout');
+    setTimeout(toggleClass, 100, loginMenu, 'modal-login-menu-on');
+    body.classList.toggle('lock');
+    html.classList.toggle('lock');
+})
+
+libraryLogButton.addEventListener('click', function () {
+    loginWrapper.classList.toggle('modal-login-wrapper-on');
+    setTimeout(toggleClass, 100, loginWrapper, 'modal-login-wrapper-blackout');
+    setTimeout(toggleClass, 100, loginMenu, 'modal-login-menu-on');
+    body.classList.toggle('lock');
+    html.classList.toggle('lock');
+})
+
+closeLoginSvg.addEventListener('click', function () {
+    loginMenu.classList.remove('modal-login-menu-on');
+    loginWrapper.classList.remove('modal-login-wrapper-on');
+    loginWrapper.classList.remove('modal-login-wrapper-blackout')
+    body.classList.remove('lock');
+    html.classList.remove('lock');
+})
+
+// open login - end
