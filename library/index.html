@@ -28,18 +28,18 @@
                     <p class="modal-text">E-mail or readers card</p>
                     <form>
                         <label>
-                            <input type="text" class="modal-login-input">
+                            <input type="text" class="modal-login-input email-or-card-login">
                         </label>
                     </form>
                     <p class="modal-text">Password</p>
                     <form>
                         <label>
-                            <input type="password" class="modal-login-input">
+                            <input type="password" class="modal-login-input password-login">
                         </label>
                     </form>
                 </div>
                 <form class="login-sign-up-form">
-                    <button class="entrance-button">Log In</button>
+                    <button class="entrance-button log-in" type="button">Log In</button>
                 </form>
                 <p class="entrance-text">Don’t have an account?<span class="entrance-proposal register-proposal">Register</span></p>
             </div>
@@ -55,30 +55,30 @@
                     <p class="modal-text">First name</p>
                     <form>
                         <label>
-                            <input type="text" class="modal-register-input">
+                            <input type="text" class="modal-register-input first-name-register">
                         </label>
                     </form>
                     <p class="modal-text">Last name</p>
                     <form>
                         <label>
-                            <input type="text" class="modal-register-input">
+                            <input type="text" class="modal-register-input last-name-register">
                         </label>
                     </form>
                     <p class="modal-text">E-mail</p>
                     <form>
                         <label>
-                            <input type="email" class="modal-register-input">
+                            <input type="email" class="modal-register-input email-register">
                         </label>
                     </form>
                     <p class="modal-text">Password</p>
                     <form>
                         <label>
-                            <input type="password" class="modal-register-input">
+                            <input type="password" class="modal-register-input password-register">
                         </label>
                     </form>
                 </div>
                 <form class="register-sign-up-form">
-                    <button class="entrance-button">Sign Up</button>
+                    <button class="entrance-button sign-up" type="button">Sign Up</button>
                 </form>
                 <p class="entrance-text">Already have an account?<span class="entrance-proposal login-proposal">Login</span></p>
             </div>
@@ -94,7 +94,8 @@
                     <li class="nav-item"><a href="#LibraryCard" class="nav-link">Library Card</a></li>
                 </ul>
             </nav>
-            <img class="icon-profile" src="assets/img/icon_profile.svg" alt="icon_profile">
+            <img class="icon-profile icon-profile-on" src="assets/img/icon_profile.svg" alt="icon_profile">
+            <div class="icon-profile-authorize"></div>
             <div class="header_burger">
                 <span></span>
                 <span></span>
@@ -265,7 +266,7 @@
                                 <p class="BookName">The Last Queen</p>
                                 <p class="BookAuthor">By Clive Irving</p>
                                 <p class="BookText H240">A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.</p>
-                                <button disabled class="BuyButton">Buy</button>
+                                <button class="BuyButton">Buy</button>
                             </div>
                         </div>
                         <div class="BookGroup Spring" style="display: none; opacity: 0;">
@@ -430,20 +431,35 @@
                     <div class="FindBorder">
                         <div class="gold-area">
                             <p class="gold-areaTitle">Brooklyn Public Library</p>
-                            <div class="CardFindForms">
-                            <form class="CardFindForm1">
+                            <form class="CardFindForms">
                                 <label>
-                                    <input class="FindForm" type="text" placeholder="Reader's name">
+                                    <input class="FindForm card-name-input" type="text" placeholder="Reader's name">
+                                </label>
+                                <label>
+                                    <input class="FindForm card-number-input" type="text" placeholder="Card number">
                                 </label>
                             </form>
-                            <form class="CardFindForm2">
-                                <label>
-                                    <input class="FindForm" type="text" placeholder="Card number">
-                                </label>
-                            </form>
+                        </div>
+                        <form class="FindCardButton-form FindCardButton-form-on FindCardButton-form-visible">
+                            <button class="FindCardButton" type="button">Check the card</button>
+                        </form>
+                        <div class="card-profile-info">
+                            <div class="visits-count-info">
+                                <p class="card-info-text">Visits</p>
+                                <img class="svg-profile-info" src="assets/img/Visits.svg" alt="visits">
+                                <p class="card-info-text">0</p>
+                            </div>
+                            <div class="bonuses-count-info">
+                                <p class="card-info-text">Bonuses</p>
+                                <img class="svg-profile-info" src="assets/img/Star.svg" alt="bonus">
+                                <p class="card-info-text">0</p>
+                            </div>
+                            <div class="books-count-info">
+                                <p class="card-info-text">Books</p>
+                                <img class="svg-profile-info" src="assets/img/BookIcon.svg" alt="book">
+                                <p class="card-info-text">0</p>
                             </div>
                         </div>
-                        <button class="FindCardButton">Check the card</button>
                     </div>
                 </div>
                 <div class="GetCard">

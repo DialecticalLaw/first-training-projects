@@ -2,6 +2,7 @@ console.log('Score 200 / 200');
 
 const body = document.body;
 const html = document.querySelector('html');
+const container = document.querySelector('.container');
 
 const nav = document.querySelector('.nav');
 const burger = document.querySelector('.header_burger');
@@ -9,6 +10,8 @@ const navList = document.querySelector('.nav-list');
 const header = document.querySelector('.main-header');
 const main = document.querySelector('.main-main');
 const footer = document.querySelector('.main-footer');
+
+container.style['margin-left'] = -(container.offsetWidth - body.offsetWidth) + 'px';
 
 // Burger menu - start
 
@@ -52,8 +55,6 @@ document.addEventListener('click', e => {
             registerMenu.classList.remove('modal-register-menu-on');
             registerWrapper.classList.remove('modal-register-wrapper-blackout');
             setTimeout(registerClose, 500);
-            body.classList.remove('lock')
-            html.classList.remove('lock')
             
         }
     } else if (loginMenu.classList.contains('modal-login-menu-on')) { // закрыть login menu при клике вне его области
@@ -61,8 +62,6 @@ document.addEventListener('click', e => {
             loginMenu.classList.remove('modal-login-menu-on');
             loginWrapper.classList.remove('modal-login-wrapper-blackout');
             setTimeout(loginClose, 500);
-            body.classList.remove('lock')
-            html.classList.remove('lock')
         }
 }});
 
@@ -353,16 +352,12 @@ openRegisterMenu.addEventListener('click', function () {
     registerWrapper.classList.toggle('modal-register-wrapper-on');
     setTimeout(toggleClass, 100, registerWrapper, 'modal-register-wrapper-blackout'); 
     setTimeout(toggleClass, 100, registerMenu, 'modal-register-menu-on');
-    body.classList.toggle('lock');
-    html.classList.toggle('lock');
 })
 
 libraryRegButton.addEventListener('click', function () {
     registerWrapper.classList.toggle('modal-register-wrapper-on');
     setTimeout(toggleClass, 100, registerWrapper, 'modal-register-wrapper-blackout');
     setTimeout(toggleClass, 100, registerMenu, 'modal-register-menu-on');
-    body.classList.toggle('lock');
-    html.classList.toggle('lock');
 })
 
 closeRegisterSvg.addEventListener('click', function () {
@@ -383,16 +378,12 @@ openLoginMenu.addEventListener('click', function () {
     loginWrapper.classList.toggle('modal-login-wrapper-on');
     setTimeout(toggleClass, 100, loginWrapper, 'modal-login-wrapper-blackout');
     setTimeout(toggleClass, 100, loginMenu, 'modal-login-menu-on');
-    body.classList.toggle('lock');
-    html.classList.toggle('lock');
 })
 
 libraryLogButton.addEventListener('click', function () {
     loginWrapper.classList.toggle('modal-login-wrapper-on');
     setTimeout(toggleClass, 100, loginWrapper, 'modal-login-wrapper-blackout');
     setTimeout(toggleClass, 100, loginMenu, 'modal-login-menu-on');
-    body.classList.toggle('lock');
-    html.classList.toggle('lock');
 })
 
 closeLoginSvg.addEventListener('click', function () {
@@ -402,6 +393,23 @@ closeLoginSvg.addEventListener('click', function () {
 })
 
 // open login - end
+
+// открытие login на buy - start
+
+const buyButtons = document.querySelectorAll('.BuyButton');
+const seasonsBooks = document.querySelector('.SeasonsBooks')
+
+seasonsBooks.addEventListener('click', function(event) {
+    for (let button of buyButtons) {
+        if (button.contains(event.target)) {
+            loginWrapper.classList.toggle('modal-login-wrapper-on');
+            setTimeout(toggleClass, 100, loginWrapper, 'modal-login-wrapper-blackout');
+            setTimeout(toggleClass, 100, loginMenu, 'modal-login-menu-on');
+        }
+    }
+})
+
+// открытие login на buy - end
 
 // login -> register - start
 
@@ -440,3 +448,174 @@ loginProposal.addEventListener('click', function () {
 })
 
 //register -> login - end
+
+// user register - start
+
+const signUp = document.querySelector('.sign-up');
+const firstNameRegister = document.querySelector('.first-name-register');
+const lastNameRegister = document.querySelector('.last-name-register');
+const emailRegister = document.querySelector('.email-register');
+const passwordRegister = document.querySelector('.password-register');
+
+const iconProfileAuthorize = document.querySelector('.icon-profile-authorize');
+
+function isDataForRegisterCorrect () { // проверка правильности заполненных форм регистрации
+    let result = true;
+
+    if (firstNameRegister.value === '') {
+        firstNameRegister.placeholder = 'The field should not be empty!';
+        result = false;
+    }
+
+    if (lastNameRegister.value === '') {
+        lastNameRegister.placeholder = 'The field should not be empty!';
+        result = false;
+    }
+
+    if (firstNameRegister.value === 'Dzmitry' && lastNameRegister.value === 'Apanas') {
+        firstNameRegister.value = '';
+        firstNameRegister.placeholder = 'Кхм...';
+        lastNameRegister.value = '';
+        lastNameRegister.placeholder = 'Ананасики не регистрируются!';
+        result = false;
+    }
+
+    if (emailRegister.value === '') {
+        emailRegister.placeholder = 'The field should not be empty!';
+        result = false;
+    }
+
+    if (passwordRegister.value === '') {
+        passwordRegister.placeholder = 'The field should not be empty!';
+        result = false;
+    }
+
+    if (passwordRegister.value.length < 8) {
+        passwordRegister.value = '';
+        passwordRegister.placeholder = 'Minimum of 8 characters'
+        result = false;
+    }
+
+    return result;
+}
+
+const SymbolsForCardNumber = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+
+function genRandomCardNumber() {
+    let result = '';
+    for (let i = 0; i < 9; i++) {
+        result += SymbolsForCardNumber[Math.floor(Math.random() * 16)]
+    } 
+    return result;
+}
+
+signUp.addEventListener('click', function () {
+    if (isDataForRegisterCorrect() === true) {
+        alert('Upon re-registration, the old account will be replaced with a new one\nПри повторной регистрации старый аккаунт будет заменён новым') // занесение данных пользователя в локальное хранилище
+        localStorage.setItem('firstName', firstNameRegister.value);
+        localStorage.setItem('lastName', lastNameRegister.value);
+        localStorage.setItem('email', emailRegister.value);
+        localStorage.setItem('password', passwordRegister.value);
+        localStorage.setItem('cardNumber', genRandomCardNumber());
+        localStorage.setItem('visits', '1');
+        
+        registerMenu.classList.remove('modal-register-menu-on'); // закрытие register menu
+        registerWrapper.classList.remove('modal-register-wrapper-blackout');
+        setTimeout(registerClose, 500);
+
+        iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
+        iconProfileAuthorize.classList.add('icon-profile-authorize-on')
+        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0];
+
+        
+    }
+})
+
+// user register - end
+
+// user login - start
+
+const logIn = document.querySelector('.log-in');
+const emailOrCardLogin = document.querySelector('.email-or-card-login');
+const passwordLogin = document.querySelector('.password-login');
+
+function isDataForLoginCorrect() {
+    let result = true;
+
+    if (emailOrCardLogin.value !== localStorage.getItem('email') && emailOrCardLogin.value !== localStorage.getItem('cardNumber')) {
+        result = false;
+    }
+
+    if (passwordLogin.value !== localStorage.getItem('password')) {
+        result = false;
+    }
+
+    return result;
+}
+
+logIn.addEventListener('click', function () {
+
+    if (emailOrCardLogin.value === '') {
+        emailOrCardLogin.placeholder = 'The field should not be empty!';
+    }
+
+    if (passwordLogin.value.length < 8) {
+        passwordLogin.placeholder = 'Minimum of 8 characters'
+    }
+
+    if (emailOrCardLogin.value !== '' && passwordLogin !== '' && passwordLogin.value.length >= 8) {
+        if (isDataForLoginCorrect() === false) { // неуспешный login
+        alert('Invalid email, card number, or password');
+        emailOrCardLogin.value = '';
+        passwordLogin.value = '';
+    } else if (isDataForLoginCorrect() === true) { // успешный login
+        loginMenu.classList.remove('modal-login-menu-on'); // закрытие login menu
+        loginWrapper.classList.remove('modal-login-wrapper-blackout');
+        setTimeout(loginClose, 500);
+
+        iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
+        iconProfileAuthorize.classList.add('icon-profile-authorize-on')
+        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0];
+    }} 
+     
+})
+
+// login - end
+
+// check card - start
+
+const findCardButton = document.querySelector('.FindCardButton');
+const findCardButtonForm = document.querySelector('.FindCardButton-form');
+const cardProfileInfo = document.querySelector('.card-profile-info');
+const cardNameInput = document.querySelector('.card-name-input');
+const cardNumberInput = document.querySelector('.card-number-input');
+
+findCardButton.addEventListener('click', function () {
+    if (cardNameInput.value === `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}` && cardNumberInput.value === localStorage.getItem('cardNumber')) {
+    findCardButtonForm.classList.remove('FindCardButton-form-visible');
+    setTimeout(() => {
+        findCardButtonForm.classList.remove('FindCardButton-form-on');
+    }, 500);
+    setTimeout(() => {
+        cardProfileInfo.classList.add('card-profile-info-on');
+    setTimeout(() => {
+        cardProfileInfo.classList.add('card-profile-info-visible');
+    }, 10);
+    }, 500);
+    setTimeout(() => {
+        cardProfileInfo.classList.remove('card-profile-info-visible');
+        setTimeout(() => {
+            cardProfileInfo.classList.remove('card-profile-info-on');
+        }, 500);
+        setTimeout(() => {
+            findCardButtonForm.classList.add('FindCardButton-form-on');
+            setTimeout(() => {
+            findCardButtonForm.classList.add('FindCardButton-form-visible');
+            }, 10);
+        }, 500);
+        cardNameInput.value = '';
+        cardNumberInput.value = '';
+    }, 11010);
+}})
+
+// check card - end
