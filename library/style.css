@@ -248,6 +248,11 @@ h1 {
     margin-top: -1px;
     float: right;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-register-svg:hover, .modal-login-svg:hover {
+    opacity: 0.6;
 }
 
 .modal-title {
@@ -340,6 +345,7 @@ h1 {
 
 .entrance-proposal {
     color: #0C0C0E;
+    cursor: pointer;
     font-family: Inter;
     font-size: 10px;
     font-style: normal;
@@ -348,6 +354,11 @@ h1 {
     letter-spacing: 1px;
     text-decoration-line: underline;
     margin-left: 10px;
+    transition: 0.5s;
+}
+
+.entrance-proposal:hover {
+    color: #BB945F;
 }
 
 .icon-profile {

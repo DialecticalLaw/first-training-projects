@@ -27,6 +27,14 @@ navList.addEventListener('click', e => {
     html.classList.remove('lock')
 });
 
+function registerClose() {
+    registerWrapper.classList.remove('modal-register-wrapper-on');
+}
+
+function loginClose() {
+    loginWrapper.classList.remove('modal-login-wrapper-on');
+}
+
 document.addEventListener('click', e => {
     if (nav && burger && nav.classList.contains('active') && burger.classList.contains('active')) { // закрыть бургер меню при клике вне его области
         if (!nav.contains(e.target) && !burger.contains(e.target)) {
@@ -42,16 +50,17 @@ document.addEventListener('click', e => {
     } else if (registerMenu.classList.contains('modal-register-menu-on')) { // закрыть register menu при клике вне его области
         if (!registerMenu.contains(e.target) && !closeRegisterSvg.contains(e.target)) {
             registerMenu.classList.remove('modal-register-menu-on');
-            registerWrapper.classList.remove('modal-register-wrapper-on');
-            registerWrapper.classList.remove('modal-register-wrapper-blackout')
+            registerWrapper.classList.remove('modal-register-wrapper-blackout');
+            setTimeout(registerClose, 500);
             body.classList.remove('lock')
             html.classList.remove('lock')
+            
         }
     } else if (loginMenu.classList.contains('modal-login-menu-on')) { // закрыть login menu при клике вне его области
         if (!loginMenu.contains(e.target) && !closeLoginSvg.contains(e.target)) {
             loginMenu.classList.remove('modal-login-menu-on');
-            loginWrapper.classList.remove('modal-login-wrapper-on');
-            loginWrapper.classList.remove('modal-login-wrapper-blackout')
+            loginWrapper.classList.remove('modal-login-wrapper-blackout');
+            setTimeout(loginClose, 500);
             body.classList.remove('lock')
             html.classList.remove('lock')
         }
@@ -331,10 +340,10 @@ iconProfile.addEventListener('click', function (event) {
 const openRegisterMenu = document.querySelector('.drop-menu-text2');
 const registerMenu = document.querySelector('.modal-register-menu');
 const closeRegisterSvg = document.querySelector('.modal-register-svg');
-const registerWrapper = document.querySelector('.modal-register-wrapper')
-const loginWrapper = document.querySelector('.modal-login-wrapper')
-const libraryRegButton = document.querySelector('.library-reg-button')
-const libraryLogButton = document.querySelector('.library-log-button')
+const registerWrapper = document.querySelector('.modal-register-wrapper');
+const loginWrapper = document.querySelector('.modal-login-wrapper');
+const libraryRegButton = document.querySelector('.library-reg-button');
+const libraryLogButton = document.querySelector('.library-log-button');
 
 function toggleClass(item, newClass) {
     item.classList.toggle(newClass);
@@ -358,10 +367,8 @@ libraryRegButton.addEventListener('click', function () {
 
 closeRegisterSvg.addEventListener('click', function () {
     registerMenu.classList.remove('modal-register-menu-on');
-    registerWrapper.classList.remove('modal-register-wrapper-on');
-    registerWrapper.classList.remove('modal-register-wrapper-blackout')
-    body.classList.remove('lock');
-    html.classList.remove('lock');
+    registerWrapper.classList.remove('modal-register-wrapper-blackout');
+    setTimeout(registerClose, 500);
 })
 
 // open register - end
@@ -390,10 +397,46 @@ libraryLogButton.addEventListener('click', function () {
 
 closeLoginSvg.addEventListener('click', function () {
     loginMenu.classList.remove('modal-login-menu-on');
-    loginWrapper.classList.remove('modal-login-wrapper-on');
-    loginWrapper.classList.remove('modal-login-wrapper-blackout')
-    body.classList.remove('lock');
-    html.classList.remove('lock');
+    loginWrapper.classList.remove('modal-login-wrapper-blackout');
+    setTimeout(loginClose, 500);
 })
 
 // open login - end
+
+// login -> register - start
+
+const entranceProposal = document.querySelector('.entrance-proposal');
+const registerProposal = document.querySelector('.register-proposal');
+const loginProposal = document.querySelector('.login-proposal');
+
+function registerOpen() {
+    registerWrapper.classList.toggle('modal-register-wrapper-on');
+    setTimeout(toggleClass, 5, registerWrapper, 'modal-register-wrapper-blackout');
+    setTimeout(toggleClass, 5, registerMenu, 'modal-register-menu-on');
+}
+
+registerProposal.addEventListener('click', function () { 
+    loginMenu.classList.remove('modal-login-menu-on');
+    loginWrapper.classList.remove('modal-login-wrapper-blackout');
+    setTimeout(loginClose, 500);
+    registerOpen();
+})
+
+// login - register - end
+
+// register -> login - start
+
+function loginOpen() {
+    loginWrapper.classList.toggle('modal-login-wrapper-on');
+    setTimeout(toggleClass, 5, loginWrapper, 'modal-login-wrapper-blackout');
+    setTimeout(toggleClass, 5, loginMenu, 'modal-login-menu-on');
+}
+
+loginProposal.addEventListener('click', function () { 
+    registerMenu.classList.remove('modal-register-menu-on');
+    registerWrapper.classList.remove('modal-register-wrapper-blackout');
+    setTimeout(registerClose, 500);
+    loginOpen();
+})
+
+//register -> login - end
