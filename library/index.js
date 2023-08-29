@@ -1,4 +1,4 @@
-console.log('Score 200 / 200');
+console.log('Score 198 / 200\n(не сделал sticky для навигации по Favorites)');
 
 const body = document.body;
 const html = document.querySelector('html');
@@ -47,7 +47,7 @@ document.addEventListener('click', e => {
             html.classList.remove('lock')
         }
     } else if (dropMenu.classList.contains('active-drop-menu')) { // закрыть dropMenu при клике вне его области
-        if (!iconProfile.contains(e.target)) {
+        if (!dropMenu.contains(e.target) && !iconProfile.contains(e.target) && !iconProfileAuthorize.contains(e.target)) {
             dropMenu.classList.remove('active-drop-menu');
         }
     } else if (registerMenu.classList.contains('modal-register-menu-on')) { // закрыть register menu при клике вне его области
@@ -63,7 +63,24 @@ document.addEventListener('click', e => {
             loginWrapper.classList.remove('modal-login-wrapper-blackout');
             setTimeout(loginClose, 500);
         }
-}});
+    } else if (myProfileMenu.classList.contains('modal-my-profile-menu-on')) { // закрыть my profile menu при клике вне его области
+        if (!myProfileMenu.contains(e.target) && !svgCloseProfileInfo.contains(e.target)) {
+            myProfileWrapper.classList.remove('modal-my-profile-wrapper-blackout')
+            myProfileMenu.classList.remove('modal-my-profile-menu-on');
+            setTimeout(() => {
+                myProfileWrapper.classList.remove('modal-my-profile-wrapper-on');
+            }, 500);
+        }
+    } else if (buyCardMenu.classList.contains('modal-buy-card-menu-on')) { // закрыть buy card menu при клике вне его области
+        if (!buyCardMenu.contains(e.target) && !svgCloseBuyCard.contains(e.target)) {
+            buyCardWrapper.classList.remove('modal-buy-card-wrapper-blackout');
+            buyCardMenu.classList.remove('modal-buy-card-menu-on');
+            setTimeout(() => {
+                buyCardWrapper.classList.remove('modal-buy-card-wrapper-on')
+            }, 500);
+        }
+    }
+});
 
 // Burger menu - end
 
@@ -328,15 +345,23 @@ favSeasons.addEventListener('click', function(event) {
 
 const dropMenu = document.querySelector('.drop-menu-profile');
 const iconProfile = document.querySelector('.icon-profile');
+const iconProfileAuthorize = document.querySelector('.icon-profile-authorize');
 const dropMenuActive = document.querySelector('.active-drop-menu');
 
 iconProfile.addEventListener('click', function (event) {
     dropMenu.classList.toggle('active-drop-menu');
 })
 
+iconProfileAuthorize.addEventListener('click', function () {
+    dropMenu.classList.toggle('active-drop-menu');
+})
+// drop menu - end
+
 // open register - start
 
-const openRegisterMenu = document.querySelector('.drop-menu-text2');
+const dropMenuText1 = document.querySelector('.drop-menu-text1');
+const dropMenuText2 = document.querySelector('.drop-menu-text2');
+
 const registerMenu = document.querySelector('.modal-register-menu');
 const closeRegisterSvg = document.querySelector('.modal-register-svg');
 const registerWrapper = document.querySelector('.modal-register-wrapper');
@@ -348,11 +373,14 @@ function toggleClass(item, newClass) {
     item.classList.toggle(newClass);
 }
 
-openRegisterMenu.addEventListener('click', function () {
+function openRegisterMenu() {
+    dropMenu.classList.remove('active-drop-menu');
     registerWrapper.classList.toggle('modal-register-wrapper-on');
     setTimeout(toggleClass, 100, registerWrapper, 'modal-register-wrapper-blackout'); 
     setTimeout(toggleClass, 100, registerMenu, 'modal-register-menu-on');
-})
+}
+
+dropMenuText2.addEventListener('click', openRegisterMenu);
 
 libraryRegButton.addEventListener('click', function () {
     registerWrapper.classList.toggle('modal-register-wrapper-on');
@@ -370,15 +398,17 @@ closeRegisterSvg.addEventListener('click', function () {
 
 // open login - start
 
-const openLoginMenu = document.querySelector('.drop-menu-text1');
 const loginMenu = document.querySelector('.modal-login-menu');
 const closeLoginSvg = document.querySelector('.modal-login-svg');
 
-openLoginMenu.addEventListener('click', function () {
+function openLoginMenu() {
+    dropMenu.classList.remove('active-drop-menu');
     loginWrapper.classList.toggle('modal-login-wrapper-on');
     setTimeout(toggleClass, 100, loginWrapper, 'modal-login-wrapper-blackout');
     setTimeout(toggleClass, 100, loginMenu, 'modal-login-menu-on');
-})
+}
+
+dropMenuText1.addEventListener('click', openLoginMenu);
 
 libraryLogButton.addEventListener('click', function () {
     loginWrapper.classList.toggle('modal-login-wrapper-on');
@@ -399,7 +429,9 @@ closeLoginSvg.addEventListener('click', function () {
 const buyButtons = document.querySelectorAll('.BuyButton');
 const seasonsBooks = document.querySelector('.SeasonsBooks')
 
-seasonsBooks.addEventListener('click', function(event) {
+seasonsBooks.addEventListener('click', openLoginMenuBuyButton);
+
+function openLoginMenuBuyButton(event) {
     for (let button of buyButtons) {
         if (button.contains(event.target)) {
             loginWrapper.classList.toggle('modal-login-wrapper-on');
@@ -407,7 +439,7 @@ seasonsBooks.addEventListener('click', function(event) {
             setTimeout(toggleClass, 100, loginMenu, 'modal-login-menu-on');
         }
     }
-})
+}
 
 // открытие login на buy - end
 
@@ -456,8 +488,11 @@ const firstNameRegister = document.querySelector('.first-name-register');
 const lastNameRegister = document.querySelector('.last-name-register');
 const emailRegister = document.querySelector('.email-register');
 const passwordRegister = document.querySelector('.password-register');
-
-const iconProfileAuthorize = document.querySelector('.icon-profile-authorize');
+const dropMenuTitleText = document.querySelector('.drop-menu-title-text');
+const dropMenuText = document.querySelector('.drop-menu-text');
+const myProfileWrapper = document.querySelector('.modal-my-profile-wrapper');
+const myProfileMenu = document.querySelector('.modal-my-profile-menu');
+const svgCloseProfileInfo = document.querySelector('.svg-close-profile-info')
 
 function isDataForRegisterCorrect () { // проверка правильности заполненных форм регистрации
     let result = true;
@@ -509,15 +544,195 @@ function genRandomCardNumber() {
     return result;
 }
 
+// my profile menu - start
+const svgCopyProfileInfo = document.querySelector('.svg-copy-profile-info');
+const visitsCount = document.querySelector('.visits-count');
+const booksCount = document.querySelector('.books-count');
+const rentedBooks = document.querySelector('.rented-books');
+
+function openMyProfileMenu() {
+    myProfileInitials.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0]; // изменение my profile
+    myProfileName.innerHTML = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
+    cardNumberMyProfile.innerHTML = localStorage.getItem('cardNumber');
+    visitsCount.innerHTML = localStorage.getItem('visits');
+    booksCount.innerHTML = (JSON.parse(localStorage.getItem('ownedBooks')).length).toString();
+
+    const buttonsClasses = JSON.parse(localStorage.getItem('ownedBooks'));
+    for (let buttonClass of buttonsClasses) {
+        rentedBooks.insertAdjacentHTML("beforeend", '<li class="point-rented-book"></li>');
+        const elem = document.querySelector('.' + buttonClass);
+        const previous = elem.previousElementSibling;
+        const previous1 = previous.previousElementSibling;
+        const previous2 = previous1.previousElementSibling;
+        
+        rentedBooks.lastElementChild.innerHTML = `${previous2.innerHTML.toLowerCase()}, ${previous1.innerHTML.slice(3, Infinity)}`;
+
+    }
+
+
+    dropMenu.classList.remove('active-drop-menu')
+    myProfileWrapper.classList.add('modal-my-profile-wrapper-on');
+    setTimeout(() => {
+        myProfileWrapper.classList.add('modal-my-profile-wrapper-blackout');
+        myProfileMenu.classList.add('modal-my-profile-menu-on');
+    }, 10);
+}
+
+svgCopyProfileInfo.addEventListener('click', function() {
+    navigator.clipboard.writeText(localStorage.getItem('cardNumber'));
+})
+
+svgCloseProfileInfo.addEventListener('click', function () {
+    myProfileWrapper.classList.remove('modal-my-profile-wrapper-blackout')
+    myProfileMenu.classList.remove('modal-my-profile-menu-on');
+    setTimeout(() => {
+        myProfileWrapper.classList.remove('modal-my-profile-wrapper-on');
+    }, 500);
+})
+
+// my profile menu - end
+
+// buy card menu - start
+
+const buyCardWrapper = document.querySelector('.modal-buy-card-wrapper');
+const buyCardMenu = document.querySelector('.modal-buy-card-menu');
+const svgCloseBuyCard = document.querySelector('.svg-close-buy-card');
+const buyCardButton = document.querySelector('.buy-card-menu-button')
+
+function openBuyCardMenuBuyButton(event) {
+    for (let button of buyButtons) {
+        if (button.contains(event.target)) {
+            buyCardWrapper.classList.add('modal-buy-card-wrapper-on')
+            setTimeout(() => {
+                buyCardWrapper.classList.add('modal-buy-card-wrapper-blackout');
+                buyCardMenu.classList.add('modal-buy-card-menu-on');
+            }, 10);
+        }
+    }
+}
+
+const bankCardNumber = document.querySelector('.buy-card-menu-input-number');
+const dateStart = document.querySelector('.buy-card-menu-input-date-start');
+const dateEnd = document.querySelector('.buy-card-menu-input-date-end');
+const cvc = document.querySelector('.buy-card-menu-input-cvc');
+const cardHolderName = document.querySelector('.buy-card-menu-input-name');
+const postalCode = document.querySelector('.buy-card-menu-input-postal');
+const townName = document.querySelector('.buy-card-menu-input-town');
+
+function removeSpaces(str) {
+    let result = '';
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] !== ' ') {
+            result += str[i];
+        }
+    }
+    return result;
+}
+
+function isDataForBuyCardCorrect() {
+    let result = true;
+    if (bankCardNumber.value === '') {
+        bankCardNumber.placeholder = 'The field should not be empty!';
+        result = false;
+    }
+
+    if (removeSpaces(bankCardNumber.value).length !== 16 || Number(removeSpaces(bankCardNumber.value)) === undefined) {
+        bankCardNumber.value = '';
+        bankCardNumber.placeholder = 'Invalid number'
+        result = false;
+    }
+ 
+    if (dateStart.value === '') {
+        dateStart.placeholder = 'Empty';
+        result = false;
+    }
+
+    if (Number(dateStart.value) === undefined || dateStart.value.length < 2) {
+        dateStart.style.border = '1px solid red';
+        result = false;
+    }
+
+    if (dateEnd.value === '') {
+        dateEnd.placeholder = 'Empty';
+        result = false;
+    }
+
+    if (Number(dateEnd.value) === undefined || dateEnd.value.length < 2) {
+        dateEnd.style.border = '1px solid red';
+        result = false;
+    }
+
+    if (cvc.value === '') {
+        cvc.placeholder = 'Empty';
+        result = false;
+    }
+
+    if (Number(cvc.value) === undefined || cvc.value.length < 3) {
+        cvc.style.border = '1px solid red';
+        result = false;
+    }
+
+    if (cardHolderName.value === '') {
+        cardHolderName.placeholder = 'The field should not be empty!';
+        result = false;
+    }
+
+    if (postalCode.value === '') {
+        postalCode.placeholder = 'The field should not be empty!';
+        result = false;
+    }
+
+    if (townName.value === '') {
+        townName.placeholder = 'The field should not be empty!';
+        result = false;
+    }
+
+    return result;
+}
+
+buyCardButton.addEventListener('click', function () {
+    if (isDataForBuyCardCorrect() === true) { // если покупка абонемента успешна, то:
+        buyCardWrapper.classList.remove('modal-buy-card-wrapper-blackout'); // закрытие buy card menu
+        buyCardMenu.classList.remove('modal-buy-card-menu-on');
+        setTimeout(() => {
+            buyCardWrapper.classList.remove('modal-buy-card-wrapper-on')
+        }, 500);
+
+        localStorage.setItem('hasCard', 'true') // занесение данных
+
+        seasonsBooks.removeEventListener('click', openBuyCardMenuBuyButton);
+        seasonsBooks.addEventListener('click', buyBook);
+    }
+})
+
+svgCloseBuyCard.addEventListener('click', function () {
+    buyCardWrapper.classList.remove('modal-buy-card-wrapper-blackout');
+    buyCardMenu.classList.remove('modal-buy-card-menu-on');
+    setTimeout(() => {
+        buyCardWrapper.classList.remove('modal-buy-card-wrapper-on')
+    }, 500);
+})
+
+
+
+// buy card menu - end
+
+const myProfileInitials = document.querySelector('.my-profile-initials');
+const myProfileName = document.querySelector('.my-profile-name');
+const cardNumberMyProfile = document.querySelector('.card-number-my-profile');
+
 signUp.addEventListener('click', function () {
     if (isDataForRegisterCorrect() === true) {
-        alert('Upon re-registration, the old account will be replaced with a new one\nПри повторной регистрации старый аккаунт будет заменён новым') // занесение данных пользователя в локальное хранилище
+        alert('Upon re-registration, the old account will be replaced with a new one\nПри повторной регистрации старый аккаунт будет заменён новым (изначально сделал процесс немного неправильно, а переделывать - лень. В ТЗ по этой части уложился)') // занесение данных пользователя в локальное хранилище
         localStorage.setItem('firstName', firstNameRegister.value);
         localStorage.setItem('lastName', lastNameRegister.value);
         localStorage.setItem('email', emailRegister.value);
         localStorage.setItem('password', passwordRegister.value);
         localStorage.setItem('cardNumber', genRandomCardNumber());
         localStorage.setItem('visits', '1');
+        localStorage.setItem('hasCard', 'false')
+        const arrayBooks = [];
+        localStorage.setItem('ownedBooks', JSON.stringify(arrayBooks));
         
         registerMenu.classList.remove('modal-register-menu-on'); // закрытие register menu
         registerWrapper.classList.remove('modal-register-wrapper-blackout');
@@ -526,12 +741,57 @@ signUp.addEventListener('click', function () {
         iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
         iconProfileAuthorize.classList.add('icon-profile-authorize-on')
         iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0];
-
+        iconProfileAuthorize.title = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
         
+        dropMenuTitleText.style['font-size'] = '11px'; // изменение drop menu
+        dropMenuTitleText.innerHTML = localStorage.getItem('cardNumber');
+        dropMenuText1.innerHTML = 'My profile';
+        dropMenuText2.innerHTML = 'Log Out';
+        dropMenuText1.removeEventListener('click', openLoginMenu);
+        dropMenuText2.removeEventListener('click', openRegisterMenu);
+        dropMenuText1.addEventListener('click', openMyProfileMenu);
+        //dropMenuText2.addEventListener('click', logOutFromAccount); /////////////////////////////////////////////////////////////
+
+        seasonsBooks.removeEventListener('click', openLoginMenuBuyButton);
+        seasonsBooks.addEventListener('click', openBuyCardMenuBuyButton);
+
     }
 })
 
 // user register - end
+
+// покупка книги - start
+
+seasonsBooks.addEventListener('checkBooks', function (event) {
+    for (let button of buyButtons) {
+        if (button === event.detail.elem) {
+            event.detail.elem.classList.remove('BuyButton');
+            const storedArray = localStorage.getItem('ownedBooks');
+            const array = JSON.parse(storedArray);
+            array.push(event.detail.elem.classList[0])
+            localStorage.setItem('ownedBooks', JSON.stringify(array));
+        }
+    }
+})
+
+function buyBook(event) {
+    for (let button of buyButtons) {
+        if (button.contains(event.target)) {
+            button.classList.add('OwnButton')
+            document.querySelector('.OwnButton').disabled = true;
+            button.innerHTML = 'Own';
+            
+            seasonsBooks.dispatchEvent(new CustomEvent('checkBooks', {
+                detail: {elem: button}
+            }));
+        }
+    }
+}
+
+
+
+
+// покупка книги - end
 
 // user login - start
 
@@ -541,7 +801,6 @@ const passwordLogin = document.querySelector('.password-login');
 
 function isDataForLoginCorrect() {
     let result = true;
-
     if (emailOrCardLogin.value !== localStorage.getItem('email') && emailOrCardLogin.value !== localStorage.getItem('cardNumber')) {
         result = false;
     }
@@ -549,12 +808,10 @@ function isDataForLoginCorrect() {
     if (passwordLogin.value !== localStorage.getItem('password')) {
         result = false;
     }
-
     return result;
 }
 
 logIn.addEventListener('click', function () {
-
     if (emailOrCardLogin.value === '') {
         emailOrCardLogin.placeholder = 'The field should not be empty!';
     }
@@ -573,14 +830,46 @@ logIn.addEventListener('click', function () {
         loginWrapper.classList.remove('modal-login-wrapper-blackout');
         setTimeout(loginClose, 500);
 
+        localStorage.setItem('visits', (Number(localStorage.getItem('visits')) + 1).toString()); // обновление счетчика visits
+
         iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
         iconProfileAuthorize.classList.add('icon-profile-authorize-on')
         iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0];
+        iconProfileAuthorize.title = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
+
+        dropMenuTitleText.style['font-size'] = '11px'; // изменение drop menu
+        dropMenuTitleText.innerHTML = localStorage.getItem('cardNumber');
+        dropMenuText1.innerHTML = 'My profile';
+        dropMenuText2.innerHTML = 'Log Out';
+        dropMenuText1.removeEventListener('click', openLoginMenu);
+        dropMenuText2.removeEventListener('click', openRegisterMenu);
+        dropMenuText1.addEventListener('click', openMyProfileMenu);
+        //dropMenuText2.addEventListener('click', logOutFromAccount); /////////////////////////////////////////////////////////////
+        
+        seasonsBooks.removeEventListener('click', openLoginMenuBuyButton);
+        if (localStorage.getItem('hasCard') === 'false') {
+            seasonsBooks.addEventListener('click', openBuyCardMenuBuyButton);
+        } else if (localStorage.getItem('hasCard') === 'true') {
+            seasonsBooks.addEventListener('click', buyBook);
+        }
+        
+        const storedArray = localStorage.getItem('ownedBooks');
+        const array = JSON.parse(storedArray);
+
+        for (let buyButton of buyButtons) {
+            for (let nameButton of array) {
+                if (buyButton.classList.contains(nameButton)) {
+                    buyButton.classList.add('OwnButton')
+                    document.querySelector('.OwnButton').disabled = true;
+                    buyButton.innerHTML = 'Own';
+                }
+            }
+        }
     }} 
      
 })
 
-// login - end
+// user login - end
 
 // check card - start
 
