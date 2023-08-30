@@ -751,6 +751,11 @@ signUp.addEventListener('click', function () {
         registerWrapper.classList.remove('modal-register-wrapper-blackout');
         setTimeout(registerClose, 500);
 
+        firstNameRegister.value = '';
+        lastNameRegister.value = '';
+        emailRegister.value = '';
+        passwordRegister.value = '';
+
         iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
         iconProfileAuthorize.classList.add('icon-profile-authorize-on')
         iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0];
@@ -763,7 +768,7 @@ signUp.addEventListener('click', function () {
         dropMenuText1.removeEventListener('click', openLoginMenu);
         dropMenuText2.removeEventListener('click', openRegisterMenu);
         dropMenuText1.addEventListener('click', openMyProfileMenu);
-        //dropMenuText2.addEventListener('click', logOutFromAccount); /////////////////////////////////////////////////////////////
+        dropMenuText2.addEventListener('click', logOutFromAccount);
 
         seasonsBooks.removeEventListener('click', openLoginMenuBuyButton);
         seasonsBooks.addEventListener('click', openBuyCardMenuBuyButton);
@@ -863,6 +868,9 @@ logIn.addEventListener('click', function () {
         loginWrapper.classList.remove('modal-login-wrapper-blackout');
         setTimeout(loginClose, 500);
 
+        emailOrCardLogin.value = '';
+        passwordLogin.value = '';
+
         localStorage.setItem('visits', (Number(localStorage.getItem('visits')) + 1).toString()); // обновление счетчика visits
 
         iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
@@ -877,7 +885,7 @@ logIn.addEventListener('click', function () {
         dropMenuText1.removeEventListener('click', openLoginMenu);
         dropMenuText2.removeEventListener('click', openRegisterMenu);
         dropMenuText1.addEventListener('click', openMyProfileMenu);
-        //dropMenuText2.addEventListener('click', logOutFromAccount); /////////////////////////////////////////////////////////////
+        dropMenuText2.addEventListener('click', logOutFromAccount);
         
         seasonsBooks.removeEventListener('click', openLoginMenuBuyButton);
         if (localStorage.getItem('hasCard') === 'false') {
@@ -960,3 +968,55 @@ findCardButton.addEventListener('click', function () {
 }})
 
 // check card - end
+
+
+
+function logOutFromAccount() {
+    
+    iconProfileAuthorize.classList.remove('icon-profile-authorize-on'); // изменение icon profile
+    iconProfile.classList.add('icon-profile-on')
+    iconProfile.innerHTML = '';
+    iconProfile.removeAttribute('title');
+
+    dropMenuTitleText.removeAttribute('style') // изменение drop menu
+    dropMenuTitleText.innerHTML = 'Profile';
+    dropMenuText1.innerHTML = 'Log In';
+    dropMenuText2.innerHTML = 'Register';
+    dropMenuText1.addEventListener('click', openLoginMenu);
+    dropMenuText2.addEventListener('click', openRegisterMenu);
+    dropMenuText1.removeEventListener('click', openMyProfileMenu);
+    dropMenuText2.removeEventListener('click', logOutFromAccount);
+
+    seasonsBooks.addEventListener('click', openLoginMenuBuyButton);
+    seasonsBooks.removeEventListener('click', openBuyCardMenuBuyButton);
+    seasonsBooks.removeEventListener('click', buyBook);
+
+    const ownButtons = document.querySelectorAll('.OwnButton');
+    
+    for (let button of ownButtons) { // меняем own на buy
+        button.classList.add('BuyButton');
+        button.innerHTML = 'Buy';
+        button.classList.remove('OwnButton');
+        document.querySelector('.BuyButton').disabled = false;
+    }
+
+    getTitle.innerHTML = 'Get a reader card'; // изменение секции library card
+    textRight.innerHTML = 'You will be able to see a reader card after logging into account or you can register a new account';
+    libraryRegButton.style.display = '';
+
+    libraryLogButton.innerHTML = 'Log In';
+    libraryLogButton.addEventListener('click', openLoginMenuOnLogButton);
+    libraryLogButton.removeEventListener('click', openMyProfileMenu);
+
+    cardNameInput.value = '';
+    cardNameInput.removeAttribute('readonly');
+
+    cardNumberInput.value = '';
+    cardNumberInput.removeAttribute('readonly');
+
+    findCardButtonForm.classList.add('FindCardButton-form-on');
+    cardProfileInfo.classList.remove('card-profile-info-on');
+    cardProfileInfo.classList.remove('card-profile-info-visible');
+    visitsCountCard.innerHTML = '0';
+    booksCountCard.innerHTML = '0';
+}
