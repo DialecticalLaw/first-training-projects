@@ -1,4 +1,4 @@
-console.log('Score 198 / 200\n(не сделал sticky для навигации по Favorites)');
+console.log('Score 200 / 200');
 
 const body = document.body;
 const html = document.querySelector('html');
@@ -10,8 +10,6 @@ const navList = document.querySelector('.nav-list');
 const header = document.querySelector('.main-header');
 const main = document.querySelector('.main-main');
 const footer = document.querySelector('.main-footer');
-
-container.style['margin-left'] = -(container.offsetWidth - body.offsetWidth) + 'px';
 
 // Burger menu - start
 
@@ -571,7 +569,6 @@ function openMyProfileMenu() {
 
     }
 
-
     dropMenu.classList.remove('active-drop-menu')
     myProfileWrapper.classList.add('modal-my-profile-wrapper-on');
     setTimeout(() => {
@@ -582,6 +579,10 @@ function openMyProfileMenu() {
 
 svgCopyProfileInfo.addEventListener('click', function() {
     navigator.clipboard.writeText(localStorage.getItem('cardNumber'));
+    svgCopyProfileInfo.style['filter'] = 'drop-shadow(0 0 5px green)';
+    setTimeout(() => {
+        svgCopyProfileInfo.removeAttribute('style');
+    }, 1000);
 })
 
 svgCloseProfileInfo.addEventListener('click', function () {
