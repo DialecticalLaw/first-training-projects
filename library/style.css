@@ -11,7 +11,6 @@
 html {
     scroll-behavior: smooth;
     max-width: 100vw;
-    overflow-x: hidden;
 }
 
 * {
@@ -22,7 +21,6 @@ body {
     margin: 0;
     padding: 0;
     max-width: 100%;
-    overflow-x: hidden;
 }
 
 .lock {
@@ -33,7 +31,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     margin: 0 auto;
     padding: 0;
@@ -45,6 +43,7 @@ body {
     justify-content: flex-end;
     align-items: center;
     position: relative;
+    overflow-x: hidden;
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
@@ -375,8 +374,12 @@ h1 {
 }
 
 .svg-copy-profile-info {
+    width: 15px;
+    height: 15px;
     cursor: pointer;
     margin-left: 15px;
+    border-radius: 4px;
+    transition: 0.3s;
 }
 
 .modal-register-wrapper, .modal-login-wrapper {
@@ -779,7 +782,8 @@ h1 {
 }
 
 .wrapper {
-    width: 1440px;
+    width: 100%;
+    max-width: 1440px;
     height: 600px;
     margin: 0 auto;
 }
@@ -909,6 +913,7 @@ h2::after {
 }
 
 .PaginationAbout {
+    cursor: default;
     align-self: center;
     height: 16px;
     margin-top: 34px;
@@ -947,6 +952,15 @@ h2::after {
     content: '';
     display: inline-block;
     visibility: visible;
+    transition: 0.3s;
+}
+
+.pagination:hover::after {
+    box-shadow: 0 0 10px 1px black;
+}
+
+.pagination:checked:hover::after {
+    box-shadow: none;
 }
 
 .pagination:checked:after {
@@ -1045,6 +1059,7 @@ h2::after {
     margin-top: 1px;
     padding-left: 21px;
     cursor: pointer;
+    transition: 0.4s;
 }
 
 .season::after {
@@ -1060,6 +1075,7 @@ h2::after {
     content: '';
     display: inline-block;
     visibility: visible;
+    transition: 0.4s;
 }
 
 .season:checked::after {
@@ -1075,6 +1091,18 @@ h2::after {
     content: '';
     display: inline-block;
     visibility: visible;
+}
+
+.seasonIcon {
+    width: 24px;
+    height: 24px;
+    opacity: 0;
+    margin-left: 15px;
+    transition: 0.4s;
+}
+
+.season:checked + label + .seasonIcon {
+    opacity: 1;
 }
 
 /*SEASON_BUTTON /\*/
@@ -1441,11 +1469,12 @@ h2::after {
     width: 24px;
     height: 24px;
     margin-bottom: -4px;
-    display: none;
+    opacity: 0;
+    transition: 0.2s;
 }
 
 .ContactsLink:hover .ConImg {
-    display: inline;
+    opacity: 1;
 }
 
 .senior-staff {
@@ -1458,6 +1487,11 @@ h2::after {
 .ContactsMap {
     width: 696px;
     height: 414px;
+    transition: 0.4s;
+}
+
+.ContactsMap:hover {
+    box-shadow: 0 0 10px 1px black;
 }
 
 .section-LibraryCard {
@@ -1897,7 +1931,7 @@ h2::after {
     }
 
     .section-Favorites {
-        min-height: 2629px;
+        min-height: 2639px;
     }
 
     .WrapperForSeasons {
@@ -1905,11 +1939,17 @@ h2::after {
         position: relative;
     }
 
-    /*.FavoritesSeasons {
+    .FavoritesSeasons {
         position: sticky;
+        align-items: center;
+        padding: 0 35px;
+        width: 100%;
+        height: 60px;
         top: 0;
-        z-index: 1;
-    }*/
+        background-color: rgba(255, 255, 255, 0.8);
+        z-index: 2;
+        border-bottom: 1px solid black;
+    }
 
     .SeasonsBooks {
         min-height: 2340px;
@@ -2012,17 +2052,15 @@ h2::after {
         width: 332px;
         height: 570px;
         background-color: #0C0C0E;
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         margin-right: 0;
-        transform: translateX(100%);
-        opacity: 0;
-        transition: 0.4s ease;
+        transform: translateX(150%) rotate(-40deg);
+        transition: 0.5s;
     }
 
     .nav.active {
-        opacity: 1;
         transform: translateX(0);
     }
 
