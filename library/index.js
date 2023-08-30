@@ -410,11 +410,13 @@ function openLoginMenu() {
 
 dropMenuText1.addEventListener('click', openLoginMenu);
 
-libraryLogButton.addEventListener('click', function () {
+function openLoginMenuOnLogButton() {
     loginWrapper.classList.toggle('modal-login-wrapper-on');
     setTimeout(toggleClass, 100, loginWrapper, 'modal-login-wrapper-blackout');
     setTimeout(toggleClass, 100, loginMenu, 'modal-login-menu-on');
-})
+}
+
+libraryLogButton.addEventListener('click', openLoginMenuOnLogButton);
 
 closeLoginSvg.addEventListener('click', function () {
     loginMenu.classList.remove('modal-login-menu-on');
@@ -717,9 +719,20 @@ svgCloseBuyCard.addEventListener('click', function () {
 
 // buy card menu - end
 
+const findCardButton = document.querySelector('.FindCardButton');
+const findCardButtonForm = document.querySelector('.FindCardButton-form');
+const cardProfileInfo = document.querySelector('.card-profile-info');
+const cardNameInput = document.querySelector('.card-name-input');
+const cardNumberInput = document.querySelector('.card-number-input');
+
+const visitsCountCard = document.querySelector('.visits-count-card');
+const booksCountCard = document.querySelector('.books-count-card');
 const myProfileInitials = document.querySelector('.my-profile-initials');
 const myProfileName = document.querySelector('.my-profile-name');
 const cardNumberMyProfile = document.querySelector('.card-number-my-profile');
+
+const getTitle = document.querySelector('.GetTitle');
+const textRight = document.querySelector('.TextRight');
 
 signUp.addEventListener('click', function () {
     if (isDataForRegisterCorrect() === true) {
@@ -755,6 +768,25 @@ signUp.addEventListener('click', function () {
         seasonsBooks.removeEventListener('click', openLoginMenuBuyButton);
         seasonsBooks.addEventListener('click', openBuyCardMenuBuyButton);
 
+        getTitle.innerHTML = 'Visit your profile'; // изменение секции library card
+        textRight.innerHTML = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
+        libraryRegButton.style.display = 'none';
+
+        libraryLogButton.innerHTML = 'Profile'; 
+        libraryLogButton.removeEventListener('click', openLoginMenuOnLogButton);
+        libraryLogButton.addEventListener('click', openMyProfileMenu);
+
+        cardNameInput.value = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
+        cardNameInput.setAttribute('readonly', true);
+
+        cardNumberInput.value = localStorage.getItem('cardNumber');
+        cardNumberInput.setAttribute('readonly', true);
+
+        findCardButtonForm.classList.remove('FindCardButton-form-on');
+        cardProfileInfo.classList.add('card-profile-info-on');
+        cardProfileInfo.classList.add('card-profile-info-visible');
+        visitsCountCard.innerHTML = localStorage.getItem('visits');
+        booksCountCard.innerHTML = (JSON.parse(localStorage.getItem('ownedBooks')).length).toString();
     }
 })
 
@@ -770,6 +802,7 @@ seasonsBooks.addEventListener('checkBooks', function (event) {
             const array = JSON.parse(storedArray);
             array.push(event.detail.elem.classList[0])
             localStorage.setItem('ownedBooks', JSON.stringify(array));
+            booksCountCard.innerHTML = (JSON.parse(localStorage.getItem('ownedBooks')).length).toString();
         }
     }
 })
@@ -856,15 +889,36 @@ logIn.addEventListener('click', function () {
         const storedArray = localStorage.getItem('ownedBooks');
         const array = JSON.parse(storedArray);
 
-        for (let buyButton of buyButtons) {
+        for (let buyButton of buyButtons) { // меняем нужные кнопки на own
             for (let nameButton of array) {
                 if (buyButton.classList.contains(nameButton)) {
                     buyButton.classList.add('OwnButton')
+                    buyButton.classList.remove('BuyButton');
                     document.querySelector('.OwnButton').disabled = true;
                     buyButton.innerHTML = 'Own';
                 }
             }
         }
+
+        getTitle.innerHTML = 'Visit your profile'; // изменение секции library card
+        textRight.innerHTML = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
+        libraryRegButton.style.display = 'none';
+
+        libraryLogButton.innerHTML = 'Profile';
+        libraryLogButton.removeEventListener('click', openLoginMenuOnLogButton);
+        libraryLogButton.addEventListener('click', openMyProfileMenu);
+
+        cardNameInput.value = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
+        cardNameInput.setAttribute('readonly', true);
+
+        cardNumberInput.value = localStorage.getItem('cardNumber');
+        cardNumberInput.setAttribute('readonly', true);
+
+        findCardButtonForm.classList.remove('FindCardButton-form-on');
+        cardProfileInfo.classList.add('card-profile-info-on');
+        cardProfileInfo.classList.add('card-profile-info-visible');
+        visitsCountCard.innerHTML = localStorage.getItem('visits');
+        booksCountCard.innerHTML = (JSON.parse(localStorage.getItem('ownedBooks')).length).toString();
     }} 
      
 })
@@ -873,14 +927,12 @@ logIn.addEventListener('click', function () {
 
 // check card - start
 
-const findCardButton = document.querySelector('.FindCardButton');
-const findCardButtonForm = document.querySelector('.FindCardButton-form');
-const cardProfileInfo = document.querySelector('.card-profile-info');
-const cardNameInput = document.querySelector('.card-name-input');
-const cardNumberInput = document.querySelector('.card-number-input');
+
 
 findCardButton.addEventListener('click', function () {
     if (cardNameInput.value === `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}` && cardNumberInput.value === localStorage.getItem('cardNumber')) {
+    visitsCountCard.innerHTML = localStorage.getItem('visits');
+    booksCountCard.innerHTML = (JSON.parse(localStorage.getItem('ownedBooks')).length).toString();
     findCardButtonForm.classList.remove('FindCardButton-form-visible');
     setTimeout(() => {
         findCardButtonForm.classList.remove('FindCardButton-form-on');
