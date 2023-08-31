@@ -65,7 +65,7 @@ document.addEventListener('click', e => {
         if (!myProfileMenu.contains(e.target) && !svgCloseProfileInfo.contains(e.target)) {
             myProfileWrapper.classList.remove('modal-my-profile-wrapper-blackout')
             myProfileMenu.classList.remove('modal-my-profile-menu-on');
-            setTimeout(() => {
+            setTimeout(() => {             
                 myProfileWrapper.classList.remove('modal-my-profile-wrapper-on');
             }, 500);
         }
@@ -993,12 +993,17 @@ function logOutFromAccount() {
     seasonsBooks.removeEventListener('click', buyBook);
 
     const ownButtons = document.querySelectorAll('.OwnButton');
-    
+
     for (let button of ownButtons) { // меняем own на buy
         button.classList.add('BuyButton');
         button.innerHTML = 'Buy';
         button.classList.remove('OwnButton');
         document.querySelector('.BuyButton').disabled = false;
+    }
+
+    const pointRentedBooks = document.querySelectorAll('.point-rented-book'); // удаление списка книг
+    for (let point of pointRentedBooks) {
+        point.remove();
     }
 
     getTitle.innerHTML = 'Get a reader card'; // изменение секции library card
