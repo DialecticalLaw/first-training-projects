@@ -600,7 +600,17 @@ svgCloseProfileInfo.addEventListener('click', function () {
 const buyCardWrapper = document.querySelector('.modal-buy-card-wrapper');
 const buyCardMenu = document.querySelector('.modal-buy-card-menu');
 const svgCloseBuyCard = document.querySelector('.svg-close-buy-card');
-const buyCardButton = document.querySelector('.buy-card-menu-button')
+
+const bankCardNumber = document.querySelector('.buy-card-menu-input-number');
+const dateStart = document.querySelector('.buy-card-menu-input-date-start');
+const dateEnd = document.querySelector('.buy-card-menu-input-date-end');
+const cvc = document.querySelector('.buy-card-menu-input-cvc');
+const cardHolderName = document.querySelector('.buy-card-menu-input-name');
+const postalCode = document.querySelector('.buy-card-menu-input-postal');
+const townName = document.querySelector('.buy-card-menu-input-town');
+
+const buyCardButton = document.querySelector('.buy-card-menu-button');
+const buyCardInputs = document.querySelectorAll('.buy-card-input');
 
 function openBuyCardMenuBuyButton(event) {
     for (let button of buyButtons) {
@@ -614,13 +624,15 @@ function openBuyCardMenuBuyButton(event) {
     }
 }
 
-const bankCardNumber = document.querySelector('.buy-card-menu-input-number');
-const dateStart = document.querySelector('.buy-card-menu-input-date-start');
-const dateEnd = document.querySelector('.buy-card-menu-input-date-end');
-const cvc = document.querySelector('.buy-card-menu-input-cvc');
-const cardHolderName = document.querySelector('.buy-card-menu-input-name');
-const postalCode = document.querySelector('.buy-card-menu-input-postal');
-const townName = document.querySelector('.buy-card-menu-input-town');
+function checkInputs() {
+    if (bankCardNumber.value.length >= 1 && dateStart.value.length >= 1 && dateEnd.value.length >= 1 && cvc.value.length >= 1 & cardHolderName.value.length >= 1 && postalCode.value.length >= 1 && townName.value.length >= 1) {
+        buyCardButton.disabled = false;
+    } else {
+        buyCardButton.disabled = true;
+    }
+}
+
+buyCardMenu.addEventListener('input', checkInputs);
 
 function removeSpaces(str) {
     let result = '';
