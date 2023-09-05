@@ -692,12 +692,24 @@ h1 {
     font-weight: 700;
     line-height: normal;
     letter-spacing: 1px;
+    opacity: 1;
     transition: 0.5s;
 }
 
 .buy-card-menu-button:hover {
     background-color: #BB945F;
     border: 1px solid #BB945F;
+}
+
+.buy-card-menu-button:disabled {
+    filter: none;
+    cursor: default;
+    opacity: 0.4;
+}
+
+.buy-card-menu-button:disabled:hover {
+    background-color: #fff;
+    border: 1px solid #0C0C0E;
 }
 
 .buy-card-menu-price {
