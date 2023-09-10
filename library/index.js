@@ -18,6 +18,7 @@ burger.addEventListener('click', e => {
     burger.classList.toggle('active')
     body.classList.toggle('lock')
     html.classList.toggle('lock')
+    dropMenu.classList.remove('active-drop-menu');
 });
 
 
@@ -53,7 +54,6 @@ document.addEventListener('click', e => {
             registerMenu.classList.remove('modal-register-menu-on');
             registerWrapper.classList.remove('modal-register-wrapper-blackout');
             setTimeout(registerClose, 500);
-            
         }
     } else if (loginMenu.classList.contains('modal-login-menu-on')) { // закрыть login menu при клике вне его области
         if (!loginMenu.contains(e.target) && !closeLoginSvg.contains(e.target)) {
