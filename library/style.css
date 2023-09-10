@@ -875,13 +875,18 @@ h2::after {
     margin-top: 27px;
 }
 
+.AboutCarousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .AboutImage {
+    max-width: 1400px;
     display: flex;
     justify-content: flex-start;
     overflow: hidden;
     gap: 25px;
-    position: relative;
-    margin-left: 20px;
 }
 
 .Image1 {
@@ -1106,10 +1111,10 @@ h2::after {
 }
 
 .seasonIcon {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     opacity: 0;
-    margin-left: 15px;
+    margin-left: 3px;
     transition: 0.4s;
 }
 
@@ -1256,8 +1261,6 @@ h2::after {
 .OwnButton {
     width: 75px;
     height: 30px;
-    flex-shrink: 0;
-    color: #BB945F;
     border-radius: 2px;
     border: 1px solid #BB945F;
     background-color: #fff;
@@ -1894,7 +1897,7 @@ h2::after {
 
     .AboutCarousel {
         display: flex;
-        align-items: center;
+        flex-direction: row;
         justify-content: center;
     }
 
@@ -1919,10 +1922,16 @@ h2::after {
         height: 24px;
         cursor: pointer;
         margin-top: 40px;
+        transition: 0.4s;
+        border-radius: 20px;
     }
 
     .arrow1 {
         margin-right: 58px;
+    }
+
+    .arrow1:hover, .arrow2:hover {
+        background-color: #bb955f8a;
     }
 
     .arrow2 {
@@ -1930,7 +1939,12 @@ h2::after {
     }
 
     .DisabledArrow {
+        cursor: default;
         opacity: 0.3;
+    }
+
+    .DisabledArrow:hover {
+        background-color: #fff;
     }
 }
 
@@ -2045,9 +2059,17 @@ h2::after {
         transition: 0.4s;
     }
 
+    .icon-profile-authorize {
+        margin-right: 42px;
+    }
+
     .icon-profile {
         margin-right: 42px;
         z-index: 2;
+    }
+
+    .drop-menu-profile {
+        right: 107px;
     }
 
     .header_burger > span {
@@ -2068,8 +2090,8 @@ h2::after {
         top: 0;
         right: 0;
         margin-right: 0;
-        transform: translateX(150%) rotate(-40deg);
-        transition: 0.5s;
+        transform: translateX(150%);
+        transition: 0.5s ease;
     }
 
     .nav.active {
@@ -2120,6 +2142,10 @@ h2::after {
     .aboutText {
         max-width: 728px;
         align-self: center;
+    }
+
+    .library-card-profile-button {
+        margin-top: -15px;
     }
 }
 
