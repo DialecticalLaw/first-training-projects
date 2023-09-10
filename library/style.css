@@ -1919,10 +1919,16 @@ h2::after {
         height: 24px;
         cursor: pointer;
         margin-top: 40px;
+        transition: 0.4s;
+        border-radius: 20px;
     }
 
     .arrow1 {
         margin-right: 58px;
+    }
+
+    .arrow1:hover, .arrow2:hover {
+        background-color: #bb955f8a;
     }
 
     .arrow2 {
@@ -1930,7 +1936,12 @@ h2::after {
     }
 
     .DisabledArrow {
+        cursor: default;
         opacity: 0.3;
+    }
+
+    .DisabledArrow:hover {
+        background-color: #fff;
     }
 }
 

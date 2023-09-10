@@ -170,7 +170,7 @@ paginationAbout.addEventListener('click', function(event) {
     }
 })
 
-function sizeToNumber(str) {         // функция для удаления "px" из строки вида "123px" и возвращения числа 123
+function sizeToNumber(str) {         // функция для удаления "px" из строки вида "123px"
     return Number(str.slice(0, -2));
 }
 
