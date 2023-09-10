@@ -39,10 +39,12 @@ setTimeout(() => {
         }
 
         getTitle.innerHTML = 'Visit your profile'; // изменение секции library card
+        findTitle.innerHTML = 'Your Library card';
         textRight.innerHTML = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
         libraryRegButton.style.display = 'none';
 
         libraryLogButton.innerHTML = 'Profile';
+        libraryLogButton.classList.add('library-card-profile-button');
         libraryLogButton.removeEventListener('click', openLoginMenuOnLogButton);
         libraryLogButton.addEventListener('click', openMyProfileMenu);
 
@@ -807,6 +809,7 @@ const myProfileName = document.querySelector('.my-profile-name');
 const cardNumberMyProfile = document.querySelector('.card-number-my-profile');
 
 const getTitle = document.querySelector('.GetTitle');
+const findTitle = document.querySelector('.FindCardTitle');
 const textRight = document.querySelector('.TextRight');
 
 signUp.addEventListener('click', function () {
@@ -850,10 +853,12 @@ signUp.addEventListener('click', function () {
         seasonsBooks.addEventListener('click', openBuyCardMenuBuyButton);
 
         getTitle.innerHTML = 'Visit your profile'; // изменение секции library card
+        findTitle.innerHTML = 'Your Library card';
         textRight.innerHTML = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
         libraryRegButton.style.display = 'none';
 
-        libraryLogButton.innerHTML = 'Profile'; 
+        libraryLogButton.innerHTML = 'Profile';
+        libraryLogButton.classList.add('library-card-profile-button');
         libraryLogButton.removeEventListener('click', openLoginMenuOnLogButton);
         libraryLogButton.addEventListener('click', openMyProfileMenu);
 
@@ -986,10 +991,12 @@ logIn.addEventListener('click', function () {
         }
 
         getTitle.innerHTML = 'Visit your profile'; // изменение секции library card
+        findTitle.innerHTML = 'Your Library card';
         textRight.innerHTML = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
         libraryRegButton.style.display = 'none';
 
         libraryLogButton.innerHTML = 'Profile';
+        libraryLogButton.classList.add('library-card-profile-button');
         libraryLogButton.removeEventListener('click', openLoginMenuOnLogButton);
         libraryLogButton.addEventListener('click', openMyProfileMenu);
 
@@ -1081,10 +1088,12 @@ function logOutFromAccount() {
     }
 
     getTitle.innerHTML = 'Get a reader card'; // изменение секции library card
+    findTitle.innerHTML = 'Find your Library card';
     textRight.innerHTML = 'You will be able to see a reader card after logging into account or you can register a new account';
     libraryRegButton.style.display = '';
 
     libraryLogButton.innerHTML = 'Log In';
+    libraryLogButton.classList.remove('library-card-profile-button');
     libraryLogButton.addEventListener('click', openLoginMenuOnLogButton);
     libraryLogButton.removeEventListener('click', openMyProfileMenu);
 
