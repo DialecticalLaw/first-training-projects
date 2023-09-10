@@ -713,9 +713,9 @@ function isDataForBuyCardCorrect() {
         result = false;
     }
 
-    if (removeSpaces(bankCardNumber.value).length !== 16 || Number(removeSpaces(bankCardNumber.value)) === undefined) {
+    if (removeSpaces(bankCardNumber.value).length !== 16 || isNaN(bankCardNumber.value)) {
         bankCardNumber.value = '';
-        bankCardNumber.placeholder = 'Invalid number'
+        bankCardNumber.placeholder = 'Invalid number';
         result = false;
     }
  
@@ -724,7 +724,7 @@ function isDataForBuyCardCorrect() {
         result = false;
     }
 
-    if (Number(dateStart.value) === undefined || dateStart.value.length < 2) {
+    if (isNaN(dateStart.value) || dateStart.value.length < 2) {
         dateStart.style.border = '1px solid red';
         result = false;
     }
@@ -734,7 +734,7 @@ function isDataForBuyCardCorrect() {
         result = false;
     }
 
-    if (Number(dateEnd.value) === undefined || dateEnd.value.length < 2) {
+    if (isNaN(dateEnd.value) || dateEnd.value.length < 2) {
         dateEnd.style.border = '1px solid red';
         result = false;
     }
@@ -744,7 +744,7 @@ function isDataForBuyCardCorrect() {
         result = false;
     }
 
-    if (Number(cvc.value) === undefined || cvc.value.length < 3) {
+    if (isNaN(cvc.value) || cvc.value.length < 3) {
         cvc.style.border = '1px solid red';
         result = false;
     }
@@ -1012,8 +1012,6 @@ logIn.addEventListener('click', function () {
 
 // check card - start
 
-
-
 findCardButton.addEventListener('click', function () {
     if (cardNameInput.value === `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}` && cardNumberInput.value === localStorage.getItem('cardNumber')) {
     visitsCountCard.innerHTML = localStorage.getItem('visits');
@@ -1045,8 +1043,6 @@ findCardButton.addEventListener('click', function () {
 }})
 
 // check card - end
-
-
 
 function logOutFromAccount() {
     
