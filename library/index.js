@@ -1,5 +1,67 @@
 console.log('Score 200 / 200');
 
+// проверка на авторизацию - start
+setTimeout(() => {
+    if (localStorage.getItem('isAuth') === 'true') {
+        iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
+        iconProfileAuthorize.classList.add('icon-profile-authorize-on')
+        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0];
+        iconProfileAuthorize.title = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
+
+        dropMenuTitleText.style['font-size'] = '11px'; // изменение drop menu
+        dropMenuTitleText.innerHTML = localStorage.getItem('cardNumber');
+        dropMenuText1.innerHTML = 'My profile';
+        dropMenuText2.innerHTML = 'Log Out';
+        dropMenuText1.removeEventListener('click', openLoginMenu);
+        dropMenuText2.removeEventListener('click', openRegisterMenu);
+        dropMenuText1.addEventListener('click', openMyProfileMenu);
+        dropMenuText2.addEventListener('click', logOutFromAccount);
+        
+        seasonsBooks.removeEventListener('click', openLoginMenuBuyButton);
+        if (localStorage.getItem('hasCard') === 'false') {
+            seasonsBooks.addEventListener('click', openBuyCardMenuBuyButton);
+        } else if (localStorage.getItem('hasCard') === 'true') {
+            seasonsBooks.addEventListener('click', buyBook);
+        }
+        
+        const storedArray = localStorage.getItem('ownedBooks');
+        const array = JSON.parse(storedArray);
+
+        for (let buyButton of buyButtons) { // меняем нужные кнопки на own
+            for (let nameButton of array) {
+                if (buyButton.classList.contains(nameButton)) {
+                    buyButton.classList.add('OwnButton')
+                    buyButton.classList.remove('BuyButton');
+                    document.querySelector('.OwnButton').disabled = true;
+                    buyButton.innerHTML = 'Own';
+                }
+            }
+        }
+
+        getTitle.innerHTML = 'Visit your profile'; // изменение секции library card
+        textRight.innerHTML = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
+        libraryRegButton.style.display = 'none';
+
+        libraryLogButton.innerHTML = 'Profile';
+        libraryLogButton.removeEventListener('click', openLoginMenuOnLogButton);
+        libraryLogButton.addEventListener('click', openMyProfileMenu);
+
+        cardNameInput.value = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
+        cardNameInput.setAttribute('readonly', true);
+
+        cardNumberInput.value = localStorage.getItem('cardNumber');
+        cardNumberInput.setAttribute('readonly', true);
+
+        findCardButtonForm.classList.remove('FindCardButton-form-on');
+        cardProfileInfo.classList.add('card-profile-info-on');
+        cardProfileInfo.classList.add('card-profile-info-visible');
+        visitsCountCard.innerHTML = localStorage.getItem('visits');
+        booksCountCard.innerHTML = (JSON.parse(localStorage.getItem('ownedBooks')).length).toString();
+}
+}, 10);
+
+// проверка на авторизацию - end
+
 const body = document.body;
 const html = document.querySelector('html');
 const container = document.querySelector('.container');
@@ -756,7 +818,8 @@ signUp.addEventListener('click', function () {
         localStorage.setItem('password', passwordRegister.value);
         localStorage.setItem('cardNumber', genRandomCardNumber());
         localStorage.setItem('visits', '1');
-        localStorage.setItem('hasCard', 'false')
+        localStorage.setItem('hasCard', 'false');
+        localStorage.setItem('isAuth', 'true');
         const arrayBooks = [];
         localStorage.setItem('ownedBooks', JSON.stringify(arrayBooks));
         
@@ -877,6 +940,7 @@ logIn.addEventListener('click', function () {
         emailOrCardLogin.value = '';
         passwordLogin.value = '';
     } else if (isDataForLoginCorrect() === true) { // успешный login
+        localStorage.setItem('isAuth', 'true');
         loginMenu.classList.remove('modal-login-menu-on'); // закрытие login menu
         loginWrapper.classList.remove('modal-login-wrapper-blackout');
         setTimeout(loginClose, 500);
@@ -986,6 +1050,8 @@ findCardButton.addEventListener('click', function () {
 
 function logOutFromAccount() {
     
+    localStorage.setItem('isAuth', 'false');
+
     iconProfileAuthorize.classList.remove('icon-profile-authorize-on'); // изменение icon profile
     iconProfile.classList.add('icon-profile-on')
     iconProfile.innerHTML = '';
