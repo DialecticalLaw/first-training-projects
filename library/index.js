@@ -5,7 +5,7 @@ setTimeout(() => {
     if (localStorage.getItem('isAuth') === 'true') {
         iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
         iconProfileAuthorize.classList.add('icon-profile-authorize-on')
-        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0];
+        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0].toUpperCase() + localStorage.getItem('lastName')[0].toUpperCase();
         iconProfileAuthorize.title = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
 
         dropMenuTitleText.style['font-size'] = '11px'; // изменение drop menu
@@ -828,7 +828,7 @@ signUp.addEventListener('click', function () {
 
         iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
         iconProfileAuthorize.classList.add('icon-profile-authorize-on')
-        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0];
+        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0].toUpperCase() + localStorage.getItem('lastName')[0].toUpperCase();
         iconProfileAuthorize.title = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
         
         dropMenuTitleText.style['font-size'] = '11px'; // изменение drop menu
@@ -948,7 +948,7 @@ logIn.addEventListener('click', function () {
 
         iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
         iconProfileAuthorize.classList.add('icon-profile-authorize-on')
-        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0];
+        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0].toUpperCase() + localStorage.getItem('lastName')[0].toUpperCase();
         iconProfileAuthorize.title = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
 
         dropMenuTitleText.style['font-size'] = '11px'; // изменение drop menu
@@ -1011,7 +1011,7 @@ logIn.addEventListener('click', function () {
 // check card - start
 
 findCardButton.addEventListener('click', function () {
-    if (cardNameInput.value === `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}` && cardNumberInput.value === localStorage.getItem('cardNumber')) {
+    if (cardNameInput.value === `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}` || cardNameInput.value === localStorage.getItem('firstName') && cardNumberInput.value === localStorage.getItem('cardNumber')) {
     visitsCountCard.innerHTML = localStorage.getItem('visits');
     booksCountCard.innerHTML = (JSON.parse(localStorage.getItem('ownedBooks')).length).toString();
     findCardButtonForm.classList.remove('FindCardButton-form-visible');

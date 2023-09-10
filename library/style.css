@@ -2092,8 +2092,8 @@ h2::after {
         top: 0;
         right: 0;
         margin-right: 0;
-        transform: translateX(150%) rotate(-40deg);
-        transition: 0.5s;
+        transform: translateX(150%);
+        transition: 0.5s ease;
     }
 
     .nav.active {
