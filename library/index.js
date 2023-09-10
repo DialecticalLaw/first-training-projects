@@ -1,5 +1,69 @@
 console.log('Score 200 / 200');
 
+// проверка на авторизацию - start
+setTimeout(() => {
+    if (localStorage.getItem('isAuth') === 'true') {
+        iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
+        iconProfileAuthorize.classList.add('icon-profile-authorize-on')
+        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0].toUpperCase() + localStorage.getItem('lastName')[0].toUpperCase();
+        iconProfileAuthorize.title = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
+
+        dropMenuTitleText.style['font-size'] = '11px'; // изменение drop menu
+        dropMenuTitleText.innerHTML = localStorage.getItem('cardNumber');
+        dropMenuText1.innerHTML = 'My profile';
+        dropMenuText2.innerHTML = 'Log Out';
+        dropMenuText1.removeEventListener('click', openLoginMenu);
+        dropMenuText2.removeEventListener('click', openRegisterMenu);
+        dropMenuText1.addEventListener('click', openMyProfileMenu);
+        dropMenuText2.addEventListener('click', logOutFromAccount);
+        
+        seasonsBooks.removeEventListener('click', openLoginMenuBuyButton);
+        if (localStorage.getItem('hasCard') === 'false') {
+            seasonsBooks.addEventListener('click', openBuyCardMenuBuyButton);
+        } else if (localStorage.getItem('hasCard') === 'true') {
+            seasonsBooks.addEventListener('click', buyBook);
+        }
+        
+        const storedArray = localStorage.getItem('ownedBooks');
+        const array = JSON.parse(storedArray);
+
+        for (let buyButton of buyButtons) { // меняем нужные кнопки на own
+            for (let nameButton of array) {
+                if (buyButton.classList.contains(nameButton)) {
+                    buyButton.classList.add('OwnButton')
+                    buyButton.classList.remove('BuyButton');
+                    document.querySelector('.OwnButton').disabled = true;
+                    buyButton.innerHTML = 'Own';
+                }
+            }
+        }
+
+        getTitle.innerHTML = 'Visit your profile'; // изменение секции library card
+        findTitle.innerHTML = 'Your Library card';
+        textRight.innerHTML = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
+        libraryRegButton.style.display = 'none';
+
+        libraryLogButton.innerHTML = 'Profile';
+        libraryLogButton.classList.add('library-card-profile-button');
+        libraryLogButton.removeEventListener('click', openLoginMenuOnLogButton);
+        libraryLogButton.addEventListener('click', openMyProfileMenu);
+
+        cardNameInput.value = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
+        cardNameInput.setAttribute('readonly', true);
+
+        cardNumberInput.value = localStorage.getItem('cardNumber');
+        cardNumberInput.setAttribute('readonly', true);
+
+        findCardButtonForm.classList.remove('FindCardButton-form-on');
+        cardProfileInfo.classList.add('card-profile-info-on');
+        cardProfileInfo.classList.add('card-profile-info-visible');
+        visitsCountCard.innerHTML = localStorage.getItem('visits');
+        booksCountCard.innerHTML = (JSON.parse(localStorage.getItem('ownedBooks')).length).toString();
+}
+}, 10);
+
+// проверка на авторизацию - end
+
 const body = document.body;
 const html = document.querySelector('html');
 const container = document.querySelector('.container');
@@ -18,6 +82,7 @@ burger.addEventListener('click', e => {
     burger.classList.toggle('active')
     body.classList.toggle('lock')
     html.classList.toggle('lock')
+    dropMenu.classList.remove('active-drop-menu');
 });
 
 
@@ -53,7 +118,6 @@ document.addEventListener('click', e => {
             registerMenu.classList.remove('modal-register-menu-on');
             registerWrapper.classList.remove('modal-register-wrapper-blackout');
             setTimeout(registerClose, 500);
-            
         }
     } else if (loginMenu.classList.contains('modal-login-menu-on')) { // закрыть login menu при клике вне его области
         if (!loginMenu.contains(e.target) && !closeLoginSvg.contains(e.target)) {
@@ -103,15 +167,6 @@ const aboutCarousel = document.querySelector('.AboutCarousel');
 
 const leftArrow = document.querySelector('.arrow1');
 const rightArrow = document.querySelector('.arrow2');
-
-window.addEventListener('resize', (e) => {
-    if (body.clientWidth < 1401) {
-        location.reload();
-    } else if (body.offsetWidth > 1440) {
-        location.reload();
-    }
-    aboutImage.style['margin-left'] = (body.clientWidth - 1400) / 2 + 'px';
-})
 
 // Slider About - start
 
@@ -170,7 +225,7 @@ paginationAbout.addEventListener('click', function(event) {
     }
 })
 
-function sizeToNumber(str) {         // функция для удаления "px" из строки вида "123px" и возвращения числа 123
+function sizeToNumber(str) {         // функция для удаления "px" из строки вида "123px"
     return Number(str.slice(0, -2));
 }
 
@@ -497,12 +552,12 @@ const svgCloseProfileInfo = document.querySelector('.svg-close-profile-info')
 function isDataForRegisterCorrect () { // проверка правильности заполненных форм регистрации
     let result = true;
 
-    if (firstNameRegister.value === '') {
+    if (firstNameRegister.value === '' || removeSpaces(firstNameRegister.value) === '') {
         firstNameRegister.placeholder = 'The field should not be empty!';
         result = false;
     }
 
-    if (lastNameRegister.value === '') {
+    if (lastNameRegister.value === '' || removeSpaces(firstNameRegister.value) === '') {
         lastNameRegister.placeholder = 'The field should not be empty!';
         result = false;
     }
@@ -518,6 +573,22 @@ function isDataForRegisterCorrect () { // проверка правильнос�
     if (emailRegister.value === '') {
         emailRegister.placeholder = 'The field should not be empty!';
         result = false;
+    }
+
+    for (let i = 0; i < removeSpaces(emailRegister.value).length; i++) {
+        if (removeSpaces(emailRegister.value)[i] === '@') {
+            if (removeSpaces(emailRegister.value)[i + 1] === undefined || removeSpaces(emailRegister.value)[i + 2] === undefined) {
+                emailRegister.value = '';
+                emailRegister.placeholder = 'Invalid email';
+                result = false;
+            } else {
+                break;
+            }
+        } else {
+            emailRegister.value = '';
+            emailRegister.placeholder = 'Invalid email';
+            result = false;
+        }
     }
 
     if (passwordRegister.value === '') {
@@ -651,9 +722,9 @@ function isDataForBuyCardCorrect() {
         result = false;
     }
 
-    if (removeSpaces(bankCardNumber.value).length !== 16 || Number(removeSpaces(bankCardNumber.value)) === undefined) {
+    if (removeSpaces(bankCardNumber.value).length !== 16 || isNaN(bankCardNumber.value)) {
         bankCardNumber.value = '';
-        bankCardNumber.placeholder = 'Invalid number'
+        bankCardNumber.placeholder = 'Invalid number';
         result = false;
     }
  
@@ -662,7 +733,7 @@ function isDataForBuyCardCorrect() {
         result = false;
     }
 
-    if (Number(dateStart.value) === undefined || dateStart.value.length < 2) {
+    if (isNaN(dateStart.value) || dateStart.value.length < 2) {
         dateStart.style.border = '1px solid red';
         result = false;
     }
@@ -672,7 +743,7 @@ function isDataForBuyCardCorrect() {
         result = false;
     }
 
-    if (Number(dateEnd.value) === undefined || dateEnd.value.length < 2) {
+    if (isNaN(dateEnd.value) || dateEnd.value.length < 2) {
         dateEnd.style.border = '1px solid red';
         result = false;
     }
@@ -682,7 +753,7 @@ function isDataForBuyCardCorrect() {
         result = false;
     }
 
-    if (Number(cvc.value) === undefined || cvc.value.length < 3) {
+    if (isNaN(cvc.value) || cvc.value.length < 3) {
         cvc.style.border = '1px solid red';
         result = false;
     }
@@ -745,18 +816,20 @@ const myProfileName = document.querySelector('.my-profile-name');
 const cardNumberMyProfile = document.querySelector('.card-number-my-profile');
 
 const getTitle = document.querySelector('.GetTitle');
+const findTitle = document.querySelector('.FindCardTitle');
 const textRight = document.querySelector('.TextRight');
 
 signUp.addEventListener('click', function () {
     if (isDataForRegisterCorrect() === true) {
-        alert('Upon re-registration, the old account will be replaced with a new one\nПри повторной регистрации старый аккаунт будет заменён новым (изначально сделал процесс немного неправильно, а переделывать - лень. В ТЗ по этой части уложился)') // занесение данных пользователя в локальное хранилище
-        localStorage.setItem('firstName', firstNameRegister.value);
-        localStorage.setItem('lastName', lastNameRegister.value);
-        localStorage.setItem('email', emailRegister.value);
+        alert('Upon re-registration, the old account will be replaced with a new one\nПри повторной регистрации новый пользователь заменит старого (поддерживается только один пользователь). ТЗ не регламентирует количество пользователей.') // занесение данных пользователя в локальное хранилище
+        localStorage.setItem('firstName', removeSpaces(firstNameRegister.value));
+        localStorage.setItem('lastName', removeSpaces(lastNameRegister.value));
+        localStorage.setItem('email', removeSpaces(emailRegister.value));
         localStorage.setItem('password', passwordRegister.value);
         localStorage.setItem('cardNumber', genRandomCardNumber());
         localStorage.setItem('visits', '1');
-        localStorage.setItem('hasCard', 'false')
+        localStorage.setItem('hasCard', 'false');
+        localStorage.setItem('isAuth', 'true');
         const arrayBooks = [];
         localStorage.setItem('ownedBooks', JSON.stringify(arrayBooks));
         
@@ -771,7 +844,7 @@ signUp.addEventListener('click', function () {
 
         iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
         iconProfileAuthorize.classList.add('icon-profile-authorize-on')
-        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0];
+        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0].toUpperCase() + localStorage.getItem('lastName')[0].toUpperCase();
         iconProfileAuthorize.title = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
         
         dropMenuTitleText.style['font-size'] = '11px'; // изменение drop menu
@@ -787,10 +860,12 @@ signUp.addEventListener('click', function () {
         seasonsBooks.addEventListener('click', openBuyCardMenuBuyButton);
 
         getTitle.innerHTML = 'Visit your profile'; // изменение секции library card
+        findTitle.innerHTML = 'Your Library card';
         textRight.innerHTML = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
         libraryRegButton.style.display = 'none';
 
-        libraryLogButton.innerHTML = 'Profile'; 
+        libraryLogButton.innerHTML = 'Profile';
+        libraryLogButton.classList.add('library-card-profile-button');
         libraryLogButton.removeEventListener('click', openLoginMenuOnLogButton);
         libraryLogButton.addEventListener('click', openMyProfileMenu);
 
@@ -828,19 +903,18 @@ seasonsBooks.addEventListener('checkBooks', function (event) {
 function buyBook(event) {
     for (let button of buyButtons) {
         if (button.contains(event.target)) {
+            if (button.classList.contains('OwnButton')) {
+                break;
+            }
             button.classList.add('OwnButton')
             document.querySelector('.OwnButton').disabled = true;
             button.innerHTML = 'Own';
-            
             seasonsBooks.dispatchEvent(new CustomEvent('checkBooks', {
                 detail: {elem: button}
             }));
         }
     }
 }
-
-
-
 
 // покупка книги - end
 
@@ -877,6 +951,7 @@ logIn.addEventListener('click', function () {
         emailOrCardLogin.value = '';
         passwordLogin.value = '';
     } else if (isDataForLoginCorrect() === true) { // успешный login
+        localStorage.setItem('isAuth', 'true');
         loginMenu.classList.remove('modal-login-menu-on'); // закрытие login menu
         loginWrapper.classList.remove('modal-login-wrapper-blackout');
         setTimeout(loginClose, 500);
@@ -888,7 +963,7 @@ logIn.addEventListener('click', function () {
 
         iconProfile.classList.remove('icon-profile-on'); // изменение icon profile
         iconProfileAuthorize.classList.add('icon-profile-authorize-on')
-        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0];
+        iconProfileAuthorize.innerHTML = localStorage.getItem('firstName')[0].toUpperCase() + localStorage.getItem('lastName')[0].toUpperCase();
         iconProfileAuthorize.title = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
 
         dropMenuTitleText.style['font-size'] = '11px'; // изменение drop menu
@@ -899,14 +974,7 @@ logIn.addEventListener('click', function () {
         dropMenuText2.removeEventListener('click', openRegisterMenu);
         dropMenuText1.addEventListener('click', openMyProfileMenu);
         dropMenuText2.addEventListener('click', logOutFromAccount);
-        
-        seasonsBooks.removeEventListener('click', openLoginMenuBuyButton);
-        if (localStorage.getItem('hasCard') === 'false') {
-            seasonsBooks.addEventListener('click', openBuyCardMenuBuyButton);
-        } else if (localStorage.getItem('hasCard') === 'true') {
-            seasonsBooks.addEventListener('click', buyBook);
-        }
-        
+
         const storedArray = localStorage.getItem('ownedBooks');
         const array = JSON.parse(storedArray);
 
@@ -921,11 +989,20 @@ logIn.addEventListener('click', function () {
             }
         }
 
+        seasonsBooks.removeEventListener('click', openLoginMenuBuyButton);
+        if (localStorage.getItem('hasCard') === 'false') {
+            seasonsBooks.addEventListener('click', openBuyCardMenuBuyButton);
+        } else if (localStorage.getItem('hasCard') === 'true') {
+            seasonsBooks.addEventListener('click', buyBook);
+        }
+
         getTitle.innerHTML = 'Visit your profile'; // изменение секции library card
+        findTitle.innerHTML = 'Your Library card';
         textRight.innerHTML = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
         libraryRegButton.style.display = 'none';
 
         libraryLogButton.innerHTML = 'Profile';
+        libraryLogButton.classList.add('library-card-profile-button');
         libraryLogButton.removeEventListener('click', openLoginMenuOnLogButton);
         libraryLogButton.addEventListener('click', openMyProfileMenu);
 
@@ -948,10 +1025,8 @@ logIn.addEventListener('click', function () {
 
 // check card - start
 
-
-
 findCardButton.addEventListener('click', function () {
-    if (cardNameInput.value === `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}` && cardNumberInput.value === localStorage.getItem('cardNumber')) {
+    if (cardNameInput.value === `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}` || cardNameInput.value === localStorage.getItem('firstName') && cardNumberInput.value === localStorage.getItem('cardNumber')) {
     visitsCountCard.innerHTML = localStorage.getItem('visits');
     booksCountCard.innerHTML = (JSON.parse(localStorage.getItem('ownedBooks')).length).toString();
     findCardButtonForm.classList.remove('FindCardButton-form-visible');
@@ -982,10 +1057,10 @@ findCardButton.addEventListener('click', function () {
 
 // check card - end
 
-
-
 function logOutFromAccount() {
     
+    localStorage.setItem('isAuth', 'false');
+
     iconProfileAuthorize.classList.remove('icon-profile-authorize-on'); // изменение icon profile
     iconProfile.classList.add('icon-profile-on')
     iconProfile.innerHTML = '';
@@ -1019,10 +1094,12 @@ function logOutFromAccount() {
     }
 
     getTitle.innerHTML = 'Get a reader card'; // изменение секции library card
+    findTitle.innerHTML = 'Find your Library card';
     textRight.innerHTML = 'You will be able to see a reader card after logging into account or you can register a new account';
     libraryRegButton.style.display = '';
 
     libraryLogButton.innerHTML = 'Log In';
+    libraryLogButton.classList.remove('library-card-profile-button');
     libraryLogButton.addEventListener('click', openLoginMenuOnLogButton);
     libraryLogButton.removeEventListener('click', openMyProfileMenu);
 
