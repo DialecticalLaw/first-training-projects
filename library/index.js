@@ -622,7 +622,7 @@ const booksCount = document.querySelector('.books-count');
 const rentedBooks = document.querySelector('.rented-books');
 
 function openMyProfileMenu() {
-    myProfileInitials.innerHTML = localStorage.getItem('firstName')[0] + localStorage.getItem('lastName')[0]; // изменение my profile
+    myProfileInitials.innerHTML = localStorage.getItem('firstName')[0].toUpperCase() + localStorage.getItem('lastName')[0].toUpperCase(); // изменение my profile
     myProfileName.innerHTML = `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
     cardNumberMyProfile.innerHTML = localStorage.getItem('cardNumber');
     visitsCount.innerHTML = localStorage.getItem('visits');
