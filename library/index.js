@@ -903,19 +903,18 @@ seasonsBooks.addEventListener('checkBooks', function (event) {
 function buyBook(event) {
     for (let button of buyButtons) {
         if (button.contains(event.target)) {
+            if (button.classList.contains('OwnButton')) {
+                break;
+            }
             button.classList.add('OwnButton')
             document.querySelector('.OwnButton').disabled = true;
             button.innerHTML = 'Own';
-            
             seasonsBooks.dispatchEvent(new CustomEvent('checkBooks', {
                 detail: {elem: button}
             }));
         }
     }
 }
-
-
-
 
 // покупка книги - end
 
@@ -975,14 +974,7 @@ logIn.addEventListener('click', function () {
         dropMenuText2.removeEventListener('click', openRegisterMenu);
         dropMenuText1.addEventListener('click', openMyProfileMenu);
         dropMenuText2.addEventListener('click', logOutFromAccount);
-        
-        seasonsBooks.removeEventListener('click', openLoginMenuBuyButton);
-        if (localStorage.getItem('hasCard') === 'false') {
-            seasonsBooks.addEventListener('click', openBuyCardMenuBuyButton);
-        } else if (localStorage.getItem('hasCard') === 'true') {
-            seasonsBooks.addEventListener('click', buyBook);
-        }
-        
+
         const storedArray = localStorage.getItem('ownedBooks');
         const array = JSON.parse(storedArray);
 
@@ -995,6 +987,13 @@ logIn.addEventListener('click', function () {
                     buyButton.innerHTML = 'Own';
                 }
             }
+        }
+
+        seasonsBooks.removeEventListener('click', openLoginMenuBuyButton);
+        if (localStorage.getItem('hasCard') === 'false') {
+            seasonsBooks.addEventListener('click', openBuyCardMenuBuyButton);
+        } else if (localStorage.getItem('hasCard') === 'true') {
+            seasonsBooks.addEventListener('click', buyBook);
         }
 
         getTitle.innerHTML = 'Visit your profile'; // изменение секции library card

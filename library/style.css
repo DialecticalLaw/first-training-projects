@@ -1261,8 +1261,6 @@ h2::after {
 .OwnButton {
     width: 75px;
     height: 30px;
-    flex-shrink: 0;
-    color: #BB945F;
     border-radius: 2px;
     border: 1px solid #BB945F;
     background-color: #fff;
