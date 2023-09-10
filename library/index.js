@@ -497,12 +497,12 @@ const svgCloseProfileInfo = document.querySelector('.svg-close-profile-info')
 function isDataForRegisterCorrect () { // проверка правильности заполненных форм регистрации
     let result = true;
 
-    if (firstNameRegister.value === '') {
+    if (firstNameRegister.value === '' || removeSpaces(firstNameRegister.value) === '') {
         firstNameRegister.placeholder = 'The field should not be empty!';
         result = false;
     }
 
-    if (lastNameRegister.value === '') {
+    if (lastNameRegister.value === '' || removeSpaces(firstNameRegister.value) === '') {
         lastNameRegister.placeholder = 'The field should not be empty!';
         result = false;
     }
@@ -749,9 +749,9 @@ const textRight = document.querySelector('.TextRight');
 
 signUp.addEventListener('click', function () {
     if (isDataForRegisterCorrect() === true) {
-        alert('Upon re-registration, the old account will be replaced with a new one\nПри повторной регистрации старый аккаунт будет заменён новым (изначально сделал процесс немного неправильно, а переделывать - лень. В ТЗ по этой части уложился)') // занесение данных пользователя в локальное хранилище
-        localStorage.setItem('firstName', firstNameRegister.value);
-        localStorage.setItem('lastName', lastNameRegister.value);
+        alert('Upon re-registration, the old account will be replaced with a new one\nПри повторной регистрации новый пользователь заменит старого (поддерживается только один пользователь). ТЗ не регламентирует количество пользователей.') // занесение данных пользователя в локальное хранилище
+        localStorage.setItem('firstName', removeSpaces(firstNameRegister.value));
+        localStorage.setItem('lastName', removeSpaces(lastNameRegister.value));
         localStorage.setItem('email', emailRegister.value);
         localStorage.setItem('password', passwordRegister.value);
         localStorage.setItem('cardNumber', genRandomCardNumber());
