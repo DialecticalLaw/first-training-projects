@@ -168,15 +168,6 @@ const aboutCarousel = document.querySelector('.AboutCarousel');
 const leftArrow = document.querySelector('.arrow1');
 const rightArrow = document.querySelector('.arrow2');
 
-/*window.addEventListener('resize', (e) => {
-    if (body.clientWidth < 1401) {
-        location.reload();
-    } else if (body.offsetWidth > 1440) {
-        location.reload();
-    }
-    aboutImage.style['margin-left'] = (body.clientWidth - 1400) / 2 + 'px';
-})*/
-
 // Slider About - start
 
 paginationAbout.addEventListener('click', function(event) {
