@@ -2045,9 +2045,17 @@ h2::after {
         transition: 0.4s;
     }
 
+    .icon-profile-authorize {
+        margin-right: 42px;
+    }
+
     .icon-profile {
         margin-right: 42px;
         z-index: 2;
+    }
+
+    .drop-menu-profile {
+        right: 107px;
     }
 
     .header_burger > span {
