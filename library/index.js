@@ -575,6 +575,22 @@ function isDataForRegisterCorrect () { // проверка правильнос�
         result = false;
     }
 
+    for (let i = 0; i < removeSpaces(emailRegister.value).length; i++) {
+        if (removeSpaces(emailRegister.value)[i] === '@') {
+            if (removeSpaces(emailRegister.value)[i + 1] === undefined || removeSpaces(emailRegister.value)[i + 2] === undefined) {
+                emailRegister.value = '';
+                emailRegister.placeholder = 'Invalid email';
+                result = false;
+            } else {
+                break;
+            }
+        } else {
+            emailRegister.value = '';
+            emailRegister.placeholder = 'Invalid email';
+            result = false;
+        }
+    }
+
     if (passwordRegister.value === '') {
         passwordRegister.placeholder = 'The field should not be empty!';
         result = false;
@@ -808,7 +824,7 @@ signUp.addEventListener('click', function () {
         alert('Upon re-registration, the old account will be replaced with a new one\nПри повторной регистрации новый пользователь заменит старого (поддерживается только один пользователь). ТЗ не регламентирует количество пользователей.') // занесение данных пользователя в локальное хранилище
         localStorage.setItem('firstName', removeSpaces(firstNameRegister.value));
         localStorage.setItem('lastName', removeSpaces(lastNameRegister.value));
-        localStorage.setItem('email', emailRegister.value);
+        localStorage.setItem('email', removeSpaces(emailRegister.value));
         localStorage.setItem('password', passwordRegister.value);
         localStorage.setItem('cardNumber', genRandomCardNumber());
         localStorage.setItem('visits', '1');
