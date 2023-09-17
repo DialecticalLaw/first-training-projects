@@ -34,6 +34,8 @@ body {
     width: 100vw;
     height: 100vh;
     position: absolute;
+    top: 0;
+    left: 0;
     filter: blur(8px);
     z-index: 0;
 }
@@ -62,8 +64,8 @@ body {
 .menu {
     display: flex;
     flex-direction: column;
-    width: 380px;
-    height: 450px;
+    width: 480px;
+    height: 700px;
     border-radius: 25px;
     padding: 15px;
     background-color: rgb(51, 50, 50);
@@ -72,7 +74,7 @@ body {
 
 .menu-cover-block {
     width: 100%;
-    height: 70%;
+    height: 60%;
 }
 
 .menu-cover-image {
@@ -103,13 +105,87 @@ body {
     position: absolute;
     width: 105%;
     height: 105%;
-    /*background-image: url(assets/img/Pravda.jpg);*/
     top: -5%;
     left: -2%;
-    /*background-size: auto;
-    background-position: center;
-    background-repeat: no-repeat;*/
     border-radius: inherit;
     filter: blur(25px);
     z-index: 0;
+}
+
+.controls-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12%;
+    width: 100%;
+    height: 35%;
+    margin-top: 3%;
+}
+
+.song-info {
+    font-size: 1.3em;
+    font-family: Roboto;
+    text-align: center;
+}
+
+.song-author {
+    color: rgb(92, 170, 13);
+}
+
+.dash {
+    color: rgb(155, 155, 155);
+}
+
+.song-name {
+    color: white;
+}
+
+.main-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+    width: 100%;
+}
+
+.backward, .forward {
+    width: 50px;
+    height: 50px;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.continue, .pause {
+    width: 80px;
+    height: 80px;
+    margin-top: -15px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.pause {
+    display: none;
+}
+
+.track-duration, .current-time {
+    font-size: 1em;
+    font-family: Roboto;
+    color: white;
+}
+
+.track-duration {
+    text-align: right;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10%;
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: rgb(0, 0, 92);
+}
+
+.active-progress-bar {
+    width: 20%;
+    height: 100%;
+    background-color: rgb(0, 165, 0);
+    border-radius: 20px;
 }
