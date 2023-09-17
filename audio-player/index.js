@@ -17,8 +17,8 @@ const pauseIcon = document.querySelector('.pause');
 const progressBar = document.querySelector('.progress-bar');
 const activeProgressBar = document.querySelector('.active-progress-bar');
 
-const trackCurrentTime = document.querySelector('.current-time');
-const trackDuration = document.querySelector('.track-duration');
+const trackCurrentTimeText = document.querySelector('.current-time');
+const trackDurationText = document.querySelector('.track-duration');
 
 let currentSong = 0;
 
@@ -31,9 +31,11 @@ continueIcon.addEventListener('click', continueTrack);
 function continueTrack() {
     setTimeout(() => {
        document.querySelector('.audio' + currentSong).play();
+       document.querySelector('.audio' + currentSong).addEventListener('timeupdate', updateProgressBarPassive);
         continueIcon.classList.remove('icon-on');
         pauseIcon.classList.add('icon-on');
-        document.querySelector('.menu-cover-image' + currentSong).classList.add('menu-cover-image-play'); 
+        document.querySelector('.menu-cover-image' + currentSong).classList.add('menu-cover-image-play');
+        document.querySelector('.audio' + currentSong).addEventListener('ended', nextTrack);
     }, 100);
     
 }
@@ -104,3 +106,23 @@ function changeSongName() {
 }
 
 // change song name - end
+
+// progress bar - start
+
+progressBar.addEventListener('click', updateProgressBarOnClick);
+
+function updateProgressBarPassive(event) {
+    const trackDuration = document.querySelector('.audio' + currentSong).duration;
+    const trackCurrentTime = document.querySelector('.audio' + currentSong).currentTime;
+    activeProgressBar.style.width = (trackCurrentTime / trackDuration) * 100 + '%';
+}
+
+function updateProgressBarOnClick(event) {
+    if (document.querySelector('.audio' + currentSong).paused) {
+        continueTrack();
+    }
+
+    document.querySelector('.audio' + currentSong).currentTime = (event.offsetX / progressBar.clientWidth) * document.querySelector('.audio' + currentSong).duration;
+}
+
+// progress bar - end
