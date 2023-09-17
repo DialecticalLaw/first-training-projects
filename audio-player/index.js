@@ -17,12 +17,20 @@ const pauseIcon = document.querySelector('.pause');
 const progressBar = document.querySelector('.progress-bar');
 const activeProgressBar = document.querySelector('.active-progress-bar');
 
-const trackCurrentTimeText = document.querySelector('.current-time');
+const trackCurrentTimeText = document.querySelector('.current-track-time');
 const trackDurationText = document.querySelector('.track-duration');
 
 let currentSong = 0;
 
 let switchSongEvent = new Event('switchTrack');
+
+function updateTrackDurationData() {
+    setTimeout(() => {
+        updateDurationTimeText();
+    }, 200);
+}
+
+document.addEventListener('DOMContentLoaded', updateTrackDurationData);
 
 // pause/continue track - start
 
@@ -30,8 +38,10 @@ continueIcon.addEventListener('click', continueTrack);
 
 function continueTrack() {
     setTimeout(() => {
-       document.querySelector('.audio' + currentSong).play();
-       document.querySelector('.audio' + currentSong).addEventListener('timeupdate', updateProgressBarPassive);
+        document.querySelector('.audio' + currentSong).play();
+        document.querySelector('.audio' + currentSong).addEventListener('timeupdate', updateProgressBarPassive);
+        document.querySelector('.audio' + currentSong).addEventListener('timeupdate', updateCurrentTimeText);
+        updateDurationTimeText();
         continueIcon.classList.remove('icon-on');
         pauseIcon.classList.add('icon-on');
         document.querySelector('.menu-cover-image' + currentSong).classList.add('menu-cover-image-play');
@@ -111,7 +121,29 @@ function changeSongName() {
 
 progressBar.addEventListener('click', updateProgressBarOnClick);
 
-function updateProgressBarPassive(event) {
+function convertTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time - (minutes * 60));
+    if (seconds < 10) {
+        return `${minutes}:0${seconds}`
+    } else {
+        return `${minutes}:${seconds}`;
+    }
+}
+
+function updateDurationTimeText() { // max track's time
+    const currentTrack = document.querySelector('.audio' + currentSong);
+    const correctTimeDuration = convertTime(currentTrack.duration);
+    trackDurationText.innerHTML = correctTimeDuration;
+}
+
+function updateCurrentTimeText() { // current time text
+    const currentTrack = document.querySelector('.audio' + currentSong);
+    const audioPosition = currentTrack.currentTime;
+    trackCurrentTimeText.innerHTML = convertTime(audioPosition);
+}
+
+function updateProgressBarPassive() {
     const trackDuration = document.querySelector('.audio' + currentSong).duration;
     const trackCurrentTime = document.querySelector('.audio' + currentSong).currentTime;
     activeProgressBar.style.width = (trackCurrentTime / trackDuration) * 100 + '%';
