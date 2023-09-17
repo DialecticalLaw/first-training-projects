@@ -67,7 +67,7 @@ body {
     width: 480px;
     height: 700px;
     border-radius: 25px;
-    padding: 15px;
+    padding: 25px;
     background-color: rgb(51, 50, 50);
     z-index: 1;
 }
@@ -82,6 +82,8 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
+    transform: scale(0.96);
+    transition: 0.5s ease;
 }
 
 .image {
@@ -99,6 +101,10 @@ body {
 
 .menu-cover-image-on {
     display: block;
+}
+
+.menu-cover-image-play {
+    transform: scale(1);
 }
 
 .shadow {
@@ -122,13 +128,16 @@ body {
 }
 
 .song-info {
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-family: Roboto;
     text-align: center;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+    user-select: none;
 }
 
 .song-author {
-    color: rgb(92, 170, 13);
+    color: rgb(0, 110, 201);
 }
 
 .dash {
@@ -154,6 +163,7 @@ body {
 }
 
 .continue, .pause {
+    display: none;
     width: 80px;
     height: 80px;
     margin-top: -15px;
@@ -161,14 +171,15 @@ body {
     cursor: pointer;
 }
 
-.pause {
-    display: none;
+.icon-on {
+    display: inline;
 }
 
-.track-duration, .current-time {
+.track-duration, .current-track-time {
     font-size: 1em;
     font-family: Roboto;
     color: white;
+    user-select: none;
 }
 
 .track-duration {
@@ -180,12 +191,12 @@ body {
     height: 10%;
     cursor: pointer;
     border-radius: 20px;
-    background-color: rgb(0, 0, 92);
+    background-color: rgb(94, 94, 94);
 }
 
 .active-progress-bar {
     width: 20%;
     height: 100%;
-    background-color: rgb(0, 165, 0);
+    background-color: rgb(0, 110, 201);
     border-radius: 20px;
 }
