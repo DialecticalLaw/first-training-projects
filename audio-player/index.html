@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio player</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/music.ico">
+</head>
+<body>
+    <div class="container">
+        <div class="overlay cover-0"></div>
+        <div class="menu">
+            <audio class="audio0" src="assets/music/Lumen_-_Goret_47959473.mp3"></audio>
+            <audio class="audio1" src="assets/music/Lumen_-_Labirint_53618840.mp3"></audio>
+            <audio class="audio2" src="assets/music/Lumen_-_Dukh_vremeni_48191831.mp3"></audio>
+            <div class="menu-cover-block">
+                <div class="menu-cover-image menu-cover-image0 menu-cover-image-on">
+                    <div class="shadow"><img class="shadow-image" src="assets/img/Pravda.jpg" alt="shadow"></div>
+                    <img class="image" src="assets/img/Pravda.jpg" alt="pravda">
+                </div>
+                <div class="menu-cover-image menu-cover-image1">
+                    <div class="shadow"><img class="shadow-image" src="assets/img/Vsegda17.jpg" alt="shadow"></div>
+                    <img class="image" src="assets/img/Vsegda17.jpg" alt="Vsegda17">
+                </div>
+                <div class="menu-cover-image menu-cover-image2">
+                    <div class="shadow"><img class="shadow-image" src="assets/img/NaChasti.jpg" alt="shadow"></div>
+                    <img class="image" src="assets/img/NaChasti.jpg" alt="NaChasti">
+                </div>
+            </div>
+            <div class="controls-block">
+                <div class="song-info">
+                    <span class="song-author">Lumen</span><span class="dash"> &mdash; </span><span class="song-name">Гореть</span>
+                </div>
+                <div class="main-controls">
+                    <svg class="backward" width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_79)">
+                        <circle cx="256" cy="256" r="240" stroke="#F8F9FA" stroke-width="32"/>
+                        <rect x="258.451" y="199.941" width="128" height="48" rx="20" transform="rotate(135 258.451 199.941)" fill="#F8F9FA"/>
+                        <rect x="224.735" y="346.676" width="128" height="48" rx="20" transform="rotate(-135 224.735 346.676)" fill="#F8F9FA"/>
+                        <rect x="378.451" y="199.941" width="128" height="48" rx="20" transform="rotate(135 378.451 199.941)" fill="#F8F9FA"/>
+                        <rect x="344.735" y="346.676" width="128" height="48" rx="20" transform="rotate(-135 344.735 346.676)" fill="#F8F9FA"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_1_79">
+                        <rect width="512" height="512" fill="white"/>
+                        </clipPath>
+                        </defs>
+                    </svg>
+                    <svg class="continue icon-on" width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_100)">
+                        <circle cx="256" cy="256" r="240" stroke="#F8F9FA" stroke-width="32"/>
+                        <path d="M396.333 238.346C409.667 246.044 409.667 265.289 396.333 272.987L200.333 386.148C187 393.846 170.333 384.223 170.333 368.827L170.333 142.506C170.333 127.11 187 117.488 200.333 125.186L396.333 238.346Z" fill="#F8F9FA"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_1_100">
+                        <rect width="512" height="512" fill="white"/>
+                        </clipPath>
+                        </defs>
+                    </svg>
+                    <svg class="pause" width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_103)">
+                        <circle cx="256" cy="256" r="240" stroke="#F8F9FA" stroke-width="32"/>
+                        <rect x="297" y="360.8" width="204.8" height="48" rx="20" transform="rotate(-90 297 360.8)" fill="#F8F9FA"/>
+                        <rect x="167" y="356.8" width="204.8" height="48" rx="20" transform="rotate(-90 167 356.8)" fill="#F8F9FA"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_1_103">
+                        <rect width="512" height="512" fill="white"/>
+                        </clipPath>
+                        </defs>
+                    </svg>
+                    <svg class="forward" width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_88)">
+                        <circle cx="256" cy="256" r="240" stroke="#F8F9FA" stroke-width="32"/>
+                        <rect x="254.225" y="312.735" width="128" height="48" rx="20" transform="rotate(-45 254.225 312.735)" fill="#F8F9FA"/>
+                        <rect x="287.941" y="166" width="128" height="48" rx="20" transform="rotate(45 287.941 166)" fill="#F8F9FA"/>
+                        <rect x="134.225" y="312.735" width="128" height="48" rx="20" transform="rotate(-45 134.225 312.735)" fill="#F8F9FA"/>
+                        <rect x="167.941" y="166" width="128" height="48" rx="20" transform="rotate(45 167.941 166)" fill="#F8F9FA"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_1_88">
+                        <rect width="512" height="512" fill="white"/>
+                        </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="volume-block">
+                    <svg class="volume-svg volume-normal volume-svg-on" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#ffffff;}</style></defs><title/><g data-name="Layer 34" id="Layer_34"><path class="cls-1" d="M18,29a1,1,0,0,1-.57-.18l-10-7A1,1,0,0,1,7,21V11a1,1,0,0,1,.43-.82l10-7a1,1,0,0,1,1-.07A1,1,0,0,1,19,4V28a1,1,0,0,1-.54.89A1,1,0,0,1,18,29ZM9,20.48l8,5.6V5.92l-8,5.6Z"/><path class="cls-1" d="M8,22H4a3,3,0,0,1-3-3V13a3,3,0,0,1,3-3H8a1,1,0,0,1,1,1V21A1,1,0,0,1,8,22ZM4,12a1,1,0,0,0-1,1v6a1,1,0,0,0,1,1H7V12Z"/><path class="cls-1" d="M18,21V19a3,3,0,0,0,2.12-5.12l1.42-1.42A5,5,0,0,1,18,21Z"/><path class="cls-1" d="M26.48,25.48a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.42,11,11,0,0,0,0-15.54,1,1,0,1,1,1.42-1.42,13,13,0,0,1,0,18.38A1,1,0,0,1,26.48,25.48Z"/><path class="cls-1" d="M23.65,22.65a1,1,0,0,1-.7-.29A1,1,0,0,1,23,21a7,7,0,0,0,0-9.9,1,1,0,0,1,1.41-1.41,9,9,0,0,1,0,12.72A1,1,0,0,1,23.65,22.65Z"/></g></svg>
+                    <svg class="volume-svg volume-mute" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#ffffff;}</style></defs><title/><g data-name="Layer 35" id="Layer_35"><path class="cls-1" d="M18,29a1,1,0,0,1-.57-.18l-10-7A1,1,0,0,1,7,21V11a1,1,0,0,1,.43-.82l10-7a1,1,0,0,1,1-.07A1,1,0,0,1,19,4V28a1,1,0,0,1-.54.89A1,1,0,0,1,18,29ZM9,20.48l8,5.6V5.92l-8,5.6Z"/><path class="cls-1" d="M8,22H4a3,3,0,0,1-3-3V13a3,3,0,0,1,3-3H8a1,1,0,0,1,1,1V21A1,1,0,0,1,8,22ZM4,12a1,1,0,0,0-1,1v6a1,1,0,0,0,1,1H7V12Z"/><rect class="cls-1" height="12" transform="translate(-3.77 22.9) rotate(-45)" width="2" x="24.76" y="10"/><rect class="cls-1" height="2" transform="translate(-3.77 22.9) rotate(-45)" width="12" x="19.76" y="15"/></g></svg>
+                    <div class="volume-bar-wrapper">
+                        <div class="volume-bar-block">
+                            <div class="volume-bar">
+                                <div class="active-volume-bar" style="width: 50%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress-block">
+                    <p class="track-duration">0:00</p>
+                    <div class="progress-bar">
+                        <div class="active-progress-bar" style="width: 0%;"></div>
+                    </div>
+                    <p class="current-track-time">0:00</p>
+                    <svg class="repeat" xmlns="http://www.w3.org/2000/svg" style="fill: #ffffff;" width="24" height="24" viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4zm-4-2V9h-1l-2 1v1h1.5v4H13z"/></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

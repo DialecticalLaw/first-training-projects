@@ -1,0 +1,405 @@
+@font-face {
+    font-family: Roboto;
+    src: url(assets/fonts/Roboto-Regular.ttf);
+}
+
+html {
+    scroll-behavior: smooth;
+    max-width: 100vw;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {    
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    user-select: none;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0;
+    
+}
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: blur(8px);
+    z-index: 0;
+}
+
+.cover-0 {
+    background-image: url(assets/img/Pravda.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.cover-1 {
+    background-image: url(assets/img/Vsegda17.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.cover-2 {
+    background-image: url(assets/img/NaChasti.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    width: 480px;
+    height: 700px;
+    border-radius: 25px;
+    padding: 25px;
+    background-color: rgb(51, 50, 50);
+    z-index: 1;
+}
+
+.menu-cover-block {
+    width: 100%;
+    height: 60%;
+}
+
+.menu-cover-image {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: scale(0.96);
+    transition: 0.5s ease;
+}
+
+.image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    z-index: 5;
+}
+
+.shadow-image {
+    width: 100%;
+    height: 100%;
+}
+
+.menu-cover-image-on {
+    display: block;
+}
+
+.menu-cover-image-play {
+    transform: scale(1);
+}
+
+.shadow {
+    position: absolute;
+    width: 105%;
+    height: 105%;
+    top: -5%;
+    left: -2%;
+    border-radius: inherit;
+    filter: blur(25px);
+    z-index: 0;
+}
+
+.controls-block {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 12%;
+    width: 100%;
+    height: 35%;
+    margin-top: 3%;
+}
+
+.song-info {
+    font-size: 1.5em;
+    font-family: Roboto;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+}
+
+.song-author {
+    color: rgb(0, 110, 201);
+}
+
+.dash {
+    color: rgb(155, 155, 155);
+}
+
+.song-name {
+    color: white;
+}
+
+.main-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+    width: 100%;
+}
+
+.backward, .forward {
+    width: 50px;
+    height: 50px;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.backward circle, .forward circle, .backward rect, .forward rect, .continue path, .pause rect, .continue circle, .pause circle{
+    transition: 0.3s;
+}
+
+.backward:hover circle, .forward:hover circle{
+    stroke: rgb(1, 183, 13);
+}
+
+.backward:hover rect, .forward:hover rect{
+    fill: rgb(1, 183, 13);
+}
+
+.backward:hover rect, .forward:hover rect{
+    fill: rgb(1, 183, 13);
+}
+
+.continue, .pause {
+    display: none;
+    width: 80px;
+    height: 80px;
+    margin-top: -15px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.icon-on {
+    display: inline;
+}
+
+.continue:hover path {
+    fill: rgb(1, 183, 13) !important;
+}
+
+.continue:hover circle {
+    stroke: rgb(1, 183, 13) !important;
+}
+
+.pause:hover rect {
+    fill: rgb(1, 183, 13) !important;
+}
+
+.pause:hover circle {
+    stroke: rgb(1, 183, 13) !important;
+}
+
+.volume-block {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 60%;
+}
+
+.volume-svg {
+    display: none;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.volume-svg-on {
+    display: inline;
+}
+
+.volume-bar-wrapper {
+    width: 100px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.volume-bar-block {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    transform: translateX(-150%);
+    transition: 0.3s ease-in-out;
+}
+
+.volume-bar {
+    width: 80px;
+    height: 5px;
+    border-radius: 20px;
+    background-color: rgb(94, 94, 94);
+}
+
+.active-volume-bar {
+    height: 5px;
+    border-radius: 20px;
+    background-color: rgb(0, 110, 201);
+}
+
+.volume-svg:hover ~ .volume-bar-wrapper .volume-bar-block {
+    transform: translateX(0);
+}
+
+.volume-bar-block:hover {
+    transform: translateX(0);
+    cursor: pointer;
+}
+
+.repeat {
+    width: 35px;
+    height: 35px;
+    float: right;
+    margin-top: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.repeat:hover {
+    transform: scale(1.15);
+}
+
+.track-duration, .current-track-time {
+    font-size: 1em;
+    font-family: Roboto;
+    color: white;
+}
+
+.track-duration {
+    text-align: right;
+}
+
+.current-track-time {
+    display: inline-block;
+    width: max-content;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10%;
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: rgb(94, 94, 94);
+}
+
+.active-progress-bar {
+    height: 100%;
+    background-color: rgb(0, 110, 201);
+    border-radius: 20px;
+    transition: 0.2s;
+}
+
+@media only screen and (max-width: 800px) {
+    .menu {
+        width: 55vw;
+        height: 80vh;
+    }
+
+    .volume-svg {
+        display: none;
+    }
+
+    .volume-block {
+        display: none;
+    }
+
+    .track-duration {
+        margin-top: -25px;
+    }
+
+    .repeat {
+        margin-top: 2px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .menu {
+        height: 100vh;
+        padding-top: 5px;
+    }
+
+    .controls-block {
+        gap: 0%;
+    }
+
+    .song-info {
+        font-size: 100%;
+    }
+
+    .main-controls {
+        margin-top: 10px;
+    }
+
+    .continue, .pause {
+        width: 12vw;
+        height: 12vw;
+    }
+
+    .forward, .backward {
+        width: 8vw;
+        height: 8vw;
+    }
+
+    .progress-bar {
+        
+    }
+
+    .track-duration, .current-track-time {
+        margin: 0;
+    }
+
+    .repeat {
+        width: 5vw;
+        height: 5vw;
+        margin-top: 3px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .menu {
+        width: 80vw;
+        height: 92vh;
+        padding-top: 10px;
+    }
+
+    .menu-cover-block {
+        height: 55%;
+    }
+
+    .controls-block {
+        gap: 8%;
+    }
+
+    .forward, .backward {
+        width: 13vw;
+        height: 13vw;
+    }
+
+    .continue, .pause {
+        margin-top: -10px;
+        width: 18vw;
+        height: 18vw;
+    }
+
+    .repeat {
+        width: 10vw;
+        height: 10vw;
+        margin-top: 10px;
+    }
+}
