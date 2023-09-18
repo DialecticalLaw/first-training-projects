@@ -311,6 +311,34 @@ body {
         height: 80vh;
     }
 
+    .backward:hover circle, .forward:hover circle{
+        stroke: #F8F9FA;
+    }
+    
+    .backward:hover rect, .forward:hover rect{
+        fill: #F8F9FA;
+    }
+    
+    .backward:hover rect, .forward:hover rect{
+        fill: #F8F9FA;
+    }
+
+    .continue:hover path {
+        fill: #F8F9FA !important;
+    }
+    
+    .continue:hover circle {
+        stroke: #F8F9FA !important;
+    }
+    
+    .pause:hover rect {
+        fill: #F8F9FA !important;
+    }
+    
+    .pause:hover circle {
+        stroke: #F8F9FA !important;
+    }
+
     .volume-svg {
         display: none;
     }
@@ -326,6 +354,11 @@ body {
     .repeat {
         margin-top: 2px;
     }
+
+    .repeat:hover {
+        transform: none;
+    }
+    
 }
 
 @media only screen and (max-width: 500px) {
@@ -354,10 +387,6 @@ body {
     .forward, .backward {
         width: 8vw;
         height: 8vw;
-    }
-
-    .progress-bar {
-        
     }
 
     .track-duration, .current-track-time {
