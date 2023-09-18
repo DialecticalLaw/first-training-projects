@@ -267,3 +267,102 @@ body {
     border-radius: 20px;
     transition: 0.2s;
 }
+
+@media only screen and (max-width: 800px) {
+    .menu {
+        width: 55vw;
+        height: 80vh;
+    }
+
+    .volume-svg {
+        display: none;
+    }
+
+    .volume-block {
+        display: none;
+    }
+
+    .track-duration {
+        margin-top: -25px;
+    }
+
+    .repeat {
+        margin-top: 2px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .menu {
+        height: 100vh;
+        padding-top: 5px;
+    }
+
+    .controls-block {
+        gap: 0%;
+    }
+
+    .song-info {
+        font-size: 100%;
+    }
+
+    .main-controls {
+        margin-top: 10px;
+    }
+
+    .continue, .pause {
+        width: 12vw;
+        height: 12vw;
+    }
+
+    .forward, .backward {
+        width: 8vw;
+        height: 8vw;
+    }
+
+    .progress-bar {
+        
+    }
+
+    .track-duration, .current-track-time {
+        margin: 0;
+    }
+
+    .repeat {
+        width: 5vw;
+        height: 5vw;
+        margin-top: 3px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .menu {
+        width: 80vw;
+        height: 92vh;
+        padding-top: 10px;
+    }
+
+    .menu-cover-block {
+        height: 55%;
+    }
+
+    .controls-block {
+        gap: 8%;
+    }
+
+    .forward, .backward {
+        width: 13vw;
+        height: 13vw;
+    }
+
+    .continue, .pause {
+        margin-top: -10px;
+        width: 18vw;
+        height: 18vw;
+    }
+
+    .repeat {
+        width: 10vw;
+        height: 10vw;
+        margin-top: 10px;
+    }
+}
