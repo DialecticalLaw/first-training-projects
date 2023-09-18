@@ -24,13 +24,24 @@ let currentSong = 0;
 
 let switchSongEvent = new Event('switchTrack');
 
-function updateTrackDurationData() {
+document.addEventListener('load', updateTrackDataText);
+
+function updateTrackDataText() {
+    setTimeout(() => {
+        if (trackDurationText.innerHTML === 'NaN:NaN') {
+        updateTrackData();
+        }
+    }, 500);
+}
+
+function updateTrackData() {
     setTimeout(() => {
         updateDurationTimeText();
+        document.querySelector('.audio' + currentSong).volume = 0.5;
     }, 200);
 }
 
-document.addEventListener('DOMContentLoaded', updateTrackDurationData);
+document.addEventListener('DOMContentLoaded', updateTrackData);
 
 // pause/continue track - start
 
@@ -158,3 +169,57 @@ function updateProgressBarOnClick(event) {
 }
 
 // progress bar - end
+
+// volume - start
+
+const volumeBarBlock = document.querySelector('.volume-bar-block');
+const activeVolumeBar = document.querySelector('.active-volume-bar');
+
+const volumeNormal = document.querySelector('.volume-normal');
+const volumeMute = document.querySelector('.volume-mute');
+
+volumeBarBlock.addEventListener('click', changeVolume)
+
+function changeVolume(event) {
+    const currentTrack = document.querySelector('.audio' + currentSong);
+    const clickPosition = event.offsetX;
+    const volumeBarWidth = document.querySelector('.volume-bar').clientWidth;
+    const activePercent = (clickPosition / volumeBarWidth) * 100;
+    if (clickPosition < 0) {
+        currentTrack.volume = 0;
+        activeVolumeBar.style.width = 0 + '%';
+    } else if (clickPosition > 80) {
+        currentTrack.volume = 1;
+        activeVolumeBar.style.width = 100 + '%';
+    } else if (0 < clickPosition && clickPosition < 10) {
+        console.log(clickPosition)
+        console.log(activePercent)
+        activeVolumeBar.style.width = activePercent + '%';
+        currentTrack.volume = Number('0.0' + clickPosition);
+    } else {
+        activeVolumeBar.style.width = activePercent + '%';
+        currentTrack.volume = Number('0.' + clickPosition);
+    }
+    
+
+}
+
+volumeNormal.addEventListener('click', muteMusic);
+volumeMute.addEventListener('click', unmuteMusic);
+
+let currentVolume = 0.5;
+
+function muteMusic() {
+    currentVolume = document.querySelector('.audio' + currentSong).volume;
+    document.querySelector('.audio' + currentSong).volume = 0;
+    volumeNormal.classList.remove('volume-svg-on');
+    volumeMute.classList.add('volume-svg-on');
+    volumeBarBlock.style.display = 'none';
+}
+
+function unmuteMusic() {
+    document.querySelector('.audio' + currentSong).volume = currentVolume;
+    volumeMute.classList.remove('volume-svg-on');
+    volumeNormal.classList.add('volume-svg-on');
+    volumeBarBlock.style.display = 'flex';
+}

@@ -16,6 +16,7 @@ body {
     margin: 0;
     padding: 0;
     max-width: 100%;
+    user-select: none;
 }
 
 .container {
@@ -121,6 +122,7 @@ body {
 .controls-block {
     display: flex;
     flex-direction: column;
+    position: relative;
     gap: 12%;
     width: 100%;
     height: 35%;
@@ -133,7 +135,6 @@ body {
     text-align: center;
     font-weight: bold;
     letter-spacing: 2.5px;
-    user-select: none;
 }
 
 .song-author {
@@ -175,11 +176,64 @@ body {
     display: inline;
 }
 
+.volume-block {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 60%;
+}
+
+.volume-svg {
+    display: none;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.volume-svg-on {
+    display: inline;
+}
+
+.volume-bar-wrapper {
+    width: 100px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.volume-bar-block {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    transform: translateX(-150%);
+    transition: 0.3s ease-in-out;
+}
+
+.volume-bar {
+    width: 80px;
+    height: 5px;
+    border-radius: 20px;
+    background-color: rgb(94, 94, 94);
+}
+
+.active-volume-bar {
+    height: 5px;
+    border-radius: 20px;
+    background-color: rgb(0, 110, 201);
+}
+
+.volume-svg:hover ~ .volume-bar-wrapper .volume-bar-block {
+    transform: translateX(0);
+}
+
+.volume-bar-block:hover {
+    transform: translateX(0);
+    cursor: pointer;
+}
+
 .track-duration, .current-track-time {
     font-size: 1em;
     font-family: Roboto;
     color: white;
-    user-select: none;
 }
 
 .track-duration {
