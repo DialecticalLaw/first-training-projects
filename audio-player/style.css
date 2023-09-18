@@ -163,6 +163,22 @@ body {
     cursor: pointer;
 }
 
+.backward circle, .forward circle, .backward rect, .forward rect, .continue path, .pause rect, .continue circle, .pause circle{
+    transition: 0.3s;
+}
+
+.backward:hover circle, .forward:hover circle{
+    stroke: rgb(1, 183, 13);
+}
+
+.backward:hover rect, .forward:hover rect{
+    fill: rgb(1, 183, 13);
+}
+
+.backward:hover rect, .forward:hover rect{
+    fill: rgb(1, 183, 13);
+}
+
 .continue, .pause {
     display: none;
     width: 80px;
@@ -174,6 +190,22 @@ body {
 
 .icon-on {
     display: inline;
+}
+
+.continue:hover path {
+    fill: rgb(1, 183, 13) !important;
+}
+
+.continue:hover circle {
+    stroke: rgb(1, 183, 13) !important;
+}
+
+.pause:hover rect {
+    fill: rgb(1, 183, 13) !important;
+}
+
+.pause:hover circle {
+    stroke: rgb(1, 183, 13) !important;
 }
 
 .volume-block {
@@ -236,6 +268,11 @@ body {
     float: right;
     margin-top: 12px;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.repeat:hover {
+    transform: scale(1.15);
 }
 
 .track-duration, .current-track-time {
