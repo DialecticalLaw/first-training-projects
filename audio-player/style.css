@@ -401,9 +401,18 @@ body {
 }
 
 @media only screen and (max-width: 380px) {
+
+    .container {
+        min-height: 100dvh;
+    }
+
+    .overlay {
+        height: 100dvh;
+    }
+
     .menu {
-        width: 80vw;
-        height: 92vh;
+        width: 85vw;
+        height: 88dvh;
         padding-top: 10px;
     }
 
