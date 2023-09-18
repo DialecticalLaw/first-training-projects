@@ -230,6 +230,14 @@ body {
     cursor: pointer;
 }
 
+.repeat {
+    width: 35px;
+    height: 35px;
+    float: right;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
 .track-duration, .current-track-time {
     font-size: 1em;
     font-family: Roboto;
@@ -238,6 +246,11 @@ body {
 
 .track-duration {
     text-align: right;
+}
+
+.current-track-time {
+    display: inline-block;
+    width: max-content;
 }
 
 .progress-bar {

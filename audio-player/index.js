@@ -223,3 +223,22 @@ function unmuteMusic() {
     volumeNormal.classList.add('volume-svg-on');
     volumeBarBlock.style.display = 'flex';
 }
+
+// repeat - start
+
+const repeatIcon = document.querySelector('.repeat');
+
+repeatIcon.addEventListener('click', repeatToggle);
+
+function repeatToggle() {
+    if (document.querySelector('.audio' + currentSong).loop !== true) {
+        document.querySelector('.audio' + currentSong).loop = true;
+        repeatIcon.style.fill = 'rgb(0, 110, 201)';
+    } else {
+        document.querySelector('.audio' + currentSong).loop = false;
+        repeatIcon.style.fill = '#ffffff';
+    }
+    
+}
+
+// repeat - end
