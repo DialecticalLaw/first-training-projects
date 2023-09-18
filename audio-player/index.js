@@ -47,9 +47,12 @@ document.addEventListener('DOMContentLoaded', updateTrackData);
 
 continueIcon.addEventListener('click', continueTrack);
 
+let currentVolume = 0.5;
+
 function continueTrack() {
     setTimeout(() => {
         document.querySelector('.audio' + currentSong).play();
+        document.querySelector('.audio' + currentSong).volume = currentVolume;
         document.querySelector('.audio' + currentSong).addEventListener('timeupdate', updateProgressBarPassive);
         document.querySelector('.audio' + currentSong).addEventListener('timeupdate', updateCurrentTimeText);
         updateDurationTimeText();
@@ -64,6 +67,7 @@ function continueTrack() {
 pauseIcon.addEventListener('click', pauseTrack);
 
 function pauseTrack() {
+    currentVolume = document.querySelector('.audio' + currentSong).volume;
     document.querySelector('.audio' + currentSong).pause();
     pauseIcon.classList.remove('icon-on');
     continueIcon.classList.add('icon-on');
@@ -207,10 +211,10 @@ function changeVolume(event) {
 volumeNormal.addEventListener('click', muteMusic);
 volumeMute.addEventListener('click', unmuteMusic);
 
-let currentVolume = 0.5;
+let volumeBeforeMute = 0.5;
 
 function muteMusic() {
-    currentVolume = document.querySelector('.audio' + currentSong).volume;
+    volumeBeforeMute = document.querySelector('.audio' + currentSong).volume;
     document.querySelector('.audio' + currentSong).volume = 0;
     volumeNormal.classList.remove('volume-svg-on');
     volumeMute.classList.add('volume-svg-on');
@@ -218,7 +222,7 @@ function muteMusic() {
 }
 
 function unmuteMusic() {
-    document.querySelector('.audio' + currentSong).volume = currentVolume;
+    document.querySelector('.audio' + currentSong).volume = volumeBeforeMute;
     volumeMute.classList.remove('volume-svg-on');
     volumeNormal.classList.add('volume-svg-on');
     volumeBarBlock.style.display = 'flex';
