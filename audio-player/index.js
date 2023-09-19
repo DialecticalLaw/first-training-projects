@@ -20,19 +20,13 @@ const activeProgressBar = document.querySelector('.active-progress-bar');
 const trackCurrentTimeText = document.querySelector('.current-track-time');
 const trackDurationText = document.querySelector('.track-duration');
 
+const allTracks = document.querySelectorAll('.track');
+
 let currentSong = 0;
 
 let switchSongEvent = new Event('switchTrack');
 
-document.addEventListener('load', updateTrackDataText);
-
-function updateTrackDataText() {
-    setTimeout(() => {
-        if (trackDurationText.innerHTML === 'NaN:NaN') {
-        updateTrackData();
-        }
-    }, 500);
-}
+let timerTrackDuration = setInterval(updateDurationTimeText, 100)
 
 function updateTrackData() {
     setTimeout(() => {
@@ -51,6 +45,7 @@ let currentVolume = 0.5;
 
 function continueTrack() {
     setTimeout(() => {
+        clearTimeout(timerTrackDuration);
         document.querySelector('.audio' + currentSong).play();
         document.querySelector('.audio' + currentSong).volume = currentVolume;
         document.querySelector('.audio' + currentSong).addEventListener('timeupdate', updateProgressBarPassive);
@@ -236,10 +231,14 @@ repeatIcon.addEventListener('click', repeatToggle);
 
 function repeatToggle() {
     if (document.querySelector('.audio' + currentSong).loop !== true) {
-        document.querySelector('.audio' + currentSong).loop = true;
+        for (let track of allTracks) {
+            track.loop = true;
+        }
         repeatIcon.style.fill = 'rgb(0, 110, 201)';
     } else {
-        document.querySelector('.audio' + currentSong).loop = false;
+        for (let track of allTracks) {
+            track.loop = false;
+        }
         repeatIcon.style.fill = '#ffffff';
     }
     

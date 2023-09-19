@@ -168,15 +168,15 @@ body {
 }
 
 .backward:hover circle, .forward:hover circle{
-    stroke: rgb(1, 183, 13);
+    stroke: rgb(0, 110, 201);
 }
 
 .backward:hover rect, .forward:hover rect{
-    fill: rgb(1, 183, 13);
+    fill: rgb(0, 110, 201);
 }
 
 .backward:hover rect, .forward:hover rect{
-    fill: rgb(1, 183, 13);
+    fill: rgb(0, 110, 201);
 }
 
 .continue, .pause {
@@ -193,19 +193,19 @@ body {
 }
 
 .continue:hover path {
-    fill: rgb(1, 183, 13) !important;
+    fill: rgb(0, 110, 201) !important;
 }
 
 .continue:hover circle {
-    stroke: rgb(1, 183, 13) !important;
+    stroke: rgb(0, 110, 201) !important;
 }
 
 .pause:hover rect {
-    fill: rgb(1, 183, 13) !important;
+    fill: rgb(0, 110, 201) !important;
 }
 
 .pause:hover circle {
-    stroke: rgb(1, 183, 13) !important;
+    stroke: rgb(0, 110, 201) !important;
 }
 
 .volume-block {
