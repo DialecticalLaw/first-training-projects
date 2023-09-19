@@ -76,6 +76,9 @@ function pauseTrack() {
 backwardIcon.addEventListener('click', previousTrack);
 
 function previousTrack() {
+    if (document.querySelector('.audio' + currentSong).muted) {
+        unmuteMusic();
+    }
     document.querySelector('.audio' + currentSong).currentTime = 0;
     pauseTrack();
     document.querySelector('.menu-cover-image-on').classList.remove('menu-cover-image-on');
@@ -94,6 +97,9 @@ function previousTrack() {
 forwardIcon.addEventListener('click', nextTrack);
 
 function nextTrack() {
+    if (document.querySelector('.audio' + currentSong).muted) {
+        unmuteMusic();
+    }
     document.querySelector('.audio' + currentSong).currentTime = 0;
     pauseTrack();
     document.querySelector('.menu-cover-image-on').classList.remove('menu-cover-image-on');
@@ -191,8 +197,6 @@ function changeVolume(event) {
         currentTrack.volume = 1;
         activeVolumeBar.style.width = 100 + '%';
     } else if (0 < clickPosition && clickPosition < 10) {
-        console.log(clickPosition)
-        console.log(activePercent)
         activeVolumeBar.style.width = activePercent + '%';
         currentTrack.volume = Number('0.0' + clickPosition);
     } else {
@@ -206,18 +210,15 @@ function changeVolume(event) {
 volumeNormal.addEventListener('click', muteMusic);
 volumeMute.addEventListener('click', unmuteMusic);
 
-let volumeBeforeMute = 0.5;
-
 function muteMusic() {
-    volumeBeforeMute = document.querySelector('.audio' + currentSong).volume;
-    document.querySelector('.audio' + currentSong).volume = 0;
+    document.querySelector('.audio' + currentSong).muted = true;
     volumeNormal.classList.remove('volume-svg-on');
     volumeMute.classList.add('volume-svg-on');
     volumeBarBlock.style.display = 'none';
 }
 
 function unmuteMusic() {
-    document.querySelector('.audio' + currentSong).volume = volumeBeforeMute;
+    document.querySelector('.audio' + currentSong).muted = false;
     volumeMute.classList.remove('volume-svg-on');
     volumeNormal.classList.add('volume-svg-on');
     volumeBarBlock.style.display = 'flex';
