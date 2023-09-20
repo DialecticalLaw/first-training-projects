@@ -66,10 +66,11 @@ body {
     position: absolute;
     display: flex;
     flex-direction: column;
-    width: 480px;
-    height: 700px;
+    width: 25vw;
+    height: 85dvh;
     border-radius: 25px;
     margin: 0 auto;
+    margin-bottom: 3vw;
     padding: 25px;
     background-color: rgb(51, 50, 50);
     z-index: 2;
@@ -77,7 +78,8 @@ body {
 
 .menu-cover-block {
     width: 100%;
-    height: 60%;
+    height: 55%;
+    margin: 0 auto;
 }
 
 .menu-cover-image {
@@ -124,10 +126,11 @@ body {
 .controls-block {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     position: relative;
-    gap: 12%;
+    gap: 3.5%;
     width: 100%;
-    height: 35%;
+    height: 45%;
     margin-top: 3%;
 }
 
@@ -196,7 +199,7 @@ body {
 
 .continue:hover {
     animation-name: rotate;
-    animation-duration: 0.8s;
+    animation-duration: 0.4s;
 }
 
 .continue:hover path {
@@ -334,8 +337,8 @@ body {
 }
 
 .git-hub-img {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
 }
 
 .git-hub-link {
@@ -380,10 +383,27 @@ body {
     filter: drop-shadow(0 0 8px rgb(205, 205, 205));
 }
 
-@media only screen and (max-width: 800px) {
+@media screen and (max-width: 1324px) {
     .menu {
-        width: 55vw;
-        height: 80vh;
+        width: 35vw;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .menu {
+        width: 43vw;
+    }
+
+    .volume-svg {
+        display: none;
+    }
+
+    .volume-block {
+        display: none;
+    }
+    
+    .repeat:hover {
+        transform: none;
     }
 
     .backward:hover circle, .forward:hover circle{
@@ -413,111 +433,206 @@ body {
     .pause:hover circle {
         stroke: #F8F9FA !important;
     }
+}
 
-    .volume-svg {
-        display: none;
-    }
-
-    .volume-block {
-        display: none;
-    }
+@media screen and (max-width: 810px) {
 
     .track-duration {
         margin-top: -25px;
+        margin-bottom: 8px;
+    }
+
+    .current-track-time {
+        margin-top: 8px;
     }
 
     .repeat {
         margin-top: 2px;
     }
-
-    .repeat:hover {
-        transform: none;
-    }
-    
 }
 
-@media only screen and (max-width: 500px) {
-    .menu {
-        height: 100vh;
-        padding-top: 5px;
-    }
-
-    .controls-block {
-        gap: 0%;
-    }
-
-    .song-info {
-        font-size: 100%;
-    }
-
-    .main-controls {
-        margin-top: 10px;
-    }
+@media screen and (max-height: 600px) {
 
     .continue, .pause {
-        width: 12vw;
-        height: 12vw;
+        width: 60px;
+        height: 60px;
+        margin-top: -10px;
     }
 
-    .forward, .backward {
-        width: 8vw;
-        height: 8vw;
+    .backward, .forward {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media screen and (max-height: 535px) {
+    .menu {
+        width: 38vw;
+    }
+}
+
+@media screen and (max-width: 695px) {
+    .song-info {
+        font-size: 1em;
     }
 
-    .track-duration, .current-track-time {
-        margin: 0;
+    .track-duration {
+        font-size: 0.8em;
+        margin-bottom: 3px;
+    }
+
+    .current-track-time {
+        font-size: 0.8em;
+        margin-top: 3px;
     }
 
     .repeat {
-        width: 5vw;
-        height: 5vw;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .menu {
+        width: 45vw;
+    }
+
+    .song-info {
+        font-size: 0.8em;
+    }
+
+    .repeat {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .menu {
+        height: 76dvh;
+        padding: 15px;
+        padding-bottom: 10px;
+    }
+
+    .menu-cover-block {
+        height: 50%;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .menu {
+        height: 68dvh;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 395px) {
+    .menu {
+        height: 60dvh;
+    }
+
+    .continue, .pause {
+        width: 45px;
+        height: 45px;
+        margin-top: -8px;
+    }
+
+    .backward, .forward {
+        width: 30px;
+        height: 30px;
+    }
+
+    .repeat {
+        margin-top: 7px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .menu {
+        height: 54dvh;
+    }
+
+    .repeat {
+        width: 20px;
+        height: 20px;
+    }
+
+    .song-info {
+        font-size: 0.7em;
+    }
+
+    .track-duration {
+        font-size: 0.6em;
+        margin-bottom: 3px;
+    }
+
+    .current-track-time {
+        font-size: 0.6em;
         margin-top: 3px;
     }
 }
 
-@media only screen and (max-width: 380px) {
-
-    .container {
-        min-height: 100dvh;
-    }
-
-    .overlay {
-        height: 100dvh;
-    }
-
+@media screen and (max-height: 380px) {
     .menu {
-        width: 85vw;
-        height: 88dvh;
-        padding-top: 10px;
-    }
-
-    .menu-cover-block {
-        height: 55%;
-    }
-
-    .controls-block {
-        gap: 8%;
-    }
-
-    .forward, .backward {
-        width: 13vw;
-        height: 13vw;
-    }
-
-    .continue, .pause {
-        margin-top: -10px;
-        width: 18vw;
-        height: 18vw;
-    }
-
-    .repeat {
-        width: 10vw;
-        height: 10vw;
-        margin-top: 10px;
+        padding: 12px;
     }
 }
 
+@media screen and (max-width: 310px) {
+    .menu {
+        height: 48dvh;
+    }
+
+    .main-controls {
+        margin-bottom: 10px;
+    }
+
+    .song-info {
+        font-size: 0.6em;
+    }
+}
+
+@media screen and (max-height: 340px) {
+    .continue, .pause {
+        width: 45px;
+        height: 45px;
+        margin-top: -8px;
+    }
+
+    .forward, .backward {
+        width: 30px;
+        height: 30px;
+    }
+
+    .repeat {
+        width: 20px;
+        height: 20px;
+    }
+
+    .song-info {
+        font-size: 0.7em;
+    }
+
+    .track-duration {
+        font-size: 0.6em;
+        margin-bottom: 3px;
+    }
+
+    .current-track-time {
+        font-size: 0.6em;
+        margin-top: 3px;
+    }
+
+    .main-controls {
+        margin-bottom: 10px;
+    }
+}
+
+/* Анимация */
+
 @keyframes rotate {
     0%{transform: rotate(0deg)}
-    100%{transform: rotate(360deg)}
+    30%{transform: rotate(20deg)}
+    60%{transform: rotate(-20deg)}
+    100%{transform: rotate(0deg)}
 }

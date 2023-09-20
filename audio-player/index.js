@@ -53,7 +53,6 @@ function continueTrack() {
         document.querySelector('.menu-cover-image' + currentSong).classList.add('menu-cover-image-play');
         document.querySelector('.audio' + currentSong).addEventListener('ended', nextTrack);
     }, 100);
-    
 }
 
 pauseIcon.addEventListener('click', pauseTrack);
