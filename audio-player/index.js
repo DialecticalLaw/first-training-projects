@@ -26,8 +26,6 @@ let currentSong = 0;
 
 let switchSongEvent = new Event('switchTrack');
 
-let timerTrackDuration = setInterval(updateDurationTimeText, 100)
-
 function updateTrackData() {
     setTimeout(() => {
         updateDurationTimeText();
@@ -45,7 +43,6 @@ let currentVolume = 0.5;
 
 function continueTrack() {
     setTimeout(() => {
-        clearTimeout(timerTrackDuration);
         document.querySelector('.audio' + currentSong).play();
         document.querySelector('.audio' + currentSong).volume = currentVolume;
         document.querySelector('.audio' + currentSong).addEventListener('timeupdate', updateProgressBarPassive);
@@ -56,7 +53,6 @@ function continueTrack() {
         document.querySelector('.menu-cover-image' + currentSong).classList.add('menu-cover-image-play');
         document.querySelector('.audio' + currentSong).addEventListener('ended', nextTrack);
     }, 100);
-    
 }
 
 pauseIcon.addEventListener('click', pauseTrack);
@@ -150,7 +146,13 @@ function convertTime(time) {
 function updateDurationTimeText() { // max track's time
     const currentTrack = document.querySelector('.audio' + currentSong);
     const correctTimeDuration = convertTime(currentTrack.duration);
-    trackDurationText.innerHTML = correctTimeDuration;
+    if (correctTimeDuration === 'NaN:NaN') {
+        setTimeout(() => {
+            updateDurationTimeText();
+        }, 50);
+    } else {
+        trackDurationText.innerHTML = correctTimeDuration;
+    }
 }
 
 function updateCurrentTimeText() { // current time text
@@ -203,8 +205,6 @@ function changeVolume(event) {
         activeVolumeBar.style.width = activePercent + '%';
         currentTrack.volume = Number('0.' + clickPosition);
     }
-    
-
 }
 
 volumeNormal.addEventListener('click', muteMusic);
@@ -235,7 +235,7 @@ function repeatToggle() {
         for (let track of allTracks) {
             track.loop = true;
         }
-        repeatIcon.style.fill = 'rgb(0, 110, 201)';
+        repeatIcon.style.fill = 'rgb(149, 0, 255)';
     } else {
         for (let track of allTracks) {
             track.loop = false;
