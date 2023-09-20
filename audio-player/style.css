@@ -140,7 +140,7 @@ body {
 }
 
 .song-author {
-    color: rgb(0, 110, 201);
+    color: rgb(149, 0, 255);
 }
 
 .dash {
@@ -170,15 +170,15 @@ body {
 }
 
 .backward:hover circle, .forward:hover circle{
-    stroke: rgb(0, 110, 201);
+    stroke: rgb(149, 0, 255);
 }
 
 .backward:hover rect, .forward:hover rect{
-    fill: rgb(0, 110, 201);
+    fill: rgb(149, 0, 255);
 }
 
 .backward:hover rect, .forward:hover rect{
-    fill: rgb(0, 110, 201);
+    fill: rgb(149, 0, 255);
 }
 
 .continue, .pause {
@@ -194,20 +194,26 @@ body {
     display: inline;
 }
 
+.continue:hover {
+    animation-name: rotate;
+    animation-duration: 0.8s;
+}
+
 .continue:hover path {
-    fill: rgb(0, 110, 201) !important;
+    fill: rgb(149, 0, 255) !important;
 }
 
 .continue:hover circle {
-    stroke: rgb(0, 110, 201) !important;
+    stroke: rgb(149, 0, 255) !important;
 }
 
 .pause:hover rect {
-    fill: rgb(0, 110, 201) !important;
+    height: 60 !important;
+    fill: rgb(149, 0, 255) !important;
 }
 
 .pause:hover circle {
-    stroke: rgb(0, 110, 201) !important;
+    stroke: rgb(149, 0, 255) !important;
 }
 
 .volume-block {
@@ -252,7 +258,7 @@ body {
 .active-volume-bar {
     height: 5px;
     border-radius: 20px;
-    background-color: rgb(0, 110, 201);
+    background-color: rgb(149, 0, 255);
 }
 
 .volume-svg:hover ~ .volume-bar-wrapper .volume-bar-block {
@@ -302,7 +308,7 @@ body {
 
 .active-progress-bar {
     height: 100%;
-    background-color: rgb(0, 110, 201);
+    background-color: rgb(149, 0, 255);
     border-radius: 20px;
     transition: 0.2s;
 }
@@ -314,6 +320,7 @@ body {
     align-items: center;
     width: 100%;
     height: 6dvh;
+    padding: 10px;
     background-color: rgba(51, 50, 50, 0.806);
     z-index: 2;
 }
@@ -332,15 +339,29 @@ body {
 }
 
 .git-hub-link {
+    position: relative;
     font-family: Roboto;
     font-size: 100%;
+    padding: 5px;
     color: white;
     text-decoration: none;
-    transition: 0.3s;
+    overflow: hidden;
 }
 
-.git-hub-link:hover {
-    color: rgb(0, 110, 201);
+.git-hub-link::before {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    content: '';
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    transition: 0.5s ease;
+    transform: translateX(-100%);
+}
+
+.git-hub-link:hover::before {
+    transform: translateX(0);
 }
 
 .year {
@@ -494,4 +515,9 @@ body {
         height: 10vw;
         margin-top: 10px;
     }
+}
+
+@keyframes rotate {
+    0%{transform: rotate(0deg)}
+    100%{transform: rotate(360deg)}
 }
