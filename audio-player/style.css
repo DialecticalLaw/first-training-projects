@@ -25,15 +25,15 @@ body {
     align-items: center;
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100dvh;
     margin: 0 auto;
     padding: 0;
     
 }
 
 .overlay {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100dvh;
     position: absolute;
     top: 0;
     left: 0;
@@ -63,14 +63,16 @@ body {
 }
 
 .menu {
+    position: absolute;
     display: flex;
     flex-direction: column;
     width: 480px;
     height: 700px;
     border-radius: 25px;
+    margin: 0 auto;
     padding: 25px;
     background-color: rgb(51, 50, 50);
-    z-index: 1;
+    z-index: 2;
 }
 
 .menu-cover-block {
@@ -168,15 +170,15 @@ body {
 }
 
 .backward:hover circle, .forward:hover circle{
-    stroke: rgb(1, 183, 13);
+    stroke: rgb(0, 110, 201);
 }
 
 .backward:hover rect, .forward:hover rect{
-    fill: rgb(1, 183, 13);
+    fill: rgb(0, 110, 201);
 }
 
 .backward:hover rect, .forward:hover rect{
-    fill: rgb(1, 183, 13);
+    fill: rgb(0, 110, 201);
 }
 
 .continue, .pause {
@@ -193,19 +195,19 @@ body {
 }
 
 .continue:hover path {
-    fill: rgb(1, 183, 13) !important;
+    fill: rgb(0, 110, 201) !important;
 }
 
 .continue:hover circle {
-    stroke: rgb(1, 183, 13) !important;
+    stroke: rgb(0, 110, 201) !important;
 }
 
 .pause:hover rect {
-    fill: rgb(1, 183, 13) !important;
+    fill: rgb(0, 110, 201) !important;
 }
 
 .pause:hover circle {
-    stroke: rgb(1, 183, 13) !important;
+    stroke: rgb(0, 110, 201) !important;
 }
 
 .volume-block {
@@ -303,6 +305,58 @@ body {
     background-color: rgb(0, 110, 201);
     border-radius: 20px;
     transition: 0.2s;
+}
+
+.footer {
+    align-self: flex-end;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 6dvh;
+    background-color: rgba(51, 50, 50, 0.806);
+    z-index: 2;
+}
+
+.git-hub-block {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.git-hub-img {
+    width: 40px;
+    height: 40px;
+}
+
+.git-hub-link {
+    font-family: Roboto;
+    font-size: 100%;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.git-hub-link:hover {
+    color: rgb(0, 110, 201);
+}
+
+.year {
+    font-family: Roboto;
+    font-size: 100%;
+    color: white;
+}
+
+.rss-img {
+    width: 80px;
+    height: auto;
+    transition: 0.3s;
+}
+
+.rss-img:hover {
+    filter: drop-shadow(0 0 8px rgb(205, 205, 205));
 }
 
 @media only screen and (max-width: 800px) {
