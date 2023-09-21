@@ -28,7 +28,7 @@ body {
     min-height: 100dvh;
     margin: 0 auto;
     padding: 0;
-    
+    background-color: black;
 }
 
 .overlay {
@@ -74,6 +74,84 @@ body {
     padding: 25px;
     background-color: rgb(51, 50, 50);
     z-index: 2;
+}
+
+.lyrics-block {
+    display: none;
+    position: absolute;
+    top: 0;
+    align-self: center;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 3vw;
+    padding: 15px;
+    background-color: rgb(51, 50, 50);
+    border-radius: 25px;
+    z-index: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.lyrics-block::-webkit-scrollbar {
+    opacity: 0;
+}
+
+.lyrics-block::-webkit-scrollbar-thumb {
+    background-color: rgb(107, 107, 107);
+    border-radius: 30px;
+}
+
+.lyrics-block-on {
+    display: block;
+    opacity: 0.2;
+    transform: scaleY(0);
+    transition: 0.5s;
+    transform-origin: top;
+}
+
+.lyrics-block-visible {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.lyrics-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.lyrics-desc {
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+    width: 80%;
+    height: 8%;
+    top: -15px;
+    background-color: rgba(51, 50, 50, 0.876);
+    letter-spacing: 2.5px;
+    font-family: Roboto;
+}
+
+.close-lyrics {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-lyrics:hover {
+    transform: scale(1.1);
+}
+
+.lyrics-text {
+    font-family: Roboto;
+    color: white;
+    border-top: 2px solid white;
+    padding-bottom: 10px;
 }
 
 .menu-cover-block {
@@ -152,6 +230,33 @@ body {
 
 .song-name {
     color: white;
+}
+
+.lyrics-song-author {
+    color: rgb(149, 0, 255);
+    font-size: 20px;
+}
+
+.lyrics-dash {
+    color: rgb(155, 155, 155);
+    font-size: 20px;
+}
+
+.lyrics-song-name {
+    color: white;
+    font-size: 20px;
+}
+
+.lyrics-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.lyrics-icon:hover {
+    filter: drop-shadow(0 0 7px white);
 }
 
 .main-controls {
@@ -379,7 +484,7 @@ body {
     filter: drop-shadow(0 0 8px rgb(205, 205, 205));
 }
 
-@media screen and (max-width: 1324px) {
+@media screen and (max-width: 1430px) {
     .menu {
         width: 35vw;
     }
@@ -510,6 +615,11 @@ body {
         width: 30px;
         height: 30px;
     }
+
+    .lyrics-icon {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -524,6 +634,11 @@ body {
     .repeat {
         width: 25px;
         height: 25px;
+    }
+
+    .lyrics-icon {
+        width: 18px;
+        height: 18px;
     }
 }
 
