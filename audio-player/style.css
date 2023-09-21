@@ -67,7 +67,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 25vw;
-    height: 85dvh;
+    height: 75dvh;
     border-radius: 25px;
     margin: 0 auto;
     margin-bottom: 3vw;
@@ -376,10 +376,6 @@ body {
 .rss-img {
     width: 80px;
     height: auto;
-    transition: 0.3s;
-}
-
-.rss-img:hover {
     filter: drop-shadow(0 0 8px rgb(205, 205, 205));
 }
 
@@ -463,11 +459,35 @@ body {
         width: 40px;
         height: 40px;
     }
+
+    .git-hub-link, .year {
+        font-size: 90%;
+    }
+
+    .git-hub-img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .rss-img {
+        width: 55px;
+    }
 }
 
 @media screen and (max-height: 535px) {
     .menu {
         width: 38vw;
+    }
+}
+
+@media screen and (max-height: 455px) {
+    .git-hub-img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .git-hub-link {
+        padding: 0;
     }
 }
 
@@ -494,7 +514,7 @@ body {
 
 @media screen and (max-width: 550px) {
     .menu {
-        width: 45vw;
+        width: 50vw;
     }
 
     .song-info {
@@ -528,7 +548,7 @@ body {
 
 @media screen and (max-width: 395px) {
     .menu {
-        height: 60dvh;
+        height: 65dvh;
     }
 
     .continue, .pause {
@@ -572,9 +592,22 @@ body {
     }
 }
 
-@media screen and (max-height: 380px) {
+@media screen and (max-height: 390px) {
     .menu {
         padding: 12px;
+    }
+
+    .git-hub-img {
+        width: 15px;
+        height: 15px;
+    }
+
+    .git-hub-link, .year {
+        font-size: 80%;
+    }
+
+    .rss-img {
+        width: 45px;
     }
 }
 
