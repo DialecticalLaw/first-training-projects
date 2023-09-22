@@ -11,6 +11,10 @@ const songName = document.querySelector('.song-name');
 const lyricsSongName = document.querySelector('.lyrics-song-name');
 const lyricsText = document.querySelector('.lyrics-text');
 
+const lyricsIcon = document.querySelector('.lyrics-icon');
+const lyricsBlock = document.querySelector('.lyrics-block');
+const closeLyricsSvg = document.querySelector('.close-lyrics');
+
 const backwardIcon = document.querySelector('.backward');
 const forwardIcon = document.querySelector('.forward');
 const continueIcon = document.querySelector('.continue');
@@ -55,6 +59,7 @@ function continueTrack() {
         continueIcon.classList.remove('icon-on');
         pauseIcon.classList.add('icon-on');
         document.querySelector('.menu-cover-image' + currentSong).classList.add('menu-cover-image-play');
+        lyricsIcon.classList.add('lyrics-icon-on');
         document.querySelector('.audio' + currentSong).addEventListener('ended', nextTrack);
     }, 100);
 }
@@ -66,6 +71,7 @@ function pauseTrack() {
     document.querySelector('.audio' + currentSong).pause();
     pauseIcon.classList.remove('icon-on');
     continueIcon.classList.add('icon-on');
+    lyricsIcon.classList.remove('lyrics-icon-on');
     document.querySelector('.menu-cover-image' + currentSong).classList.remove('menu-cover-image-play');
 }
 
@@ -252,16 +258,11 @@ function repeatToggle() {
         }
         repeatIcon.style.fill = '#ffffff';
     }
-    
 }
 
 // repeat - end
 
 // lyrics - start
-
-const lyricsIcon = document.querySelector('.lyrics-icon');
-const lyricsBlock = document.querySelector('.lyrics-block');
-const closeLyricsSvg = document.querySelector('.close-lyrics');
 
 lyricsIcon.addEventListener('click', toggleLyrics);
 closeLyricsSvg.addEventListener('click', toggleLyrics);
