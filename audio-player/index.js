@@ -8,6 +8,12 @@ const menuCoverImage1 = document.querySelector('.menu-cover-image1');
 const menuCoverImage2 = document.querySelector('.menu-cover-image2');
 
 const songName = document.querySelector('.song-name');
+const lyricsSongName = document.querySelector('.lyrics-song-name');
+const lyricsText = document.querySelector('.lyrics-text');
+
+const lyricsIcon = document.querySelector('.lyrics-icon');
+const lyricsBlock = document.querySelector('.lyrics-block');
+const closeLyricsSvg = document.querySelector('.close-lyrics');
 
 const backwardIcon = document.querySelector('.backward');
 const forwardIcon = document.querySelector('.forward');
@@ -33,6 +39,8 @@ function updateTrackData() {
     }, 200);
 }
 
+changeSongData();
+
 document.addEventListener('DOMContentLoaded', updateTrackData);
 
 // pause/continue track - start
@@ -51,6 +59,7 @@ function continueTrack() {
         continueIcon.classList.remove('icon-on');
         pauseIcon.classList.add('icon-on');
         document.querySelector('.menu-cover-image' + currentSong).classList.add('menu-cover-image-play');
+        lyricsIcon.classList.add('lyrics-icon-on');
         document.querySelector('.audio' + currentSong).addEventListener('ended', nextTrack);
     }, 100);
 }
@@ -62,6 +71,7 @@ function pauseTrack() {
     document.querySelector('.audio' + currentSong).pause();
     pauseIcon.classList.remove('icon-on');
     continueIcon.classList.add('icon-on');
+    lyricsIcon.classList.remove('lyrics-icon-on');
     document.querySelector('.menu-cover-image' + currentSong).classList.remove('menu-cover-image-play');
 }
 
@@ -115,15 +125,21 @@ function nextTrack() {
 
 // change song name - start
 
-songName.addEventListener('switchTrack', changeSongName);
+songName.addEventListener('switchTrack', changeSongData);
 
-function changeSongName() {
+function changeSongData() {
     if (currentSong === 0) {
         songName.innerHTML = 'Гореть';
+        lyricsSongName.innerHTML = 'Гореть'
+        lyricsText.innerHTML = '<p>Зачем кричать, когда никто не слышит</p><p>О чём мы говорим?</p><p>Мне кажется, что мы давно не живы</p><p>Зажглись и потихоньку догорим</p><p>Когда нас много - начинается пожар</p><p>И города похожи на крематорий и базар</p><p>И все привыкли ничего не замечать</p><p>Когда тебя не слышат, для чего кричать?</p><p>&nbsp;</p><p>Мы можем помолчать, мы можем петь</p><p>Стоять или бежать, но всё равно гореть</p><p>Огромный синий кит порвать не может сеть</p><p>Сдаваться или нет, но всё равно гореть</p><p>&nbsp;</p><p>И снова небо замыкает на себя</p><p>Слова и провода</p><p>И снова с неба проливаются на нас</p><p>Ответы и вода</p><p>И если ты вдруг начал что-то понимать</p><p>И от прозрений, захотелось заорать</p><p>Давай, кричи, но тебя могут не понять</p><p>Никто из них не хочет ничего менять!</p><p>&nbsp;</p><p>Ты можешь помолчать, ты можешь петь</p><p>Стоять или бежать, но всё равно гореть</p><p>Огромный синий кит порвать не может сеть</p><p>Сдаваться или нет, но всё равно гореть</p><p>Мы можем помолчать, мы можем петь</p><p>Стоять или бежать, но всё равно гореть</p><p>Гори, но не сжигай - иначе скучно жить</p><p>Гори, но не сжигай! Гори, чтобы светить!</p>';
     } else if (currentSong === 1) {
         songName.innerHTML = 'Лабиринт (live)';
+        lyricsSongName.innerHTML = 'Лабиринт (live)'
+        lyricsText.innerHTML = '<p>Перегружен мозг</p><p>Переполнен "винт"</p><p>Иду, чтобы идти...</p><p>Лабиринт</p><p>Уже в который раз</p><p>Тебя я обхожу</p><p>И слышу сзади смех</p><p>Но зла я не держу</p><p>&nbsp;</p><p>Ты никогда</p><p>Не спутаешь пути:</p><p>Ты стоишь...</p><p>И, может, так и нужно</p><p>Но как тогда узнать</p><p>Что там выше крыш?</p><p>&nbsp;</p><p>Стены отразят</p><p>Чей-то новый крик - </p><p>Можно не смотреть:</p><p>Там тупик...</p><p>Новый поворот</p><p>Может там ответ</p><p>Но это снова ты...</p><p>Привет</p><p>&nbsp;</p><p>Ты никогда</p><p>Не спутаешь пути</p><p>Ты стоишь...</p><p>И, может, так и нужно</p><p>Но как тогда узнать</p><p>Что там выше крыш?</p>';
     } else if (currentSong === 2) {
         songName.innerHTML = 'Дух времени';
+        lyricsSongName.innerHTML = 'Дух времени'
+        lyricsText.innerHTML = '<p>Ночь</p><p>Стучит в окно и наступает передышка</p><p>Всё принимаю близко к сердцу, даже слишком</p><p>И до утра</p><p>Будут мелькать</p><p>Страницы сайтов, чашки с кофе, сигареты</p><p>И я не первый кто с тоской и без ответа - </p><p>Она стара...</p><p>И я не знаю</p><p>Какие результаты и проценты</p><p>Видны из окон всех московских телецентров</p><p>И из Кремля</p><p>Но за моим</p><p>Окном два пьяных в жопу человека</p><p>Друг друга бьют уже почти что четверть века</p><p>Из-за рубля...</p><p>&nbsp;</p><p>И на асфальтовых полях</p><p>Зреет только чёрный дым</p><p>И не видно нихрена</p><p>В этой темени...</p><p>Лужи крови и дерьма</p><p>Густо заливает нефть - </p><p>Это просто дух времени!</p><p>Просто дух времени...</p><p>&nbsp;</p><p>Крик</p><p>Не сдержат тонкие панели перекрытий</p><p>И он заставит многих бросить всё и выйти</p><p>Чтоб поглазеть</p><p>В первом ряду</p><p>Обыденно, легко и безучастно</p><p>На драку, на пожар, на боль несчастных</p><p>На чью-то смерть...</p><p>Засними на телефон</p><p>Чей-то стон и стёкол звон</p><p>Продолжает перегон</p><p>Наш отцепленный вагон</p><p>Кто-то спрыгнет на лету</p><p>Но без толку эта паника</p><p>Ведь наш вагон несёт по борту</p><p>Общего для всех "Титаника"!</p><p>&nbsp;</p><p></p><p>Где на асфальтовых полях</p><p>Зреет только чёрный дым</p><p>И не видно нихрена</p><p>В этой темени...</p><p>Лужи крови и дерьма</p><p>Густо заливает нефть - </p><p>Это просто дух времени!</p><p>Просто дух времени...</p><p>&nbsp;</p><p>На асфальтовых полях</p><p>Зреет только чёрный дым</p><p>И не видно нихрена</p><p>В этой темени...</p><p>Лужи крови и дерьма</p><p>Густо заливает нефть - </p><p>Это просто дух времени!</p><p>Просто дух времени...</p>'
     }
 }
 
@@ -242,7 +258,26 @@ function repeatToggle() {
         }
         repeatIcon.style.fill = '#ffffff';
     }
-    
 }
 
 // repeat - end
+
+// lyrics - start
+
+lyricsIcon.addEventListener('click', toggleLyrics);
+closeLyricsSvg.addEventListener('click', toggleLyrics);
+
+function toggleLyrics() {
+    if (!lyricsBlock.classList.contains('lyrics-block-on')) {
+        lyricsBlock.classList.add('lyrics-block-on');
+        setTimeout(() => {
+            lyricsBlock.classList.add('lyrics-block-visible');
+        }, 10);
+    } else {
+        lyricsBlock.classList.remove('lyrics-block-visible');
+        setTimeout(() => {
+            lyricsBlock.classList.remove('lyrics-block-on');
+        }, 500);
+    }
+}
+// lyrics - end

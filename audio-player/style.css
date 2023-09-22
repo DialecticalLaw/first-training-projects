@@ -28,7 +28,7 @@ body {
     min-height: 100dvh;
     margin: 0 auto;
     padding: 0;
-    
+    background-color: black;
 }
 
 .overlay {
@@ -67,13 +67,94 @@ body {
     display: flex;
     flex-direction: column;
     width: 25vw;
-    height: 85dvh;
+    height: 75dvh;
     border-radius: 25px;
     margin: 0 auto;
     margin-bottom: 3vw;
     padding: 25px;
     background-color: rgb(51, 50, 50);
     z-index: 2;
+}
+
+.lyrics-block {
+    display: none;
+    position: absolute;
+    top: 0;
+    align-self: center;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 3vw;
+    padding: 15px;
+    background-color: rgb(51, 50, 50);
+    border-radius: 25px;
+    z-index: 1;
+}
+
+
+
+.lyrics-block-on {
+    display: block;
+    opacity: 0.2;
+    transform: scaleY(0);
+    transition: 0.5s;
+    transform-origin: top;
+}
+
+.lyrics-block-visible {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.lyrics-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.lyrics-desc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+    width: 80%;
+    height: 8%;
+    top: -15px;
+    background-color: rgba(51, 50, 50, 0.876);
+    letter-spacing: 2.5px;
+    font-family: Roboto;
+}
+
+.close-lyrics {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-lyrics:hover {
+    transform: scale(1.1);
+}
+
+.lyrics-text {
+    width: 100%;
+    height: 92%;
+    font-family: Roboto;
+    color: white;
+    border-top: 2px solid white;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.lyrics-text::-webkit-scrollbar {
+    opacity: 0;
+}
+
+.lyrics-text::-webkit-scrollbar-thumb {
+    background-color: rgb(107, 107, 107);
+    border-radius: 30px;
 }
 
 .menu-cover-block {
@@ -152,6 +233,34 @@ body {
 
 .song-name {
     color: white;
+}
+
+.lyrics-song-author {
+    color: rgb(149, 0, 255);
+    font-size: 20px;
+}
+
+.lyrics-dash {
+    color: rgb(155, 155, 155);
+    font-size: 20px;
+}
+
+.lyrics-song-name {
+    color: white;
+    font-size: 20px;
+}
+
+.lyrics-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.lyrics-icon-on {
+    filter: drop-shadow(0 0 15px rgb(149, 0, 255));
+    fill: rgb(149, 0, 255) !important;
 }
 
 .main-controls {
@@ -376,14 +485,10 @@ body {
 .rss-img {
     width: 80px;
     height: auto;
-    transition: 0.3s;
-}
-
-.rss-img:hover {
     filter: drop-shadow(0 0 8px rgb(205, 205, 205));
 }
 
-@media screen and (max-width: 1324px) {
+@media screen and (max-width: 1430px) {
     .menu {
         width: 35vw;
     }
@@ -436,7 +541,6 @@ body {
 }
 
 @media screen and (max-width: 810px) {
-
     .track-duration {
         margin-top: -25px;
         margin-bottom: 8px;
@@ -451,27 +555,74 @@ body {
     }
 }
 
+@media screen and (max-height: 768px) {
+    .menu-cover-block {
+        height: 70%;
+        width: 85%;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    .menu-cover-block {
+        height: 60%;
+        width: 65%;
+    }
+}
+
 @media screen and (max-height: 600px) {
+    .menu-cover-block {
+        height: 50%;
+        width: 50%;
+    }
 
     .continue, .pause {
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         margin-top: -10px;
     }
 
     .backward, .forward {
-        width: 40px;
-        height: 40px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .git-hub-link, .year {
+        font-size: 90%;
+    }
+
+    .git-hub-img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .rss-img {
+        width: 55px;
     }
 }
 
-@media screen and (max-height: 535px) {
-    .menu {
-        width: 38vw;
+@media screen and (max-height: 455px) {
+    .git-hub-img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .git-hub-link {
+        padding: 0;
     }
 }
 
 @media screen and (max-width: 695px) {
+    .menu {
+        width: 100vw;
+        height: 94dvh;
+        border-radius: 0;
+        top: 0;
+    }
+
+    .lyrics-block {
+        border-radius: 0;
+    }
+
     .song-info {
         font-size: 1em;
     }
@@ -490,11 +641,18 @@ body {
         width: 30px;
         height: 30px;
     }
+
+    .lyrics-icon {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 @media screen and (max-width: 550px) {
-    .menu {
-        width: 45vw;
+
+    .menu-cover-block {
+        height: 60%;
+        width: 85%;
     }
 
     .song-info {
@@ -505,11 +663,15 @@ body {
         width: 25px;
         height: 25px;
     }
+
+    .lyrics-icon {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 @media screen and (max-width: 500px) {
     .menu {
-        height: 76dvh;
         padding: 15px;
         padding-bottom: 10px;
     }
@@ -521,25 +683,21 @@ body {
 
 @media screen and (max-width: 440px) {
     .menu {
-        height: 68dvh;
         padding: 10px;
     }
 }
 
 @media screen and (max-width: 395px) {
-    .menu {
-        height: 60dvh;
-    }
 
     .continue, .pause {
-        width: 45px;
-        height: 45px;
-        margin-top: -8px;
+        width: 65px;
+        height: 65px;
+        margin-top: -12px;
     }
 
     .backward, .forward {
-        width: 30px;
-        height: 30px;
+        width: 45px;
+        height: 45px;
     }
 
     .repeat {
@@ -548,9 +706,6 @@ body {
 }
 
 @media screen and (max-width: 350px) {
-    .menu {
-        height: 54dvh;
-    }
 
     .repeat {
         width: 20px;
@@ -572,16 +727,26 @@ body {
     }
 }
 
-@media screen and (max-height: 380px) {
+@media screen and (max-height: 390px) {
     .menu {
         padding: 12px;
+    }
+
+    .git-hub-img {
+        width: 15px;
+        height: 15px;
+    }
+
+    .git-hub-link, .year {
+        font-size: 80%;
+    }
+
+    .rss-img {
+        width: 45px;
     }
 }
 
 @media screen and (max-width: 310px) {
-    .menu {
-        height: 48dvh;
-    }
 
     .main-controls {
         margin-bottom: 10px;
