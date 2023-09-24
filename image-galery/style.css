@@ -21,7 +21,7 @@ body {
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     min-height: 100dvh;
     margin: 0 auto;
@@ -116,4 +116,39 @@ h1 {
 .footer {
     width: 100%;
     height: 10dvh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-top: 3px solid rgb(171, 0, 206);
+    box-shadow: 0 0 30px 5px rgb(171, 0, 206);
+}
+
+.gh-name {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-family: Roboto;
+    font-size: 20px;
+    color: white;
+    gap: 5px;
+}
+
+.gh-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.year {
+    font-family: Roboto;
+    font-size: 20px;
+    color: white;
+}
+
+.rss-link {
+    display: flex;
+    align-items: center;
+    width: 140px;
+    height: 100%;
+    filter: drop-shadow(0 0 10px rgb(164, 164, 164));
 }
