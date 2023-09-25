@@ -56,3 +56,11 @@ function showImages(data) {
     const convertedEntrance = await entrance.json();
     showImages(convertedEntrance);
 })()
+
+searchBlock.addEventListener('keydown', doSearchOnEnter);
+
+function doSearchOnEnter(event) {
+    if (event.code === 'Enter') {
+        getImages();
+    }
+}
