@@ -104,7 +104,7 @@ h1 {
     height: 35px;
     display: flex;
     align-items: center;
-    padding: 10px 0 5px 15px;
+    padding: 5px 0 5px 15px;
     font-size: 25px;
     font-family: Roboto;
     border-radius: 40px;
@@ -126,6 +126,7 @@ h1 {
 .search-input:focus {
     color: white;
     width: 100%;
+    padding: 5px 60px 5px 15px;
     outline: 2px solid #7dcfb1;
     background-color: rgb(58, 58, 58);
     filter: drop-shadow(0 0 8px #7dcfb1);
@@ -249,4 +250,85 @@ h1 {
 
 .rss-link:hover {
     filter: drop-shadow(0 0 12px rgb(255, 255, 255))
+}
+
+@media screen and (max-width: 838px) {
+    .search-block {
+        width: 45%;
+    }
+
+    .search-input::placeholder {
+        font-size: 20px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .title-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .rss-link {
+        width: 100px;
+    }
+
+    .gh-name, .year {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-height: 490px) {
+    .rss-link {
+        width: 70px;
+    }
+
+    .gh-icon {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .title {
+        width: 220px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+
+    .title-img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .gif-loading {
+        width: 70px;
+        height: 50px;
+    }
+
+    .search-block {
+        width: 45%;
+    }
+
+    .search-input {
+        height: 30px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .search-input {
+        padding-left: 3px;
+        font-size: 15px;
+    }
+
+    .search-input:focus {
+        padding-left: 3px;
+    }
+
+    .search-input::placeholder {
+        font-size: 15px;
+    }
 }
