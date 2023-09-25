@@ -3,6 +3,7 @@ const searchSvg = document.querySelector('.search-svg');
 const searchInput = document.querySelector('.search-input');
 const searchBlock = document.querySelector('.search-block');
 const removeSvg = document.querySelector('.remove-svg');
+const gifLoading = document.querySelector('.gif-loading');
 
 const urlBase = 'https://api.unsplash.com/search/photos/?query='
 const clientId = '&per_page=15&tag_mode=all&orientation=landscape&client_id=F4jIYSVLXctYvGgXXqr4XrPS7ceikoMPfyUbOfuxQTk'
@@ -25,9 +26,23 @@ function removeValue(event) {
 searchSvg.addEventListener('click', getImages)
 
 async function getImages() {
-    const entrance = await fetch(urlBase + searchInput.value + clientId);
-    const convertedEntrance = await entrance.json();
-    showImages(convertedEntrance);
+    if (searchInput.value !== '') {
+        gifLoading.classList.add('gif-loading-on');
+        setTimeout(() => {
+            gifLoading.classList.add('gif-loading-appear');
+        }, 10);
+        
+        setTimeout(() => {
+            gifLoading.classList.remove('gif-loading-appear');
+            setTimeout(() => {
+                gifLoading.classList.remove('gif-loading-on');
+            }, 300);
+        }, 1500);
+
+        const entrance = await fetch(urlBase + searchInput.value + clientId);
+        const convertedEntrance = await entrance.json();
+        showImages(convertedEntrance);
+    }
 }
 
 function showImages(data) {

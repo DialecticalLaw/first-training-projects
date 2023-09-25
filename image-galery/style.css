@@ -53,13 +53,14 @@ html::-webkit-scrollbar-button {
 
 .title {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    width: 280px;
+    width: 360px;
     
 }
 
 h1 {
+    margin-left: 10px;
     font-family: Roboto;
     font-size: 35px;
     color: #7dcfb1;
@@ -72,6 +73,22 @@ h1 {
     height: 55px;
     filter: drop-shadow(0 0 7px rgb(19, 86, 255))
     drop-shadow(8px -30px 3px rgba(0, 61, 216, 0.601));
+}
+
+.gif-loading {
+    display: none;
+    width: 90px;
+    height: 70px;
+}
+
+.gif-loading-on {
+    display: block;
+    transform: scale(0);
+    transition: 0.3s;
+}
+
+.gif-loading-appear {
+    transform: scale(1);
 }
 
 .search-block {
