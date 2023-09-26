@@ -46,8 +46,20 @@ async function getImages() {
 }
 
 function showImages(data) {
-    for (let i = 0; i < data.results.length; i++) {
+    if (data.results.length === 0) {
+        const searchInputFocus = document.querySelector('.search-input:focus');
+        searchInputFocus.style.outline = '2px solid red';
+        searchInputFocus.style.filter = 'drop-shadow(0 0 8px red)';
+        searchInputFocus.value = '';
+        searchInputFocus.placeholder = 'Nothing found';
+        setTimeout(() => {
+            searchInputFocus.removeAttribute('style');
+            searchInputFocus.placeholder = 'Search...';
+        }, 2000);
+    } else {
+        for (let i = 0; i < data.results.length; i++) {
         images[i].style['background-image'] = 'url(' + data.results[i].urls.regular + ')' 
+    }
     }
 }
 
