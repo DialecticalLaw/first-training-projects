@@ -37,7 +37,7 @@ html::-webkit-scrollbar-button {
     align-items: center;
     min-height: 100dvh;
     margin: 0 auto;
-    background-color: rgb(58, 58, 58);
+    background-color: rgb(35, 44, 57);
 }
 
 .header {
@@ -49,6 +49,10 @@ html::-webkit-scrollbar-button {
     padding: 3%;
     border-bottom: 3px solid rgb(0, 93, 253);
     box-shadow: 0 0 30px 5px rgb(0, 93, 253);
+    background-image: url(assets/img/backgr.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .title {
@@ -56,7 +60,6 @@ html::-webkit-scrollbar-button {
     justify-content: flex-start;
     align-items: center;
     width: 360px;
-    
 }
 
 h1 {
@@ -170,23 +173,91 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2%;
+    position: relative;
+    gap: 1.5%;
+    padding: 15px;
+    overflow-x: hidden;
 }
 
 .image-content {
     width: 300px;
     height: 150px;
+    position: relative;
     margin-top: 20px;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 5px;
     outline: 1px solid #7dcfb1;
-    transition: 0.3s ease;
+    transition: 0.4s ease;
+    cursor: pointer;
 }
 
 .image-content:hover {
     transform: scale(1.15);
     z-index: 2;;
+}
+
+.expand-img-wrapper {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.expand-img-wrapper-on {
+    display: flex;
+    transition: 0.5s;
+}
+
+.expand-img-wrapper-blackout {
+    background-color: rgba(0, 0, 0, 0.735);
+}
+
+.expand-img-menu {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    width: 90%;
+    height: 90%;
+    max-width: 1400px;
+    max-height: 1000px;
+    transform: scale(1.5);
+    opacity: 0;
+    transition: 0.5s;
+    border: 1px solid #7dcfb1;
+    box-shadow: 0 0 35px 2px #7dcfb182;
+    border-radius: 20px;
+}
+
+.expand-img-menu-on {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.close-menu {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    align-self: flex-start;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-menu:hover {
+    opacity: 0.3;
+}
+
+.expand-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
 }
 
 .footer {
@@ -198,6 +269,10 @@ h1 {
     padding: 15px;
     border-top: 3px solid rgb(0, 93, 253);
     box-shadow: 0 0 30px 5px rgb(0, 93, 253);
+    background-image: url(assets/img/backgrFooter.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .gh-name {
@@ -244,12 +319,44 @@ h1 {
     align-items: center;
     width: 140px;
     height: 100%;
+    position: relative;
     filter: drop-shadow(0 0 10px rgb(164, 164, 164));
     transition: 0.3s;
 }
 
 .rss-link:hover {
     filter: drop-shadow(0 0 12px rgb(255, 255, 255))
+}
+
+.rss-link * {
+    width: auto;
+    position: absolute;
+}
+
+@media screen and (max-width: 1250px) {
+    .expand-img-menu {
+        height: 80%;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .expand-img-menu {
+        height: 70%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .expand-img-menu {
+        height: 60%;
+    }
+
+    .image-content {
+        cursor: default;
+    }
+
+    .close-menu {
+        cursor: default;
+    }
 }
 
 @media screen and (max-width: 838px) {
@@ -270,12 +377,24 @@ h1 {
         height: 40px;
     }
 
+    .gh-name, .year {
+        font-size: 15px;
+    }
+
     .rss-link {
         width: 100px;
     }
+}
 
-    .gh-name, .year {
-        font-size: 15px;
+@media screen and (max-height: 710px) {
+    .expand-img-menu {
+        width: 75%;
+    }
+}
+
+@media screen and (max-height: 610px) {
+    .expand-img-menu {
+        width: 65%;
     }
 }
 
@@ -287,6 +406,23 @@ h1 {
     .gh-icon {
         width: 25px;
         height: 25px;
+    }
+
+    .expand-img-menu {
+        width: 55%;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .expand-img-menu {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .expand-img-menu {
+        width: 80%;
+        height: 40%;
     }
 }
 
@@ -316,9 +452,21 @@ h1 {
         height: 30px;
         font-size: 20px;
     }
+
+    .gif-loading {
+        width: 50px;
+        height: 35px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .expand-img-menu {
+        width: 90%;
+    }
 }
 
 @media screen and (max-width: 390px) {
+
     .search-input {
         padding-left: 3px;
         font-size: 15px;
