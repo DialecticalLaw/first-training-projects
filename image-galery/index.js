@@ -5,11 +5,47 @@ const searchBlock = document.querySelector('.search-block');
 const removeSvg = document.querySelector('.remove-svg');
 const gifLoading = document.querySelector('.gif-loading');
 
+const expandImgWrapper = document.querySelector('.expand-img-wrapper');
+const expandImgMenu = document.querySelector('.expand-img-menu');
+const expandImgImage = document.querySelector('.expand-img');
+const closeMenuSvg = document.querySelector('.close-menu');
+
 const urlBase = 'https://api.unsplash.com/search/photos/?query='
 const clientId = '&per_page=15&tag_mode=all&orientation=landscape&client_id=F4jIYSVLXctYvGgXXqr4XrPS7ceikoMPfyUbOfuxQTk'
 
 searchBlock.addEventListener('mousedown', preventClose);
 searchBlock.addEventListener('click', removeValue);
+
+for (let img of images) {
+    img.addEventListener('click', expandImg);
+}
+
+document.addEventListener('click', event => {
+    if (expandImgMenu.classList.contains('expand-img-menu-on')) {
+        if (!expandImgMenu.contains(event.target)) {
+            closeExpandImg();
+        }
+    }
+})
+
+function expandImg(event) {
+    expandImgWrapper.classList.add('expand-img-wrapper-on');
+    expandImgImage.src = event.target.style['background-image'].slice(5, -2);
+    setTimeout(() => {
+        expandImgWrapper.classList.add('expand-img-wrapper-blackout');
+        expandImgMenu.classList.add('expand-img-menu-on');
+    }, 30);
+}
+
+closeMenuSvg.addEventListener('click', closeExpandImg);
+
+function closeExpandImg() {
+    expandImgWrapper.classList.remove('expand-img-wrapper-blackout');
+    expandImgMenu.classList.remove('expand-img-menu-on');
+    setTimeout(() => {
+        expandImgWrapper.classList.remove('expand-img-wrapper-on');
+    }, 500);
+}
 
 function preventClose(event) {
     if (event.target === searchSvg || event.target === removeSvg) {
@@ -46,8 +82,20 @@ async function getImages() {
 }
 
 function showImages(data) {
-    for (let i = 0; i < data.results.length; i++) {
+    if (data.results.length === 0) {
+        const searchInputFocus = document.querySelector('.search-input:focus');
+        searchInputFocus.style.outline = '2px solid red';
+        searchInputFocus.style.filter = 'drop-shadow(0 0 8px red)';
+        searchInputFocus.value = '';
+        searchInputFocus.placeholder = 'Nothing found';
+        setTimeout(() => {
+            searchInputFocus.removeAttribute('style');
+            searchInputFocus.placeholder = 'Search...';
+        }, 2000);
+    } else {
+        for (let i = 0; i < data.results.length; i++) {
         images[i].style['background-image'] = 'url(' + data.results[i].urls.regular + ')' 
+    }
     }
 }
 
