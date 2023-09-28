@@ -10,6 +10,9 @@ const expandImgMenu = document.querySelector('.expand-img-menu');
 const expandImgImage = document.querySelector('.expand-img');
 const closeMenuSvg = document.querySelector('.close-menu');
 
+const rightArrow = document.querySelector('.right-arrow');
+const leftArrow = document.querySelector('.left-arrow');
+
 const urlBase = 'https://api.unsplash.com/search/photos/?query='
 const clientId = '&per_page=15&tag_mode=all&orientation=landscape&client_id=F4jIYSVLXctYvGgXXqr4XrPS7ceikoMPfyUbOfuxQTk'
 
@@ -28,9 +31,25 @@ document.addEventListener('click', event => {
     }
 })
 
+let selectedImg;
+
 function expandImg(event) {
+    selectedImg = event.target;
+    selectedImg.classList.add('selected-img');
     expandImgWrapper.classList.add('expand-img-wrapper-on');
     expandImgImage.src = event.target.style['background-image'].slice(5, -2);
+    if (selectedImg.previousElementSibling === null) {
+        leftArrow.style.opacity = '0.3';
+    }
+    if (selectedImg.nextElementSibling === null) {
+        rightArrow.style.opacity = '0.3';
+    }
+    if (selectedImg.previousElementSibling !== null) {
+        leftArrow.style.opacity = '1';
+    }
+    if (selectedImg.nextElementSibling !== null) {
+        rightArrow.style.opacity = '1';
+    }
     setTimeout(() => {
         expandImgWrapper.classList.add('expand-img-wrapper-blackout');
         expandImgMenu.classList.add('expand-img-menu-on');
@@ -40,6 +59,7 @@ function expandImg(event) {
 closeMenuSvg.addEventListener('click', closeExpandImg);
 
 function closeExpandImg() {
+    selectedImg.classList.remove('selected-img');
     expandImgWrapper.classList.remove('expand-img-wrapper-blackout');
     expandImgMenu.classList.remove('expand-img-menu-on');
     setTimeout(() => {
@@ -110,5 +130,115 @@ searchBlock.addEventListener('keydown', doSearchOnEnter);
 function doSearchOnEnter(event) {
     if (event.code === 'Enter') {
         getImages();
+    }
+}
+
+leftArrow.addEventListener('click', switchLeft);
+rightArrow.addEventListener('click', switchRight);
+
+function switchLeft() {
+    if (selectedImg.previousElementSibling !== null) {
+        expandImgImage.classList.add('fade-img-right');
+
+        setTimeout(() => {
+            selectedImg.classList.remove('selected-img');
+            selectedImg = selectedImg.previousElementSibling;
+            selectedImg.classList.add('selected-img');
+            expandImgImage.src = selectedImg.style['background-image'].slice(5, -2);
+            if (selectedImg.previousElementSibling === null) {
+                leftArrow.style.opacity = '0.3';
+            } else {
+                leftArrow.style.opacity = '1';
+            }
+            
+            if (selectedImg.nextElementSibling !== null) {
+                rightArrow.style.opacity = '1';
+            }
+            
+            expandImgImage.classList.add('fade-img-left');
+            expandImgImage.classList.remove('fade-img-right');
+            setTimeout(() => {
+                expandImgImage.classList.remove('fade-img-left');
+            }, 100);
+        }, 200);
+    } else {
+        return;
+    }
+}
+
+function switchRight() {
+    if (selectedImg.nextElementSibling !== null) {
+        expandImgImage.classList.add('fade-img-left');
+
+        setTimeout(() => {
+            selectedImg.classList.remove('selected-img');
+            selectedImg = selectedImg.nextElementSibling;
+            selectedImg.classList.add('selected-img');
+            expandImgImage.src = selectedImg.style['background-image'].slice(5, -2);
+            if (selectedImg.nextElementSibling === null) {
+                rightArrow.style.opacity = '0.3';
+            } else {
+                rightArrow.style.opacity = '1';
+            }
+
+            if (selectedImg.previousElementSibling !== null) {
+                leftArrow.style.opacity = '1';
+            }
+
+            expandImgImage.classList.add('fade-img-right');
+            expandImgImage.classList.remove('fade-img-left');
+            setTimeout(() => {
+                expandImgImage.classList.remove('fade-img-right');
+            }, 100);
+        }, 200);
+    } else {
+        return;
+    }
+}
+
+// theme
+const header = document.querySelector('header');
+const footer = document.querySelector('footer');
+const ghName = document.querySelector('.gh-name');
+const year = document.querySelector('.year');
+const h1 = document.querySelector('h1');
+const container = document.querySelector('.container');
+
+
+const moon = document.querySelector('.moon');
+const sun = document.querySelector('.sun');
+
+moon.addEventListener('click', enableLightTheme);
+sun.addEventListener('click', enableDarkTheme);
+
+function enableLightTheme() {
+    header.setAttribute('style', 'background-image: url(assets/img/lightHeader.jpg); border-bottom: 3px solid rgb(185 160 255); box-shadow: 0 0 30px 5px rgb(150 114 250);');
+    footer.setAttribute('style', 'background-image: url(assets/img/lightFooter.jpg); border-top: 3px solid rgb(185 160 255); box-shadow: 0 0 30px 5px rgb(150 114 250)');
+    moon.classList.remove('title-img-on');
+    sun.classList.add('title-img-on');
+    ghName.style.color = 'black'
+    year.style.color = 'black';
+    github.style.fill = 'black';
+    h1.style.color = 'rgb(38 161 1)'
+    container.style['background-color'] = 'rgb(241 225 246)';
+
+    for (let img of images) {
+        img.style.outline = '1px solid yellow';
+    }
+}
+
+function enableDarkTheme() {
+    header.removeAttribute('style');
+    footer.removeAttribute('style');
+    moon.classList.add('title-img-on');
+    sun.classList.remove('title-img-on');
+    ghName.removeAttribute('style');
+    year.removeAttribute('style');
+    github.style.fill = 'white';
+    h1.style.color = '#7dcfb1'
+    container.style['background-color'] = 'rgb(35, 44, 57)';
+
+    for (let img of images) {
+        img.style.outline = '1px solid #7dcfb1';
     }
 }
