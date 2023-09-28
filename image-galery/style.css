@@ -50,6 +50,7 @@ html::-webkit-scrollbar-button {
     border-bottom: 3px solid rgb(0, 93, 253);
     box-shadow: 0 0 30px 5px rgb(0, 93, 253);
     background-image: url(assets/img/backgr.jpeg);
+    
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -72,10 +73,42 @@ h1 {
 }
 
 .title-img {
+    display: none;
     width: 55px;
     height: 55px;
-    filter: drop-shadow(0 0 7px rgb(19, 86, 255))
-    drop-shadow(8px -30px 3px rgba(0, 61, 216, 0.601));
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.title-img:hover {
+    transform: scale(1.1);
+}
+
+.sun {
+    animation-name: flicker-sun;
+    animation-duration: 0.8s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+.sun:hover {
+    transform: rotate(120deg);
+}
+
+.moon {
+    transform: rotate(-10deg);
+    animation-name: flicker-moon;
+    animation-duration: 0.8s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+.moon:hover {
+    transform: rotate(30deg);
+}
+
+.title-img-on {
+    display: block;
 }
 
 .gif-loading {
@@ -382,6 +415,10 @@ h1 {
 }
 
 @media screen and (max-width: 900px) {
+    .title-img {
+        cursor: default;
+    }
+
     .expand-img-menu {
         height: 60%;
     }
@@ -536,5 +573,37 @@ h1 {
     .left-arrow, .right-arrow {
         width: 30px;
         height: 30px;
+    }
+}
+
+@keyframes flicker-sun {
+    0% {
+        filter: drop-shadow(0 0 0.5px rgb(255, 255, 255))
+        drop-shadow(0 0 1px rgb(255, 255, 186))
+        drop-shadow(0 0 3px rgb(255, 255, 134))
+        drop-shadow(0 0 5px yellow);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 1px rgb(255, 255, 255))
+        drop-shadow(0 0 2px rgb(255, 255, 186))
+        drop-shadow(0 0 4px rgb(255, 255, 134))
+        drop-shadow(0 0 5px yellow);
+    }
+}
+
+@keyframes flicker-moon {
+    0% {
+        filter: drop-shadow(0 0 0.5px rgb(255, 255, 255))
+        drop-shadow(0 0 1px rgb(162, 110, 162))
+        drop-shadow(0 0 3px rgb(146, 56, 146))
+        drop-shadow(0 0 5px rgb(147, 0, 147));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 2px rgb(255, 255, 255))
+        drop-shadow(0 0 3px rgb(162, 110, 162))
+        drop-shadow(0 0 5px rgb(146, 56, 146))
+        drop-shadow(0 0 7px rgb(147, 0, 147));
     }
 }

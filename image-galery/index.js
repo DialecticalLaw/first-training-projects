@@ -195,3 +195,50 @@ function switchRight() {
         return;
     }
 }
+
+// theme
+const header = document.querySelector('header');
+const footer = document.querySelector('footer');
+const ghName = document.querySelector('.gh-name');
+const year = document.querySelector('.year');
+const h1 = document.querySelector('h1');
+const container = document.querySelector('.container');
+
+
+const moon = document.querySelector('.moon');
+const sun = document.querySelector('.sun');
+
+moon.addEventListener('click', enableLightTheme);
+sun.addEventListener('click', enableDarkTheme);
+
+function enableLightTheme() {
+    header.setAttribute('style', 'background-image: url(assets/img/lightHeader.jpg); border-bottom: 3px solid rgb(185 160 255); box-shadow: 0 0 30px 5px rgb(150 114 250);');
+    footer.setAttribute('style', 'background-image: url(assets/img/lightFooter.jpg); border-top: 3px solid rgb(185 160 255); box-shadow: 0 0 30px 5px rgb(150 114 250)');
+    moon.classList.remove('title-img-on');
+    sun.classList.add('title-img-on');
+    ghName.style.color = 'black'
+    year.style.color = 'black';
+    github.style.fill = 'black';
+    h1.style.color = 'rgb(38 161 1)'
+    container.style['background-color'] = 'rgb(241 225 246)';
+
+    for (let img of images) {
+        img.style.outline = '1px solid yellow';
+    }
+}
+
+function enableDarkTheme() {
+    header.removeAttribute('style');
+    footer.removeAttribute('style');
+    moon.classList.add('title-img-on');
+    sun.classList.remove('title-img-on');
+    ghName.removeAttribute('style');
+    year.removeAttribute('style');
+    github.style.fill = 'white';
+    h1.style.color = '#7dcfb1'
+    container.style['background-color'] = 'rgb(35, 44, 57)';
+
+    for (let img of images) {
+        img.style.outline = '1px solid #7dcfb1';
+    }
+}
