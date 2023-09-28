@@ -10,6 +10,9 @@ const expandImgMenu = document.querySelector('.expand-img-menu');
 const expandImgImage = document.querySelector('.expand-img');
 const closeMenuSvg = document.querySelector('.close-menu');
 
+const rightArrow = document.querySelector('.right-arrow');
+const leftArrow = document.querySelector('.left-arrow');
+
 const urlBase = 'https://api.unsplash.com/search/photos/?query='
 const clientId = '&per_page=15&tag_mode=all&orientation=landscape&client_id=F4jIYSVLXctYvGgXXqr4XrPS7ceikoMPfyUbOfuxQTk'
 
@@ -28,9 +31,21 @@ document.addEventListener('click', event => {
     }
 })
 
+let selectedImg;
+
 function expandImg(event) {
+    selectedImg = event.target;
+    selectedImg.classList.add('selected-img');
     expandImgWrapper.classList.add('expand-img-wrapper-on');
     expandImgImage.src = event.target.style['background-image'].slice(5, -2);
+    if (selectedImg.previousElementSibling === null) {
+        leftArrow.style.opacity = '0.3';
+    } else if (selectedImg.nextElementSibling === null) {
+        rightArrow.style.opacity = '0.3';
+    } else {
+        rightArrow.style.opacity = '1';
+        leftArrow.style.opacity = '1';
+    }
     setTimeout(() => {
         expandImgWrapper.classList.add('expand-img-wrapper-blackout');
         expandImgMenu.classList.add('expand-img-menu-on');
@@ -40,6 +55,7 @@ function expandImg(event) {
 closeMenuSvg.addEventListener('click', closeExpandImg);
 
 function closeExpandImg() {
+    selectedImg.classList.remove('selected-img');
     expandImgWrapper.classList.remove('expand-img-wrapper-blackout');
     expandImgMenu.classList.remove('expand-img-menu-on');
     setTimeout(() => {
@@ -110,5 +126,68 @@ searchBlock.addEventListener('keydown', doSearchOnEnter);
 function doSearchOnEnter(event) {
     if (event.code === 'Enter') {
         getImages();
+    }
+}
+
+leftArrow.addEventListener('click', switchLeft);
+rightArrow.addEventListener('click', switchRight);
+
+function switchLeft() {
+    if (selectedImg.previousElementSibling !== null) {
+        expandImgImage.classList.add('fade-img-right');
+
+        setTimeout(() => {
+            selectedImg.classList.remove('selected-img');
+            selectedImg = selectedImg.previousElementSibling;
+            selectedImg.classList.add('selected-img');
+            expandImgImage.src = selectedImg.style['background-image'].slice(5, -2);
+            if (selectedImg.previousElementSibling === null) {
+                leftArrow.style.opacity = '0.3';
+            } else {
+                leftArrow.style.opacity = '1';
+            }
+            
+            if (selectedImg.nextElementSibling !== null) {
+                rightArrow.style.opacity = '1';
+            }
+            
+            expandImgImage.classList.add('fade-img-left');
+            expandImgImage.classList.remove('fade-img-right');
+            setTimeout(() => {
+                expandImgImage.classList.remove('fade-img-left');
+            }, 100);
+        }, 200);
+    } else {
+        return;
+    }
+}
+
+function switchRight() {
+    if (selectedImg.nextElementSibling !== null) {
+        expandImgImage.classList.add('fade-img-left');
+
+        setTimeout(() => {
+            selectedImg.classList.remove('selected-img');
+            selectedImg = selectedImg.nextElementSibling;
+            selectedImg.classList.add('selected-img');
+            expandImgImage.src = selectedImg.style['background-image'].slice(5, -2);
+            if (selectedImg.nextElementSibling === null) {
+                rightArrow.style.opacity = '0.3';
+            } else {
+                rightArrow.style.opacity = '1';
+            }
+
+            if (selectedImg.previousElementSibling !== null) {
+                leftArrow.style.opacity = '1';
+            }
+
+            expandImgImage.classList.add('fade-img-right');
+            expandImgImage.classList.remove('fade-img-left');
+            setTimeout(() => {
+                expandImgImage.classList.remove('fade-img-right');
+            }, 100);
+        }, 200);
+    } else {
+        return;
     }
 }
