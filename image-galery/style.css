@@ -259,6 +259,7 @@ h1 {
     left: 10px;
     align-self: center;
     cursor: pointer;
+    transition: 0.1s;
 }
 
 .right-arrow {
@@ -268,6 +269,11 @@ h1 {
     right: 10px;
     align-self: center;
     cursor: pointer;
+    transition: 0.1s;
+}
+
+.left-arrow:hover, .right-arrow:hover {
+    transform: scale(1.1);
 }
 
 .expand-img {

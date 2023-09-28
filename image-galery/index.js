@@ -40,11 +40,15 @@ function expandImg(event) {
     expandImgImage.src = event.target.style['background-image'].slice(5, -2);
     if (selectedImg.previousElementSibling === null) {
         leftArrow.style.opacity = '0.3';
-    } else if (selectedImg.nextElementSibling === null) {
+    }
+    if (selectedImg.nextElementSibling === null) {
         rightArrow.style.opacity = '0.3';
-    } else {
-        rightArrow.style.opacity = '1';
+    }
+    if (selectedImg.previousElementSibling !== null) {
         leftArrow.style.opacity = '1';
+    }
+    if (selectedImg.nextElementSibling !== null) {
+        rightArrow.style.opacity = '1';
     }
     setTimeout(() => {
         expandImgWrapper.classList.add('expand-img-wrapper-blackout');
