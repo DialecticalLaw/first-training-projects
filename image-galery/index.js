@@ -39,16 +39,16 @@ function expandImg(event) {
     expandImgWrapper.classList.add('expand-img-wrapper-on');
     expandImgImage.src = event.target.style['background-image'].slice(5, -2);
     if (selectedImg.previousElementSibling === null) {
-        leftArrow.style.opacity = '0.3';
+        leftArrow.setAttribute('style', 'opacity: 0.3; cursor: default;');
     }
     if (selectedImg.nextElementSibling === null) {
-        rightArrow.style.opacity = '0.3';
+        rightArrow.setAttribute('style', 'opacity: 0.3; cursor: default;');
     }
     if (selectedImg.previousElementSibling !== null) {
-        leftArrow.style.opacity = '1';
+        leftArrow.setAttribute('style', 'opacity: 1; cursor: pointer;');
     }
     if (selectedImg.nextElementSibling !== null) {
-        rightArrow.style.opacity = '1';
+        rightArrow.setAttribute('style', 'opacity: 1; cursor: pointer;');
     }
     setTimeout(() => {
         expandImgWrapper.classList.add('expand-img-wrapper-blackout');
@@ -138,6 +138,7 @@ rightArrow.addEventListener('click', switchRight);
 
 function switchLeft() {
     if (selectedImg.previousElementSibling !== null) {
+        leftArrow.removeEventListener('click', switchLeft);
         expandImgImage.classList.add('fade-img-right');
 
         setTimeout(() => {
@@ -146,19 +147,20 @@ function switchLeft() {
             selectedImg.classList.add('selected-img');
             expandImgImage.src = selectedImg.style['background-image'].slice(5, -2);
             if (selectedImg.previousElementSibling === null) {
-                leftArrow.style.opacity = '0.3';
+                leftArrow.setAttribute('style', 'opacity: 0.3; cursor: default;');
             } else {
-                leftArrow.style.opacity = '1';
+                leftArrow.setAttribute('style', 'opacity: 1; cursor: pointer;');
             }
             
             if (selectedImg.nextElementSibling !== null) {
-                rightArrow.style.opacity = '1';
+                rightArrow.setAttribute('style', 'opacity: 1; cursor: pointer;');
             }
             
             expandImgImage.classList.add('fade-img-left');
             expandImgImage.classList.remove('fade-img-right');
             setTimeout(() => {
                 expandImgImage.classList.remove('fade-img-left');
+                leftArrow.addEventListener('click', switchLeft);
             }, 100);
         }, 200);
     } else {
@@ -168,6 +170,7 @@ function switchLeft() {
 
 function switchRight() {
     if (selectedImg.nextElementSibling !== null) {
+        rightArrow.removeEventListener('click', switchRight);
         expandImgImage.classList.add('fade-img-left');
 
         setTimeout(() => {
@@ -176,19 +179,20 @@ function switchRight() {
             selectedImg.classList.add('selected-img');
             expandImgImage.src = selectedImg.style['background-image'].slice(5, -2);
             if (selectedImg.nextElementSibling === null) {
-                rightArrow.style.opacity = '0.3';
+                rightArrow.setAttribute('style', 'opacity: 0.3; cursor: default;');
             } else {
-                rightArrow.style.opacity = '1';
+                rightArrow.setAttribute('style', 'opacity: 1; cursor: pointer;');
             }
 
             if (selectedImg.previousElementSibling !== null) {
-                leftArrow.style.opacity = '1';
+                leftArrow.setAttribute('style', 'opacity: 1; cursor: pointer;');
             }
 
             expandImgImage.classList.add('fade-img-right');
             expandImgImage.classList.remove('fade-img-left');
             setTimeout(() => {
                 expandImgImage.classList.remove('fade-img-right');
+                rightArrow.addEventListener('click', switchRight);
             }, 100);
         }, 200);
     } else {
