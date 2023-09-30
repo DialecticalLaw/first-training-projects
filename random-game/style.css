@@ -79,7 +79,7 @@ body {
     height: 100%;
 }
 
-.point {
+.plate {
     width: 25%;
     height: 25%;
     display: flex;
@@ -91,6 +91,7 @@ body {
     font-size: 80px;
     color: white;
     user-select: none;
+    transition: 0.2s;
 }
 
 .footer {

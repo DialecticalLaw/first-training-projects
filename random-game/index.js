@@ -1,9 +1,11 @@
-const points = document.querySelectorAll('.point');
+const plates = document.querySelectorAll('.plate');
 const btn = document.querySelector('.btn-new-game');
 
 btn.addEventListener('click', startGame);
 
-function makeNumber(num, elem) {
+startGame();
+
+function makePoint(num, elem) {
     elem.innerHTML = num;
     if (num === 2) {
         elem.style['background-color'] = 'aqua';
@@ -21,11 +23,18 @@ function makeNumber(num, elem) {
 }
 
 function startGame() {
-    for (let point of points) {
-        point.innerHTML = '';
-        point.style['background-color'] = '';
+    for (let plate of plates) {
+        plate.innerHTML = '';
+        plate.style['background-color'] = '';
     }
-    const numRandomPoint = Math.floor(Math.random() * 16);
-    console.log(numRandomPoint)
-    makeNumber(2, points[numRandomPoint]);
+    const numRandomPlate = Math.floor(Math.random() * 16);
+    makePoint(2, plates[numRandomPlate]);
+}
+
+document.addEventListener('keydown', movePoints);
+
+function movePoints(event) {
+    if (event.code === 'ArrowRight') {
+        
+    }
 }
