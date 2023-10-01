@@ -52,6 +52,7 @@ body {
     border-radius: 15px;
     cursor: pointer;
     background-color: orange;
+    user-select: none;
 }
 
 .play-board {
@@ -82,6 +83,9 @@ body {
 .plate {
     width: 25%;
     height: 25%;
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
