@@ -13,15 +13,12 @@ function startGame() {
     }
 
     const shiftValues = ['0%', '25%', '50%', '75%'];
-    playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:${shiftValues[Math.floor(Math.random() * 4)]};top:${shiftValues[Math.floor(Math.random() * 4)]};background-color: aqua;">2</div>`);
+    playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: ${shiftValues[Math.floor(Math.random() * 4)]}; top: ${shiftValues[Math.floor(Math.random() * 4)]}; background-color: aqua;">2</div>`);
     savePlateCoordinates(document.querySelector('.plate'));
 }
 
-function createPlate(elem, num) {
-    elem.innerHTML = num;
-    if (num === 2) {
-        elem.style['background-color'] = 'aqua';
-    } else if (num === 4) {
+function paintPlate(elem, num) {
+    if (num === 4) {
         elem.style['background-color'] = 'orange';
     } else if (num === 8) {
         elem.style['background-color'] = 'blue';
@@ -30,9 +27,11 @@ function createPlate(elem, num) {
     } else if (num === 32) {
         elem.style['background-color'] = 'yellow';
     } else if (num === 64) {
-        elem.style['background-color'] = 'white';
+        elem.style['background-color'] = 'black';
     } else if (num === 128) {
         elem.style['background-color'] = 'red';
+    } else {
+        elem.style['background-color'] = 'purple';
     }
 }
 
@@ -96,60 +95,61 @@ function createRandomPlate() {
     }*/
 
     const randomElemNum = Math.floor(Math.random() * numPlates.length);
-    console.log(numPlates[randomElemNum])
+
     switch (numPlates[randomElemNum]) {
         case 0:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:0;top:0;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 0%; top: 0%; background-color: aqua;" data-x="0" data-y="0">2</div>`);
             break;
         case 1:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:25%;top:0;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 25%; top: 0%; background-color: aqua;" data-x="25" data-y="0">2</div>`);
             break;
         case 2:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:50%;top:0;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 50%; top: 0%; background-color: aqua;" data-x="50" data-y="0">2</div>`);
             break;
         case 3:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:75%;top:0;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 75%; top: 0%; background-color: aqua;" data-x="75" data-y="0">2</div>`);
             break;
         case 4:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:0;top:25%;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 0%; top: 25%; background-color: aqua;" data-x="0" data-y="25">2</div>`);
             break;
         case 5:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:25%;top:25%;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 25%; top: 25%; background-color: aqua;" data-x="25" data-y="25">2</div>`);
             break;
         case 6:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:50%;top:25%;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 50%; top: 25%; background-color: aqua;" data-x="50" data-y="25">2</div>`);
             break;
         case 7:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:75%;top:25%;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 75%; top: 25%; background-color: aqua;" data-x="75" data-y="25">2</div>`);
             break;
         case 8:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:0;top:50%;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 0%; top: 50%; background-color: aqua;" data-x="0" data-y="50">2</div>`);
             break;
         case 9:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:25%;top:50%;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 25%; top: 50%; background-color: aqua;" data-x="25" data-y="50">2</div>`);
             break;
         case 10:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:50%;top:50%;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 50%; top: 50%; background-color: aqua;" data-x="50" data-y="50">2</div>`);
             break;
         case 11:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:75%;top:50%;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 75%; top: 50%; background-color: aqua;" data-x="75" data-y="50">2</div>`);
             break;
         case 12:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:0;top:75%;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 0%; top: 75%; background-color: aqua;" data-x="0" data-y="75">2</div>`);
             break;
         case 13:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:25%;top:75%;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 25%; top: 75%; background-color: aqua;" data-x="25" data-y="75">2</div>`);
             break;
         case 14:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:50%;top:75%;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 50%; top: 75%; background-color: aqua;" data-x="50" data-y="75">2</div>`);
             break;
         case 15:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left:75%;top:75%;background-color: aqua;">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 75%; top: 75%; background-color: aqua;" data-x="75" data-y="75">2</div>`);
             break;
     }
 }
 
 function savePlateCoordinates(elem) {
+
     if (elem.offsetLeft / playBoard.offsetWidth * 100 + '%' === '0%') {
         elem.dataset.x = '0';
     } else if (elem.offsetLeft / playBoard.offsetWidth * 100 + '%' === '25%') {
@@ -171,27 +171,46 @@ function savePlateCoordinates(elem) {
     }
 }
 
-function movePlate(elem, direction) {
+function movePlate(elem, direction, isSecondLoop) {
     if (direction === 'right') {
-        document.removeEventListener('keydown', playerAction);
-        let passingElem = undefined;
 
-        for (let i = elem.dataset.x + 25; i <= 75; i+= 25) { // check passing elem
-            if (document.querySelector(`[data-x="${i}"]`) !== null) {
-                passingElem = `[data-x="${i}"]`;
+        let passingElem = undefined;
+        
+        for (let i = Number(elem.dataset.x) + 25; i <= 75; i+= 25) { // check passing elem
+            if (document.querySelector(`[data-x="${i}"][data-y="${elem.dataset.y}"]`) !== null) {
+                passingElem = `[data-x="${i}"][data-y="${elem.dataset.y}"]`;
+                break;
             }
         }
 
-        if (passingElem === undefined) { // do something depending on the passing elem
+        if (isSecondLoop === true && passingElem !== undefined) {
+            elem.style.left = document.querySelector(passingElem).dataset.x - 25 + '%';
+            setTimeout(() => {
+                savePlateCoordinates(elem);
+            }, 200);
+        } else if (passingElem === undefined) {
             elem.style.left = '75%';
             setTimeout(() => {
                 savePlateCoordinates(elem);
-                document.addEventListener('keydown', playerAction);
             }, 210);
-        } else if (passingElem !== undefined && passingElem.innerHTML === elem.innerHTML) {
-
-        } else if (passingElem !== undefined && passingElem.innerHTML !== elem.innerHTML) {
-
+        } else if (passingElem !== undefined && document.querySelector(passingElem).innerHTML === elem.innerHTML) {
+                elem.style.left = document.querySelector(passingElem).style.left;
+                setTimeout(() => {
+                    paintPlate(document.querySelector(passingElem), Number(document.querySelector(passingElem).innerHTML) + Number(elem.innerHTML));
+                    document.querySelector(passingElem).innerHTML = Number(document.querySelector(passingElem).innerHTML) + Number(elem.innerHTML);
+                    elem.remove();
+                    const plates = document.querySelectorAll('.plate');
+                    for (let plate of plates) {
+                        if (plate.dataset.y === document.querySelector(passingElem).dataset.y) {
+                            movePlate(plate, 'right', true);
+                        }
+                    }
+                }, 200);
+        } else if (passingElem !== undefined && document.querySelector(passingElem).innerHTML !== elem.innerHTML) {
+            elem.style.left = document.querySelector(passingElem).dataset.x - 25 + '%';
+            setTimeout(() => {
+                savePlateCoordinates(elem);
+            }, 200);
         }
     }
 }
@@ -199,12 +218,18 @@ function movePlate(elem, direction) {
 document.addEventListener('keydown', playerAction);
 
 function playerAction(event) {
+    document.removeEventListener('keydown', playerAction);
     const plates = document.querySelectorAll('.plate');
 
     if (event.code === 'ArrowRight') {
         for (let plate of plates) {
-            movePlate(plate, 'right');
+            savePlateCoordinates(plate)
+            movePlate(plate, 'right', false);
         }
-        createRandomPlate();
+
+        setTimeout(() => {
+            createRandomPlate();
+            document.addEventListener('keydown', playerAction);
+        }, 420);
     }
 }
