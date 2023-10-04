@@ -35,7 +35,7 @@ function paintPlate(elem, num) {
     }
 }
 
-function createRandomPlate() {
+function createRandomPlate(num, color) {
     let numPlates = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
     const plates = document.querySelectorAll('.plate');
 
@@ -95,52 +95,52 @@ function createRandomPlate() {
 
     switch (numPlates[randomElemNum]) {
         case 0:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 0%; top: 0%; background-color: aqua;" data-x="0" data-y="0">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 0%; top: 0%; background-color: ${color};" data-x="0" data-y="0">${num}</div>`);
             break;
         case 1:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 25%; top: 0%; background-color: aqua;" data-x="25" data-y="0">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 25%; top: 0%; background-color: ${color};" data-x="25" data-y="0">${num}</div>`);
             break;
         case 2:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 50%; top: 0%; background-color: aqua;" data-x="50" data-y="0">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 50%; top: 0%; background-color: ${color};" data-x="50" data-y="0">${num}</div>`);
             break;
         case 3:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 75%; top: 0%; background-color: aqua;" data-x="75" data-y="0">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 75%; top: 0%; background-color: ${color};" data-x="75" data-y="0">${num}</div>`);
             break;
         case 4:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 0%; top: 25%; background-color: aqua;" data-x="0" data-y="25">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 0%; top: 25%; background-color: ${color};" data-x="0" data-y="25">${num}</div>`);
             break;
         case 5:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 25%; top: 25%; background-color: aqua;" data-x="25" data-y="25">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 25%; top: 25%; background-color: ${color};" data-x="25" data-y="25">${num}</div>`);
             break;
         case 6:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 50%; top: 25%; background-color: aqua;" data-x="50" data-y="25">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 50%; top: 25%; background-color: ${color};" data-x="50" data-y="25">${num}</div>`);
             break;
         case 7:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 75%; top: 25%; background-color: aqua;" data-x="75" data-y="25">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 75%; top: 25%; background-color: ${color};" data-x="75" data-y="25">${num}</div>`);
             break;
         case 8:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 0%; top: 50%; background-color: aqua;" data-x="0" data-y="50">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 0%; top: 50%; background-color: ${color};" data-x="0" data-y="50">${num}</div>`);
             break;
         case 9:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 25%; top: 50%; background-color: aqua;" data-x="25" data-y="50">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 25%; top: 50%; background-color: ${color};" data-x="25" data-y="50">${num}</div>`);
             break;
         case 10:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 50%; top: 50%; background-color: aqua;" data-x="50" data-y="50">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 50%; top: 50%; background-color: ${color};" data-x="50" data-y="50">${num}</div>`);
             break;
         case 11:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 75%; top: 50%; background-color: aqua;" data-x="75" data-y="50">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 75%; top: 50%; background-color: ${color};" data-x="75" data-y="50">${num}</div>`);
             break;
         case 12:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 0%; top: 75%; background-color: aqua;" data-x="0" data-y="75">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 0%; top: 75%; background-color: ${color};" data-x="0" data-y="75">${num}</div>`);
             break;
         case 13:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 25%; top: 75%; background-color: aqua;" data-x="25" data-y="75">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 25%; top: 75%; background-color: ${color};" data-x="25" data-y="75">${num}</div>`);
             break;
         case 14:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 50%; top: 75%; background-color: aqua;" data-x="50" data-y="75">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 50%; top: 75%; background-color: ${color};" data-x="50" data-y="75">${num}</div>`);
             break;
         case 15:
-            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 75%; top: 75%; background-color: aqua;" data-x="75" data-y="75">2</div>`);
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: 75%; top: 75%; background-color: ${color};" data-x="75" data-y="75">${num}</div>`);
             break;
     }
 }
@@ -340,28 +340,48 @@ function playerAction(event) {
         movePlate('right');
 
         setTimeout(() => {
-            createRandomPlate();
+            let twoOrFourPercent = Math.floor(Math.random() * 101);
+            if (twoOrFourPercent >= 90) {
+                createRandomPlate(4, 'orange');
+            } else {
+                createRandomPlate(2, 'aqua');
+            }
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowLeft') {
         movePlate('left');
 
         setTimeout(() => {
-            createRandomPlate();
+            let twoOrFourPercent = Math.floor(Math.random() * 101);
+            if (twoOrFourPercent >= 90) {
+                createRandomPlate(4, 'orange');
+            } else {
+                createRandomPlate(2, 'aqua');
+            }
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowUp') {
         movePlate('up');
 
         setTimeout(() => {
-            createRandomPlate();
+            let twoOrFourPercent = Math.floor(Math.random() * 101);
+            if (twoOrFourPercent >= 90) {
+                createRandomPlate(4, 'orange');
+            } else {
+                createRandomPlate(2, 'aqua');
+            }
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowDown') {
         movePlate('down');
 
         setTimeout(() => {
-            createRandomPlate();
+            let twoOrFourPercent = Math.floor(Math.random() * 101);
+            if (twoOrFourPercent >= 90) {
+                createRandomPlate(4, 'orange');
+            } else {
+                createRandomPlate(2, 'aqua');
+            }
             document.addEventListener('keydown', playerAction);
         }, 210);
     }
