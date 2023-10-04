@@ -192,7 +192,6 @@ function movePlate(direction) {
             }
 
             for (let row of horizontal) {
-                console.log(row)
                 for (let i = row.length - 1; i >= 0; i--) {
                     if (i === row.length - 1) {
                         row[i].dataset.x = '75';
@@ -228,17 +227,65 @@ function movePlate(direction) {
                     horizontal.push(row);
                 }
             }
+
+            for (let row of horizontal) {
+                for (let i = 0; i <= 3; i++) {
+                    if (i === 0) {
+                        row[i].dataset.x = '0';
+                        updatePlateCoordinates(row[i]);
+                    }
+                    
+                    if (row[i + 1] !== undefined) {
+                        if (row[i].innerHTML === row[i + 1].innerHTML) {
+                        row[i + 1].dataset.x = row[i].dataset.x;
+                        updatePlateCoordinates(row[i + 1]);
+                        setTimeout(() => {
+                            row[i].innerHTML = Number(row[i].innerHTML) + Number(row[i + 1].innerHTML);
+                            paintPlate(row[i], Number(row[i].innerHTML));
+                            row[i + 1].remove();
+                        }, 200);
+                        } else if (row[i].innerHTML !== row[i + 1].innerHTML) {
+                            row[i + 1].dataset.x = Number(row[i].dataset.x) + 25;
+                            updatePlateCoordinates(row[i + 1]);
+                        }
+                    }
+                }
+            }
             break;
         case 'up':
             for (let n = 0; n <= 75; n += 25) { // creating an array with plates >UP<
                 let column = [];
                 for (let i = 0; i <= 75; i += 25) {
-                    if (document.querySelector(`[data-x="${i}"][data-y="${n}"]`) !== null) {
-                        column.push(document.querySelector(`[data-x="${i}"][data-y="${n}"]`));
+                    if (document.querySelector(`[data-x="${n}"][data-y="${i}"]`) !== null) {
+                        column.push(document.querySelector(`[data-x="${n}"][data-y="${i}"]`));
                     }
                 }
                 if (column.length) {
                     vertical.push(column);
+                }
+            }
+
+            for (let column of vertical) {
+                for (let i = 0; i <= 3; i++) {
+                    if (i === 0) {
+                        column[i].dataset.y = '0';
+                        updatePlateCoordinates(column[i]);
+                    }
+                    
+                    if (column[i + 1] !== undefined) {
+                        if (column[i].innerHTML === column[i + 1].innerHTML) {
+                        column[i + 1].dataset.y = column[i].dataset.y;
+                        updatePlateCoordinates(column[i + 1]);
+                        setTimeout(() => {
+                            column[i].innerHTML = Number(column[i].innerHTML) + Number(column[i + 1].innerHTML);
+                            paintPlate(column[i], Number(column[i].innerHTML));
+                            column[i + 1].remove();
+                        }, 200);
+                        } else if (column[i].innerHTML !== column[i + 1].innerHTML) {
+                            column[i + 1].dataset.y = Number(column[i].dataset.y) + 25;
+                            updatePlateCoordinates(column[i + 1]);
+                        }
+                    }
                 }
             }
             break;
@@ -246,12 +293,36 @@ function movePlate(direction) {
             for (let n = 0; n <= 75; n += 25) { // creating an array with plates >DOWN<
                 let column = [];
                 for (let i = 0; i <= 75; i += 25) {
-                    if (document.querySelector(`[data-x="${i}"][data-y="${n}"]`) !== null) {
-                        column.push(document.querySelector(`[data-x="${i}"][data-y="${n}"]`));
+                    if (document.querySelector(`[data-x="${n}"][data-y="${i}"]`) !== null) {
+                        column.push(document.querySelector(`[data-x="${n}"][data-y="${i}"]`));
                     }
                 }
                 if (column.length) {
                     vertical.push(column);
+                }
+            }
+
+            for (let column of vertical) {
+                for (let i = column.length - 1; i >= 0; i--) {
+                    if (i === column.length - 1) {
+                        column[i].dataset.y = '75';
+                        updatePlateCoordinates(column[i]);
+                    }
+                    
+                    if (column[i - 1] !== undefined) {
+                        if (column[i].innerHTML === column[i - 1].innerHTML) {
+                        column[i - 1].dataset.y = column[i].dataset.y;
+                        updatePlateCoordinates(column[i - 1]);
+                        setTimeout(() => {
+                            column[i].innerHTML = Number(column[i].innerHTML) + Number(column[i - 1].innerHTML);
+                            paintPlate(column[i], Number(column[i].innerHTML));
+                            column[i - 1].remove();
+                        }, 200);
+                        } else if (column[i].innerHTML !== column[i - 1].innerHTML) {
+                            column[i - 1].dataset.y = Number(column[i].dataset.y) - 25;
+                            updatePlateCoordinates(column[i - 1]);
+                        }
+                    }
                 }
             }
             break;
@@ -274,6 +345,20 @@ function playerAction(event) {
         }, 210);
     } else if (event.code === 'ArrowLeft') {
         movePlate('left');
+
+        setTimeout(() => {
+            createRandomPlate();
+            document.addEventListener('keydown', playerAction);
+        }, 210);
+    } else if (event.code === 'ArrowUp') {
+        movePlate('up');
+
+        setTimeout(() => {
+            createRandomPlate();
+            document.addEventListener('keydown', playerAction);
+        }, 210);
+    } else if (event.code === 'ArrowDown') {
+        movePlate('down');
 
         setTimeout(() => {
             createRandomPlate();
