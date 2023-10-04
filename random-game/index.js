@@ -90,9 +90,6 @@ function createRandomPlate() {
         }
     }
 
-    /*if (!randomElemNum.length) { // DO DEFEAT ////////////////////////////////////////////////////////////////
-        showDefeat();
-    }*/
 
     const randomElemNum = Math.floor(Math.random() * numPlates.length);
 
@@ -171,47 +168,95 @@ function savePlateCoordinates(elem) {
     }
 }
 
-function movePlate(elem, direction, isSecondLoop) {
-    if (direction === 'right') {
+function updatePlateCoordinates(elem) {
+    elem.style.left = elem.dataset.x + '%';
+    elem.style.top = elem.dataset.y + '%';
+}
 
-        let passingElem = undefined;
-        
-        for (let i = Number(elem.dataset.x) + 25; i <= 75; i+= 25) { // check passing elem
-            if (document.querySelector(`[data-x="${i}"][data-y="${elem.dataset.y}"]`) !== null) {
-                passingElem = `[data-x="${i}"][data-y="${elem.dataset.y}"]`;
-                break;
+function movePlate(direction) {
+    let horizontal = [];
+    let vertical = []
+
+    switch (direction) {
+        case 'right':
+            for (let i = 0; i <= 75; i += 25) { // creating an array with plates >RIGHT<
+                let row = [];
+                for (let n = 0; n <= 75; n += 25) {
+                    if (document.querySelector(`[data-x="${n}"][data-y="${i}"]`) !== null) {
+                        row.push(document.querySelector(`[data-x="${n}"][data-y="${i}"]`));
+                    }
+                }
+                if (row.length) {
+                    horizontal.push(row);
+                }
             }
-        }
 
-        if (isSecondLoop === true && passingElem !== undefined) {
-            elem.style.left = document.querySelector(passingElem).dataset.x - 25 + '%';
-            setTimeout(() => {
-                savePlateCoordinates(elem);
-            }, 200);
-        } else if (passingElem === undefined) {
-            elem.style.left = '75%';
-            setTimeout(() => {
-                savePlateCoordinates(elem);
-            }, 210);
-        } else if (passingElem !== undefined && document.querySelector(passingElem).innerHTML === elem.innerHTML) {
-                elem.style.left = document.querySelector(passingElem).style.left;
-                setTimeout(() => {
-                    paintPlate(document.querySelector(passingElem), Number(document.querySelector(passingElem).innerHTML) + Number(elem.innerHTML));
-                    document.querySelector(passingElem).innerHTML = Number(document.querySelector(passingElem).innerHTML) + Number(elem.innerHTML);
-                    elem.remove();
-                    const plates = document.querySelectorAll('.plate');
-                    for (let plate of plates) {
-                        if (plate.dataset.y === document.querySelector(passingElem).dataset.y) {
-                            movePlate(plate, 'right', true);
+            for (let row of horizontal) {
+                console.log(row)
+                for (let i = row.length - 1; i >= 0; i--) {
+                    if (i === row.length - 1) {
+                        row[i].dataset.x = '75';
+                        updatePlateCoordinates(row[i]);
+                    }
+                    
+                    if (row[i - 1] !== undefined) {
+                        if (row[i].innerHTML === row[i - 1].innerHTML) {
+                        row[i - 1].dataset.x = row[i].dataset.x;
+                        updatePlateCoordinates(row[i - 1]);
+                        setTimeout(() => {
+                            row[i].innerHTML = Number(row[i].innerHTML) + Number(row[i - 1].innerHTML);
+                            paintPlate(row[i], Number(row[i].innerHTML));
+                            row[i - 1].remove();
+                        }, 200);
+                        } else if (row[i].innerHTML !== row[i - 1].innerHTML) {
+                            row[i - 1].dataset.x = Number(row[i].dataset.x) - 25;
+                            updatePlateCoordinates(row[i - 1]);
                         }
                     }
-                }, 200);
-        } else if (passingElem !== undefined && document.querySelector(passingElem).innerHTML !== elem.innerHTML) {
-            elem.style.left = document.querySelector(passingElem).dataset.x - 25 + '%';
-            setTimeout(() => {
-                savePlateCoordinates(elem);
-            }, 200);
-        }
+                }
+            }
+            break;
+        case 'left':
+            for (let i = 0; i <= 75; i += 25) { // creating an array with plates >LEFT<
+                let row = [];
+                for (let n = 0; n <= 75; n += 25) {
+                    if (document.querySelector(`[data-x="${n}"][data-y="${i}"]`) !== null) {
+                        row.push(document.querySelector(`[data-x="${n}"][data-y="${i}"]`));
+                    }
+                }
+                if (row.length) {
+                    horizontal.push(row);
+                }
+            }
+            break;
+        case 'up':
+            for (let n = 0; n <= 75; n += 25) { // creating an array with plates >UP<
+                let column = [];
+                for (let i = 0; i <= 75; i += 25) {
+                    if (document.querySelector(`[data-x="${i}"][data-y="${n}"]`) !== null) {
+                        column.push(document.querySelector(`[data-x="${i}"][data-y="${n}"]`));
+                    }
+                }
+                if (column.length) {
+                    vertical.push(column);
+                }
+            }
+            break;
+        case 'down':
+            for (let n = 0; n <= 75; n += 25) { // creating an array with plates >DOWN<
+                let column = [];
+                for (let i = 0; i <= 75; i += 25) {
+                    if (document.querySelector(`[data-x="${i}"][data-y="${n}"]`) !== null) {
+                        column.push(document.querySelector(`[data-x="${i}"][data-y="${n}"]`));
+                    }
+                }
+                if (column.length) {
+                    vertical.push(column);
+                }
+            }
+            break;
+        default:
+            break;
     }
 }
 
@@ -219,17 +264,20 @@ document.addEventListener('keydown', playerAction);
 
 function playerAction(event) {
     document.removeEventListener('keydown', playerAction);
-    const plates = document.querySelectorAll('.plate');
 
     if (event.code === 'ArrowRight') {
-        for (let plate of plates) {
-            savePlateCoordinates(plate)
-            movePlate(plate, 'right', false);
-        }
+        movePlate('right');
 
         setTimeout(() => {
             createRandomPlate();
             document.addEventListener('keydown', playerAction);
-        }, 420);
+        }, 210);
+    } else if (event.code === 'ArrowLeft') {
+        movePlate('left');
+
+        setTimeout(() => {
+            createRandomPlate();
+            document.addEventListener('keydown', playerAction);
+        }, 210);
     }
 }
