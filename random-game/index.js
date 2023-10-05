@@ -168,7 +168,27 @@ function savePlateCoordinates(elem) {
     }
 }
 
+let randomElemStatus = new Event('isElemCanBeCreated');
+document.addEventListener('isElemCanBeCreated', createNewElem);
+
+function createNewElem() {
+    document.removeEventListener('isElemCanBeCreated', createNewElem);
+    setTimeout(() => {
+        let twoOrFourPercent = Math.floor(Math.random() * 101);
+        if (twoOrFourPercent >= 90) {
+            createRandomPlate(4, 'orange');
+        } else {
+            createRandomPlate(2, 'aqua');
+        }
+        document.addEventListener('isElemCanBeCreated', createNewElem);
+    }, 210);
+}
+
 function updatePlateCoordinates(elem) {
+    if (elem.style.left !== elem.dataset.x + '%' || elem.style.top !== elem.dataset.y + '%') {
+        document.dispatchEvent(randomElemStatus);
+    }
+
     elem.style.left = elem.dataset.x + '%';
     elem.style.top = elem.dataset.y + '%';
 }
@@ -335,53 +355,28 @@ document.addEventListener('keydown', playerAction);
 
 function playerAction(event) {
     document.removeEventListener('keydown', playerAction);
-
     if (event.code === 'ArrowRight') {
         movePlate('right');
 
         setTimeout(() => {
-            let twoOrFourPercent = Math.floor(Math.random() * 101);
-            if (twoOrFourPercent >= 90) {
-                createRandomPlate(4, 'orange');
-            } else {
-                createRandomPlate(2, 'aqua');
-            }
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowLeft') {
         movePlate('left');
 
         setTimeout(() => {
-            let twoOrFourPercent = Math.floor(Math.random() * 101);
-            if (twoOrFourPercent >= 90) {
-                createRandomPlate(4, 'orange');
-            } else {
-                createRandomPlate(2, 'aqua');
-            }
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowUp') {
         movePlate('up');
 
         setTimeout(() => {
-            let twoOrFourPercent = Math.floor(Math.random() * 101);
-            if (twoOrFourPercent >= 90) {
-                createRandomPlate(4, 'orange');
-            } else {
-                createRandomPlate(2, 'aqua');
-            }
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowDown') {
         movePlate('down');
 
         setTimeout(() => {
-            let twoOrFourPercent = Math.floor(Math.random() * 101);
-            if (twoOrFourPercent >= 90) {
-                createRandomPlate(4, 'orange');
-            } else {
-                createRandomPlate(2, 'aqua');
-            }
             document.addEventListener('keydown', playerAction);
         }, 210);
     }
