@@ -1,12 +1,13 @@
 const btn = document.querySelector('.btn-new-game');
 const playBoard = document.querySelector('.play-board');
-
+const scoreCount = document.querySelector('.score-count');
 
 btn.addEventListener('click', startGame);
 
 startGame();
 
 function startGame() {
+    scoreCount.innerHTML = '0';
     const plates = document.querySelectorAll('.plate');
     for (let plate of plates) {
         plate.remove();
@@ -193,6 +194,10 @@ function updatePlateCoordinates(elem) {
     elem.style.top = elem.dataset.y + '%';
 }
 
+function updateScoreCount(score) {
+    scoreCount.innerHTML = (Number(scoreCount.innerHTML) + Number(score)).toString();
+}
+
 function movePlate(direction) {
     let horizontal = [];
     let vertical = []
@@ -224,6 +229,7 @@ function movePlate(direction) {
                         updatePlateCoordinates(row[i - 1]);
                         setTimeout(() => {
                             row[i].innerHTML = Number(row[i].innerHTML) + Number(row[i - 1].innerHTML);
+                            updateScoreCount(row[i].innerHTML);
                             paintPlate(row[i], Number(row[i].innerHTML));
                             row[i - 1].remove();
                         }, 200);
@@ -261,6 +267,7 @@ function movePlate(direction) {
                         updatePlateCoordinates(row[i + 1]);
                         setTimeout(() => {
                             row[i].innerHTML = Number(row[i].innerHTML) + Number(row[i + 1].innerHTML);
+                            updateScoreCount(row[i].innerHTML);
                             paintPlate(row[i], Number(row[i].innerHTML));
                             row[i + 1].remove();
                         }, 200);
@@ -298,6 +305,7 @@ function movePlate(direction) {
                         updatePlateCoordinates(column[i + 1]);
                         setTimeout(() => {
                             column[i].innerHTML = Number(column[i].innerHTML) + Number(column[i + 1].innerHTML);
+                            updateScoreCount(column[i].innerHTML);
                             paintPlate(column[i], Number(column[i].innerHTML));
                             column[i + 1].remove();
                         }, 200);
@@ -335,6 +343,7 @@ function movePlate(direction) {
                         updatePlateCoordinates(column[i - 1]);
                         setTimeout(() => {
                             column[i].innerHTML = Number(column[i].innerHTML) + Number(column[i - 1].innerHTML);
+                            updateScoreCount(column[i].innerHTML);
                             paintPlate(column[i], Number(column[i].innerHTML));
                             column[i - 1].remove();
                         }, 200);

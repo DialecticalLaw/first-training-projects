@@ -33,14 +33,15 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
+    gap: 30px;
     width: 100%;
 }
 
 .title {
     font-family: Roboto;
-    font-size: 50px;
+    font-size: 80px;
     color: white;
+    margin: 0;
 }
 
 .btn-new-game {
@@ -53,6 +54,18 @@ body {
     cursor: pointer;
     background-color: orange;
     user-select: none;
+}
+
+.score-text {
+    font-family: Roboto;
+    font-size: 40px;
+    color: white;
+    margin: 0;
+}
+
+.score-count {
+    margin-left: 15px;
+    color: orange;
 }
 
 .play-board {
