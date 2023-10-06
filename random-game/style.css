@@ -85,6 +85,46 @@ body {
     outline: 2px solid orange;
 }
 
+.defeat-window {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    backdrop-filter: blur(16px);
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+.defeat-window-on {
+    display: flex;
+    opacity: 0;
+    transition: 1s;
+}
+
+.defeat-window-appear {
+    opacity: 1;
+}
+
+.defeat-window :nth-child(1) {
+    color: orange;
+    filter: drop-shadow(0 0 13px orange);
+}
+
+.defeat-text {
+    color: orange;
+    font-family: Roboto;
+    font-size: 3vw;
+    text-align: center;
+}
+
+.defeat-window :nth-child(2) {
+    outline: 1px solid orange;
+    border-radius: 20px;
+}
+
 .cell {
     width: 25%;
     height: 25%;

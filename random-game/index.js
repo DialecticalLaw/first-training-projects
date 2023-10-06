@@ -1,12 +1,17 @@
 const btn = document.querySelector('.btn-new-game');
 const playBoard = document.querySelector('.play-board');
 const scoreCount = document.querySelector('.score-count');
+const defeatWindow = document.querySelector('.defeat-window');
 
 btn.addEventListener('click', startGame);
 
 startGame();
 
 function startGame() {
+    if (defeatWindow.classList.contains('defeat-window-on')) {
+        defeatWindow.classList.remove('defeat-window-appear');
+        defeatWindow.classList.remove('defeat-window-on');
+    }
     scoreCount.innerHTML = '0';
     const plates = document.querySelectorAll('.plate');
     for (let plate of plates) {
@@ -208,7 +213,7 @@ function updateScoreCount(score) {
 
 function movePlate(direction) {
     let horizontal = [];
-    let vertical = []
+    let vertical = [];
 
     switch (direction) {
         case 'right':
@@ -384,6 +389,145 @@ function movePlate(direction) {
     }
 }
 
+function areAnyMoves() { // lots of repeating code from the movePlates function
+    let horizontal = [];
+    let vertical = [];
+
+    // check right - start
+    for (let i = 0; i <= 75; i += 25) {
+        let row = [];
+        for (let n = 0; n <= 75; n += 25) {
+            if (document.querySelector(`[data-x="${n}"][data-y="${i}"]`) !== null) {
+                row.push(document.querySelector(`[data-x="${n}"][data-y="${i}"]`));
+            }
+        }
+        if (row.length) {
+            horizontal.push(row);
+        }
+    }
+
+    for (let row of horizontal) {
+        for (let i = row.length - 1; i >= 0; i--) {
+            if (i === row.length - 1) {
+                if (row[i].dataset.x !== '75') {
+                    return true;
+                }
+            }
+            
+            if (row[i - 1] !== undefined) {
+                if (row[i].innerHTML === row[i - 1].innerHTML) {
+                    return true;
+                } else if (row[i].innerHTML !== row[i - 1].innerHTML) {
+                    if (Number(row[i - 1].dataset.x) !== Number(row[i].dataset.x) - 25) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    // check right - end
+    //check left - start
+    for (let i = 0; i <= 75; i += 25) {
+        let row = [];
+        for (let n = 0; n <= 75; n += 25) {
+            if (document.querySelector(`[data-x="${n}"][data-y="${i}"]`) !== null) {
+                row.push(document.querySelector(`[data-x="${n}"][data-y="${i}"]`));
+            }
+        }
+        if (row.length) {
+            horizontal.push(row);
+        }
+    }
+
+    for (let row of horizontal) {
+        for (let i = 0; i <= 3; i++) {
+            if (i === 0) {
+                if (row[i].dataset.x !== '0') {
+                    return true;
+                }
+            }
+            
+            if (row[i + 1] !== undefined) {
+                if (row[i].innerHTML === row[i + 1].innerHTML) {
+                    return true;
+                } else if (row[i].innerHTML !== row[i + 1].innerHTML) {
+                    if (Number(row[i + 1].dataset.x) !== Number(row[i].dataset.x) + 25) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    //check left - end
+    //check up - start
+    for (let n = 0; n <= 75; n += 25) {
+        let column = [];
+        for (let i = 0; i <= 75; i += 25) {
+            if (document.querySelector(`[data-x="${n}"][data-y="${i}"]`) !== null) {
+                column.push(document.querySelector(`[data-x="${n}"][data-y="${i}"]`));
+            }
+        }
+        if (column.length) {
+            vertical.push(column);
+        }
+    }
+
+    for (let column of vertical) {
+        for (let i = 0; i <= 3; i++) {
+            if (i === 0) {
+                if (column[i].dataset.y !== '0') {
+                    return true;
+                }
+            }
+            
+            if (column[i + 1] !== undefined) {
+                if (column[i].innerHTML === column[i + 1].innerHTML) {
+                    return true;
+                } else if (column[i].innerHTML !== column[i + 1].innerHTML) {
+                    if (Number(column[i + 1].dataset.y) !== Number(column[i].dataset.y) + 25) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    //check up - end
+    //check down - start
+    for (let n = 0; n <= 75; n += 25) {
+        let column = [];
+        for (let i = 0; i <= 75; i += 25) {
+            if (document.querySelector(`[data-x="${n}"][data-y="${i}"]`) !== null) {
+                column.push(document.querySelector(`[data-x="${n}"][data-y="${i}"]`));
+            }
+        }
+        if (column.length) {
+            vertical.push(column);
+        }
+    }
+
+    for (let column of vertical) {
+        for (let i = column.length - 1; i >= 0; i--) {
+            if (i === column.length - 1) {
+                if (column[i].dataset.y !== '75') {
+                    return true;
+                }
+            }
+            
+            if (column[i - 1] !== undefined) {
+                if (column[i].innerHTML === column[i - 1].innerHTML) {
+                    return true;
+                } else if (column[i].innerHTML !== column[i - 1].innerHTML) {
+                    if (Number(column[i - 1].dataset.y) !== Number(column[i].dataset.y) - 25) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
+    //check down - end
+}
+
 document.addEventListener('keydown', playerAction);
 
 function playerAction(event) {
@@ -392,6 +536,12 @@ function playerAction(event) {
         movePlate('right');
 
         setTimeout(() => {
+            if (areAnyMoves() === false) {
+                defeatWindow.classList.add('defeat-window-on');
+                setTimeout(() => {
+                    defeatWindow.classList.add('defeat-window-appear');
+                }, 10);
+            }
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowLeft') {
@@ -399,6 +549,12 @@ function playerAction(event) {
         movePlate('left');
 
         setTimeout(() => {
+            if (areAnyMoves() === false) {
+                defeatWindow.classList.add('defeat-window-on');
+                setTimeout(() => {
+                    defeatWindow.classList.add('defeat-window-appear');
+                }, 10);
+            }
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowUp') {
@@ -406,6 +562,12 @@ function playerAction(event) {
         movePlate('up');
 
         setTimeout(() => {
+            if (areAnyMoves() === false) {
+                defeatWindow.classList.add('defeat-window-on');
+                setTimeout(() => {
+                    defeatWindow.classList.add('defeat-window-appear');
+                }, 10);
+            }
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowDown') {
@@ -413,6 +575,12 @@ function playerAction(event) {
         movePlate('down');
 
         setTimeout(() => {
+            if (areAnyMoves() === false) {
+                defeatWindow.classList.add('defeat-window-on');
+                setTimeout(() => {
+                    defeatWindow.classList.add('defeat-window-appear');
+                }, 10);
+            }
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else {
