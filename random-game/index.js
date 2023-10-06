@@ -1,9 +1,66 @@
 const btn = document.querySelector('.btn-new-game');
 const playBoard = document.querySelector('.play-board');
 const scoreCount = document.querySelector('.score-count');
+const bestScore = document.querySelector('.best-count');
 const defeatWindow = document.querySelector('.defeat-window');
+const pastGameStats = document.querySelectorAll('.past-game-stats');
+const btnSaveGame = document.querySelector('.btn-save-game');
+
+if (!localStorage.length) {
+    localStorage.setItem('max-score', '0');
+    localStorage.setItem('last-10-games', JSON.stringify(['Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty']));
+}
 
 btn.addEventListener('click', startGame);
+document.addEventListener('DOMContentLoaded', updateStatistic);
+
+function updateStatistic() {
+    bestScore.innerHTML = localStorage.getItem('max-score');
+    if (!JSON.parse(localStorage.getItem('last-10-games')).length) {
+        return;
+    } else {
+        for (let i = 0; i < 10; i++) {
+            pastGameStats[i].innerHTML = JSON.parse(localStorage.getItem('last-10-games'))[i];
+        }
+    }
+}
+
+btnSaveGame.addEventListener('click', saveGame);
+
+function saveGame() {
+    const currentPastGames = JSON.parse(localStorage.getItem('last-10-games'));
+    currentPastGames.unshift(`${Date().slice(0, 24)} - ${scoreCount.innerHTML} points`);
+    currentPastGames.pop();
+    localStorage.setItem('last-10-games', JSON.stringify(currentPastGames));
+    for (let i = 0; i < 10; i++) {
+        if (JSON.parse(localStorage.getItem('last-10-games'))[i]) {
+            pastGameStats[i].innerHTML = JSON.parse(localStorage.getItem('last-10-games'))[i];
+        }
+    }
+
+    const maxScore = localStorage.getItem('max-score');
+    if (Number(scoreCount.innerHTML) > Number(maxScore)) {
+        localStorage.setItem('max-score', scoreCount.innerHTML);
+        bestScore.innerHTML = scoreCount.innerHTML;
+    }
+
+    scoreCount.innerHTML = '0';
+    defeatWindow.classList.remove('defeat-window-appear');
+    defeatWindow.classList.remove('defeat-window-on');
+
+    btnSaveGame.classList.remove('btn-on');
+    btn.classList.add('btn-on');
+
+    const plates = document.querySelectorAll('.plate');
+
+    for (let plate of plates) {
+        plate.remove();
+    }
+
+    const shiftValues = ['0%', '25%', '50%', '75%'];
+    playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: ${shiftValues[Math.floor(Math.random() * 4)]}; top: ${shiftValues[Math.floor(Math.random() * 4)]}; background-color: aqua;">2</div>`);
+    savePlateCoordinates(document.querySelector('.plate'));
+}
 
 startGame();
 
@@ -12,6 +69,27 @@ function startGame() {
         defeatWindow.classList.remove('defeat-window-appear');
         defeatWindow.classList.remove('defeat-window-on');
     }
+
+    document.addEventListener('keydown', playerAction);
+
+    if (scoreCount.innerHTML !== '0') {
+        const currentPastGames = JSON.parse(localStorage.getItem('last-10-games'));
+        currentPastGames.unshift(`${Date().slice(0, 24)} - ${scoreCount.innerHTML} points`);
+        currentPastGames.pop();
+        localStorage.setItem('last-10-games', JSON.stringify(currentPastGames));
+        for (let i = 0; i < 10; i++) {
+            if (JSON.parse(localStorage.getItem('last-10-games'))[i]) {
+                pastGameStats[i].innerHTML = JSON.parse(localStorage.getItem('last-10-games'))[i];
+            }
+        }
+    }
+
+    const maxScore = localStorage.getItem('max-score');
+    if (Number(scoreCount.innerHTML) > Number(maxScore)) {
+        localStorage.setItem('max-score', scoreCount.innerHTML);
+        bestScore.innerHTML = scoreCount.innerHTML;
+    }
+
     scoreCount.innerHTML = '0';
     const plates = document.querySelectorAll('.plate');
     for (let plate of plates) {
@@ -527,7 +605,11 @@ function areAnyMoves() { // lots of repeating code from the movePlates function
     return false;
     //check down - end
 }
-
+document.addEventListener('keydown', function preventScroll(event) {
+    if (event.code === 'ArrowUp' || event.code === 'ArrowDown') {
+        event.preventDefault();
+    }
+})
 document.addEventListener('keydown', playerAction);
 
 function playerAction(event) {
@@ -537,12 +619,21 @@ function playerAction(event) {
 
         setTimeout(() => {
             if (areAnyMoves() === false) {
+                btn.classList.remove('btn-on');
+                btnSaveGame.classList.add('btn-on');
+
+                const maxScore = localStorage.getItem('max-score');
+                if (Number(scoreCount.innerHTML) > Number(maxScore)) {
+                    localStorage.setItem('max-score', scoreCount.innerHTML);
+                    bestScore.innerHTML = scoreCount.innerHTML;
+                }
                 defeatWindow.classList.add('defeat-window-on');
                 setTimeout(() => {
                     defeatWindow.classList.add('defeat-window-appear');
                 }, 10);
+            } else {
+                document.addEventListener('keydown', playerAction);
             }
-            document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowLeft') {
         document.removeEventListener('keydown', playerAction);
@@ -550,12 +641,21 @@ function playerAction(event) {
 
         setTimeout(() => {
             if (areAnyMoves() === false) {
+                btn.classList.remove('btn-on');
+                btnSaveGame.classList.add('btn-on');
+
+                const maxScore = localStorage.getItem('max-score');
+                if (Number(scoreCount.innerHTML) > Number(maxScore)) {
+                    localStorage.setItem('max-score', scoreCount.innerHTML);
+                    bestScore.innerHTML = scoreCount.innerHTML;
+                }
                 defeatWindow.classList.add('defeat-window-on');
                 setTimeout(() => {
                     defeatWindow.classList.add('defeat-window-appear');
                 }, 10);
+            } else {
+                document.addEventListener('keydown', playerAction);
             }
-            document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowUp') {
         document.removeEventListener('keydown', playerAction);
@@ -563,12 +663,21 @@ function playerAction(event) {
 
         setTimeout(() => {
             if (areAnyMoves() === false) {
+                btn.classList.remove('btn-on');
+                btnSaveGame.classList.add('btn-on');
+
+                const maxScore = localStorage.getItem('max-score');
+                if (Number(scoreCount.innerHTML) > Number(maxScore)) {
+                    localStorage.setItem('max-score', scoreCount.innerHTML);
+                    bestScore.innerHTML = scoreCount.innerHTML;
+                }
                 defeatWindow.classList.add('defeat-window-on');
                 setTimeout(() => {
                     defeatWindow.classList.add('defeat-window-appear');
                 }, 10);
+            } else {
+                document.addEventListener('keydown', playerAction);
             }
-            document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowDown') {
         document.removeEventListener('keydown', playerAction);
@@ -576,12 +685,21 @@ function playerAction(event) {
 
         setTimeout(() => {
             if (areAnyMoves() === false) {
+                btn.classList.remove('btn-on');
+                btnSaveGame.classList.add('btn-on');
+
+                const maxScore = localStorage.getItem('max-score');
+                if (Number(scoreCount.innerHTML) > Number(maxScore)) {
+                    localStorage.setItem('max-score', scoreCount.innerHTML);
+                    bestScore.innerHTML = scoreCount.innerHTML;
+                }
                 defeatWindow.classList.add('defeat-window-on');
                 setTimeout(() => {
                     defeatWindow.classList.add('defeat-window-appear');
                 }, 10);
+            } else {
+                document.addEventListener('keydown', playerAction);
             }
-            document.addEventListener('keydown', playerAction);
         }, 210);
     } else {
         return;

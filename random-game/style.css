@@ -1,6 +1,11 @@
 @font-face {
-    font-family: Roboto;
-    src: url(assets/fonts/Roboto-Regular.ttf);
+    font-family: Kalam-regular;
+    src: url(assets/fonts/Kalam-Regular.ttf);
+}
+
+@font-face {
+    font-family: Kalam-bold;
+    src: url(assets/fonts/Kalam-Bold.ttf);
 }
 
 * {
@@ -25,7 +30,7 @@ body {
     align-items: center;
     min-height: 100dvh;
     margin: 0 auto;
-    background-color: rgb(35, 44, 57);
+    background-color: #45524e;
 }
 
 .main {
@@ -35,21 +40,23 @@ body {
     align-items: center;
     gap: 30px;
     width: 100%;
-    padding-top: 10px;
+    padding: 15px;
 }
 
 .title {
-    font-family: Roboto;
-    font-size: 80px;
+    font-family: Kalam-bold;
+    font-size: 90px;
     color: white;
     margin: 0;
+    letter-spacing: 10px;
 }
 
 .btn-new-game {
-    width: 130px;
-    height: 50px;
-    font-family: Roboto;
-    font-size: 20px;
+    display: none;
+    width: 150px;
+    height: 60px;
+    font-family: Kalam-regular;
+    font-size: 26px;
     font-weight: bold;
     border-radius: 15px;
     cursor: pointer;
@@ -57,8 +64,25 @@ body {
     user-select: none;
 }
 
+.btn-save-game {
+    display: none;
+    width: 150px;
+    height: 60px;
+    font-family: Kalam-regular;
+    font-size: 26px;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: orange;
+    user-select: none;
+}
+
+.btn-on {
+    display: block;
+}
+
 .score-text {
-    font-family: Roboto;
+    font-family: Kalam-regular;
     font-size: 40px;
     color: white;
     margin: 0;
@@ -80,9 +104,11 @@ body {
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 700px;
     outline: 2px solid orange;
+    box-shadow: 0 0 20px 5px black;
+    background-color: #36423d;
 }
 
 .defeat-window {
@@ -95,7 +121,7 @@ body {
     height: 100%;
     z-index: 1;
     backdrop-filter: blur(16px);
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
 .defeat-window-on {
@@ -115,13 +141,14 @@ body {
 
 .defeat-text {
     color: orange;
-    font-family: Roboto;
+    font-family: Kalam-regular;
     font-size: 3vw;
     text-align: center;
 }
 
 .defeat-window :nth-child(2) {
-    outline: 1px solid orange;
+    border-top: 1px solid orange;
+    padding-top: 5px;
     border-radius: 20px;
 }
 
@@ -153,11 +180,74 @@ body {
     align-items: center;
     padding: 8px;
     background-clip: content-box;
-    font-family: Roboto;
+    font-family: Kalam-regular;
     font-size: 300%;
     color: white;
     user-select: none;
     transition: 0.2s;
+}
+
+.about-block {
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.description {
+    max-width: 260px;
+    height: max-content;
+    border-radius: 15px;
+    border-top: 2px solid orange;
+    border-bottom: 2px solid orange;
+    padding-right: 10px;
+}
+
+.desc-title {
+    font-size: 200%;
+    color: orange;
+    letter-spacing: 1.5px;
+    text-align: center;
+    font-family: Kalam-regular;
+    font-weight: bold;
+    margin: 0;
+}
+
+.desc-text {
+    font-family: Kalam-regular;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    font-style: italic;
+    margin: 0;
+    letter-spacing: 1.5px;
+}
+
+.desc-target {
+    color: orange;
+}
+
+.past-games-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: flex-start;
+    gap: 20px;
+}
+
+.past-game, .past-game-title {
+    font-family: Kalam-regular;
+    font-size: 20px;
+    color: orange;
+    margin: 0;
+}
+
+.past-game-title {
+    font-size: 30px;
+}
+
+.past-game-stats {
+    color: white;
 }
 
 .footer {
