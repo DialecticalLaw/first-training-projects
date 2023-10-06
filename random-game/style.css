@@ -64,8 +64,15 @@ body {
     margin: 0;
 }
 
-.score-count {
-    margin-left: 15px;
+.game-info {
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.score-count, .best-count {
+    margin-left: 10px;
     color: orange;
 }
 

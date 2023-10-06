@@ -243,7 +243,7 @@ function movePlate(direction) {
                             row[i - 1].remove();
                         }, 200);
                         } else if (row[i].innerHTML === row[i - 1].innerHTML && row[i].hasAttribute('merging')) {
-                            row[i - 1].dataset.x = row[i + 1].dataset.x - 25;
+                            row[i - 1].dataset.x = Number(row[i + 1].dataset.x) - 25;
                             updatePlateCoordinates(row[i - 1]);
                         } else if (row[i].innerHTML !== row[i - 1].innerHTML) {
                             row[i - 1].dataset.x = Number(row[i].dataset.x) - 25;
@@ -285,7 +285,7 @@ function movePlate(direction) {
                             row[i + 1].remove();
                         }, 200);
                         } else if (row[i].innerHTML === row[i + 1].innerHTML && row[i].hasAttribute('merging')) {
-                            row[i + 1].dataset.x = row[i - 1].dataset.x + 25;
+                            row[i + 1].dataset.x = Number(row[i - 1].dataset.x) + 25;
                             updatePlateCoordinates(row[i + 1]);
                         } else if (row[i].innerHTML !== row[i + 1].innerHTML) {
                             row[i + 1].dataset.x = Number(row[i].dataset.x) + 25;
@@ -327,7 +327,7 @@ function movePlate(direction) {
                             column[i + 1].remove();
                         }, 200);
                         } else if (column[i].innerHTML === column[i + 1].innerHTML && column[i].hasAttribute('merging')) {
-                            column[i + 1].dataset.y = column[i - 1].dataset.y + 25;
+                            column[i + 1].dataset.y = Number(column[i - 1].dataset.y) + 25;
                             updatePlateCoordinates(column[i + 1]);
                         } else if (column[i].innerHTML !== column[i + 1].innerHTML) {
                             column[i + 1].dataset.y = Number(column[i].dataset.y) + 25;
@@ -369,7 +369,7 @@ function movePlate(direction) {
                             column[i - 1].remove();
                         }, 200);
                         } else if (column[i].innerHTML === column[i - 1].innerHTML && column[i].hasAttribute('merging')) {
-                            column[i - 1].dataset.y = column[i + 1].dataset.y - 25;
+                            column[i - 1].dataset.y = Number(column[i + 1].dataset.y) - 25;
                             updatePlateCoordinates(column[i - 1]);
                         } else if (column[i].innerHTML !== column[i - 1].innerHTML) {
                             column[i - 1].dataset.y = Number(column[i].dataset.y) - 25;
