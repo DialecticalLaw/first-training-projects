@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <main class="main">
+            <h1 class="title">2048</h1>
+            <form>
+                <button class="btn-new-game btn-on" type="button">New game</button>
+                <button class="btn-save-game" type="button">Save game</button>
+            </form>
+            <div class="game-info">
+                <p class="score-text">Score:<span class="score-count">0</span></p>
+                <p class="score-text separator">|</p>
+                <p class="score-text">Best:<span class="best-count">0</span></p>
+            </div>
+            <div class="play-board">
+                <div class="defeat-window">
+                    <p class="defeat-text">No moves left &#128549;</p>
+                    <p class="defeat-text">To start again and save result, click the "save game" button above the playing field</p>
+                </div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+            </div>
+            <div class="about-block">
+                <div class="past-games-block">
+                    <p class="past-game-title">Recent games:</p>
+                    <p class="past-game">1. <span class="past-game-stats">Empty</span></p>
+                    <p class="past-game">2. <span class="past-game-stats">Empty</span></p>
+                    <p class="past-game">3. <span class="past-game-stats">Empty</span></p>
+                    <p class="past-game">4. <span class="past-game-stats">Empty</span></p>
+                    <p class="past-game">5. <span class="past-game-stats">Empty</span></p>
+                    <p class="past-game">6. <span class="past-game-stats">Empty</span></p>
+                    <p class="past-game">7. <span class="past-game-stats">Empty</span></p>
+                    <p class="past-game">8. <span class="past-game-stats">Empty</span></p>
+                    <p class="past-game">9. <span class="past-game-stats">Empty</span></p>
+                    <p class="past-game">10. <span class="past-game-stats">Empty</span></p>
+                </div>
+                <div class="description">
+                    <p class="desc-title">Description:</p>
+                    <p class="desc-text">Move the tiles on the game board using the arrows on the keyboard or swipe your finger. Identical tiles are stacked. Points are given for each merge. <span class="desc-target">Collect as many as possible</span></p>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+
+        </footer>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
