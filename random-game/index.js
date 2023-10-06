@@ -31,8 +31,16 @@ function paintPlate(elem, num) {
         elem.style['background-color'] = 'black';
     } else if (num === 128) {
         elem.style['background-color'] = 'red';
-    } else {
+    } else  if (num === 256) {
         elem.style['background-color'] = 'purple';
+    } else if (num === 512) {
+        elem.style['background-color'] = 'pink';
+    } else if (num > 512) {
+        elem.style['background-color'] = 'white'
+        elem.style.color = 'black';
+    } else if (num > 4096) {
+        elem.style['background-color'] = '#136f69';
+        elem.style.color = 'white';
     }
 }
 
@@ -224,7 +232,8 @@ function movePlate(direction) {
                     }
                     
                     if (row[i - 1] !== undefined) {
-                        if (row[i].innerHTML === row[i - 1].innerHTML) {
+                        if (row[i].innerHTML === row[i - 1].innerHTML && !row[i].hasAttribute('merging')) {
+                        row[i - 1].setAttribute('merging', true);
                         row[i - 1].dataset.x = row[i].dataset.x;
                         updatePlateCoordinates(row[i - 1]);
                         setTimeout(() => {
@@ -233,6 +242,9 @@ function movePlate(direction) {
                             paintPlate(row[i], Number(row[i].innerHTML));
                             row[i - 1].remove();
                         }, 200);
+                        } else if (row[i].innerHTML === row[i - 1].innerHTML && row[i].hasAttribute('merging')) {
+                            row[i - 1].dataset.x = row[i + 1].dataset.x - 25;
+                            updatePlateCoordinates(row[i - 1]);
                         } else if (row[i].innerHTML !== row[i - 1].innerHTML) {
                             row[i - 1].dataset.x = Number(row[i].dataset.x) - 25;
                             updatePlateCoordinates(row[i - 1]);
@@ -262,7 +274,8 @@ function movePlate(direction) {
                     }
                     
                     if (row[i + 1] !== undefined) {
-                        if (row[i].innerHTML === row[i + 1].innerHTML) {
+                        if (row[i].innerHTML === row[i + 1].innerHTML && !row[i].hasAttribute('merging')) {
+                        row[i + 1].setAttribute('merging', true);
                         row[i + 1].dataset.x = row[i].dataset.x;
                         updatePlateCoordinates(row[i + 1]);
                         setTimeout(() => {
@@ -271,6 +284,9 @@ function movePlate(direction) {
                             paintPlate(row[i], Number(row[i].innerHTML));
                             row[i + 1].remove();
                         }, 200);
+                        } else if (row[i].innerHTML === row[i + 1].innerHTML && row[i].hasAttribute('merging')) {
+                            row[i + 1].dataset.x = row[i - 1].dataset.x + 25;
+                            updatePlateCoordinates(row[i + 1]);
                         } else if (row[i].innerHTML !== row[i + 1].innerHTML) {
                             row[i + 1].dataset.x = Number(row[i].dataset.x) + 25;
                             updatePlateCoordinates(row[i + 1]);
@@ -300,7 +316,8 @@ function movePlate(direction) {
                     }
                     
                     if (column[i + 1] !== undefined) {
-                        if (column[i].innerHTML === column[i + 1].innerHTML) {
+                        if (column[i].innerHTML === column[i + 1].innerHTML && !column[i].hasAttribute('merging')) {
+                        column[i + 1].setAttribute('merging', true);
                         column[i + 1].dataset.y = column[i].dataset.y;
                         updatePlateCoordinates(column[i + 1]);
                         setTimeout(() => {
@@ -309,6 +326,9 @@ function movePlate(direction) {
                             paintPlate(column[i], Number(column[i].innerHTML));
                             column[i + 1].remove();
                         }, 200);
+                        } else if (column[i].innerHTML === column[i + 1].innerHTML && column[i].hasAttribute('merging')) {
+                            column[i + 1].dataset.y = column[i - 1].dataset.y + 25;
+                            updatePlateCoordinates(column[i + 1]);
                         } else if (column[i].innerHTML !== column[i + 1].innerHTML) {
                             column[i + 1].dataset.y = Number(column[i].dataset.y) + 25;
                             updatePlateCoordinates(column[i + 1]);
@@ -338,7 +358,8 @@ function movePlate(direction) {
                     }
                     
                     if (column[i - 1] !== undefined) {
-                        if (column[i].innerHTML === column[i - 1].innerHTML) {
+                        if (column[i].innerHTML === column[i - 1].innerHTML && !column[i].hasAttribute('merging')) {
+                        column[i - 1].setAttribute('merging', true);
                         column[i - 1].dataset.y = column[i].dataset.y;
                         updatePlateCoordinates(column[i - 1]);
                         setTimeout(() => {
@@ -347,6 +368,9 @@ function movePlate(direction) {
                             paintPlate(column[i], Number(column[i].innerHTML));
                             column[i - 1].remove();
                         }, 200);
+                        } else if (column[i].innerHTML === column[i - 1].innerHTML && column[i].hasAttribute('merging')) {
+                            column[i - 1].dataset.y = column[i + 1].dataset.y - 25;
+                            updatePlateCoordinates(column[i - 1]);
                         } else if (column[i].innerHTML !== column[i - 1].innerHTML) {
                             column[i - 1].dataset.y = Number(column[i].dataset.y) - 25;
                             updatePlateCoordinates(column[i - 1]);
@@ -363,30 +387,35 @@ function movePlate(direction) {
 document.addEventListener('keydown', playerAction);
 
 function playerAction(event) {
-    document.removeEventListener('keydown', playerAction);
     if (event.code === 'ArrowRight') {
+        document.removeEventListener('keydown', playerAction);
         movePlate('right');
 
         setTimeout(() => {
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowLeft') {
+        document.removeEventListener('keydown', playerAction);
         movePlate('left');
 
         setTimeout(() => {
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowUp') {
+        document.removeEventListener('keydown', playerAction);
         movePlate('up');
 
         setTimeout(() => {
             document.addEventListener('keydown', playerAction);
         }, 210);
     } else if (event.code === 'ArrowDown') {
+        document.removeEventListener('keydown', playerAction);
         movePlate('down');
 
         setTimeout(() => {
             document.addEventListener('keydown', playerAction);
         }, 210);
+    } else {
+        return;
     }
 }
