@@ -100,6 +100,17 @@ body {
     color: orange;
 }
 
+.volume {
+    display: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.volume-on {
+    display: block;
+}
+
 .play-board {
     display: flex;
     flex-wrap: wrap;
