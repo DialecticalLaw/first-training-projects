@@ -1,4 +1,6 @@
 const playBoard = document.querySelector('.play-board');
+const aboutBlock = document.querySelector('.about-block');
+const gameInfo = document.querySelector('.game-info');
 const scoreCount = document.querySelector('.score-count');
 const bestScore = document.querySelector('.best-count');
 const defeatWindow = document.querySelector('.defeat-window');
@@ -19,6 +21,23 @@ const volumeOff = document.querySelector('.volume-off');
 const volumeAll = document.querySelectorAll('.volume');
 
 let playWinSoundStatus = false;
+
+window.addEventListener('resize', changeSizeOfPlayBoard);
+changeSizeOfPlayBoard();
+
+function changeSizeOfPlayBoard() {
+    if (document.documentElement.clientWidth >= document.documentElement.clientHeight) {
+        playBoard.style.height = '75dvh';
+        playBoard.style.width = '75dvh';
+        aboutBlock.style.width = '75dvh';
+        gameInfo.style.width = '75dvh';
+    } else if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
+        playBoard.style.height = '75vw';
+        playBoard.style.width = '75vw';
+        aboutBlock.style.width = '75vw';
+        gameInfo.style.width = '75vw';
+    }
+}
 
 for (let volume of volumeAll) {
     volume.addEventListener('click', function switchVolumeMode() {
@@ -306,23 +325,23 @@ function createRandomPlate(num, color) {
 
 function savePlateCoordinates(elem) {
 
-    if (elem.offsetLeft / playBoard.offsetWidth * 100 + '%' === '0%') {
+    if (elem.style.left === '0%') {
         elem.dataset.x = '0';
-    } else if (elem.offsetLeft / playBoard.offsetWidth * 100 + '%' === '25%') {
+    } else if (elem.style.left === '25%') {
         elem.dataset.x = '25';
-    } else if (elem.offsetLeft / playBoard.offsetWidth * 100 + '%' === '50%') {
+    } else if (elem.style.left === '50%') {
         elem.dataset.x = '50';
-    } else if (elem.offsetLeft / playBoard.offsetWidth * 100 + '%' === '75%') {
+    } else if (elem.style.left === '75%') {
         elem.dataset.x = '75';
     }
 
-    if (elem.offsetTop / playBoard.offsetWidth * 100 + '%' === '0%') {
+    if (elem.style.top === '0%') {
         elem.dataset.y = '0';
-    } else if (elem.offsetTop / playBoard.offsetWidth * 100 + '%' === '25%') {
+    } else if (elem.style.top === '25%') {
         elem.dataset.y = '25';
-    } else if (elem.offsetTop / playBoard.offsetWidth * 100 + '%' === '50%') {
+    } else if (elem.style.top === '50%') {
         elem.dataset.y = '50';
-    } else if (elem.offsetTop / playBoard.offsetWidth * 100 + '%' === '75%') {
+    } else if (elem.style.top === '75%') {
         elem.dataset.y = '75';
     }
 }
