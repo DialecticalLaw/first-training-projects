@@ -9,12 +9,16 @@ const btn = document.querySelector('.btn-new-game');
 const audioDefeat = document.querySelector('.defeat');
 const audioAction = document.querySelector('.action');
 const audioStart = document.querySelector('.start');
+const audioWin = document.querySelector('.win');
 audioDefeat.volume = 0.15;
 audioAction.volume = 0.15;
 audioStart.volume = 0.15;
+audioWin.volume = 0.15;
 const volumeUp = document.querySelector('.volume-up');
 const volumeOff = document.querySelector('.volume-off');
 const volumeAll = document.querySelectorAll('.volume');
+
+let playWinSoundStatus = false;
 
 for (let volume of volumeAll) {
     volume.addEventListener('click', function switchVolumeMode() {
@@ -76,6 +80,9 @@ function saveGame() {
             pastGameStats[i].innerHTML = JSON.parse(localStorage.getItem('last-10-games'))[i];
         }
     }
+    document.addEventListener('keydown', playerAction);
+    playWinSoundStatus = false;
+    playBoard.style.filter = 'none';
 
     const maxScore = localStorage.getItem('max-score');
     if (Number(scoreCount.innerHTML) > Number(maxScore)) {
@@ -118,6 +125,8 @@ function startGame() {
     }
 
     document.addEventListener('keydown', playerAction);
+    playBoard.style.filter = 'none';
+    playWinSoundStatus = false;
 
     if (scoreCount.innerHTML !== '0') {
         const currentPastGames = JSON.parse(localStorage.getItem('last-10-games'));
@@ -165,11 +174,22 @@ function paintPlate(elem, num) {
         elem.style['background-color'] = 'purple';
     } else if (num === 512) {
         elem.style['background-color'] = 'pink';
-    } else if (num > 512) {
+    } else if (num === 2048) {
+        elem.style['background-color'] = 'gold';
+        elem.style.filter = 'drop-shadow(0px 0px 16px gold)';
+        if (playWinSoundStatus === false) {
+            audioWin.play();
+            playBoard.style.filter = 'drop-shadow(0 0 10px gold)';
+            playWinSoundStatus = true;
+        }
+    } else if (num === 4096) {
         elem.style['background-color'] = 'white'
         elem.style.color = 'black';
-    } else if (num > 4096) {
+        elem.style.filter = 'none';
+    } else if (num === 1024) {
         elem.style['background-color'] = '#136f69';
+    } else {
+        elem.style['background-color'] = '#465a33';
         elem.style.color = 'white';
     }
 }
