@@ -23,6 +23,18 @@ body {
     max-width: 100%;
 }
 
+::-webkit-scrollbar {
+    background-color: rgb(89, 89, 89);
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(89, 89, 89);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(65, 92, 155);
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -119,11 +131,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    width: 700px;
-    height: 700px;
     outline: 2px solid orange;
     box-shadow: 0 0 20px 5px black;
-    background-color: #36423d;
 }
 
 .defeat-window {
@@ -203,9 +212,9 @@ body {
 }
 
 .about-block {
-    width: 700px;
     display: flex;
     justify-content: space-between;
+    gap: 5%;
 }
 
 .description {
@@ -335,4 +344,163 @@ body {
 
 .rss-link:active {
     transform: scale(0.9);
+}
+
+@media screen and (max-width: 1024px) {
+    .btn-new-game, .btn-save-game {
+        cursor: default;
+    }
+
+    .volume {
+        cursor: default;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .plate {
+        font-size: 200%;
+    }
+
+    .score-text {
+        font-size: 25px;
+    }
+
+    .btn-new-game, .btn-save-game {
+        width: 130px;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .title {
+        font-size: 70px;
+    }
+
+    .volume {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 795px) {
+    .about-block {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .past-games-block {
+        align-self: center;
+        margin-top: 25px;
+    }
+
+    .past-game-title {
+        align-self: center;
+    }
+
+    .plate {
+        font-size: 200%;
+    }
+
+    .score-text {
+        font-size: 25px;
+    }
+
+    .btn-new-game, .btn-save-game {
+        width: 130px;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .title {
+        font-size: 70px;
+    }
+
+    .volume {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media screen and (max-height: 750px) {
+    .about-block {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .past-games-block {
+        align-self: center;
+        margin-top: 25px;
+    }
+
+    .past-game-title {
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .gh-name, .year {
+        font-size: 1.1rem;
+    }
+
+    .gh-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .rss-link {
+        width: 90px;
+    }
+
+    .footer {
+        height: 70px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .title {
+        font-size: 50px;
+    }
+
+    .volume {
+        width: 20px;
+        height: 20px;
+    }
+
+    .score-text {
+        font-size: 20px;
+    }
+
+    .desc-title {
+        font-size: 150%;
+    }
+
+    .desc-text, .past-game-stats {
+        font-size: 15px;
+    }
+
+    .past-game-title {
+        font-size: 25px;
+    }
+
+    .plate {
+        font-size: 120%;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .gh-name, .year {
+        font-size: 0.8rem;
+    }
+
+    .gh-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .rss-link {
+        width: 70px;
+    }
+
+    .footer {
+        height: 65px;
+    }
 }
