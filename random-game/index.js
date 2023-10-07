@@ -1,17 +1,56 @@
-const btn = document.querySelector('.btn-new-game');
 const playBoard = document.querySelector('.play-board');
 const scoreCount = document.querySelector('.score-count');
 const bestScore = document.querySelector('.best-count');
 const defeatWindow = document.querySelector('.defeat-window');
 const pastGameStats = document.querySelectorAll('.past-game-stats');
 const btnSaveGame = document.querySelector('.btn-save-game');
+const btn = document.querySelector('.btn-new-game');
 
-if (!localStorage.length) {
+const audioDefeat = document.querySelector('.defeat');
+const audioAction = document.querySelector('.action');
+const audioStart = document.querySelector('.start');
+audioDefeat.volume = 0.15;
+audioAction.volume = 0.15;
+audioStart.volume = 0.15;
+const volumeUp = document.querySelector('.volume-up');
+const volumeOff = document.querySelector('.volume-off');
+const volumeAll = document.querySelectorAll('.volume');
+
+for (let volume of volumeAll) {
+    volume.addEventListener('click', function switchVolumeMode() {
+        if (audioAction.muted === false) {
+            audioDefeat.muted = true;
+            audioAction.muted = true;
+            audioStart.muted = true;
+            volumeUp.classList.remove('volume-on');
+            volumeOff.classList.add('volume-on');
+        } else {
+            audioDefeat.muted = false;
+            audioAction.muted = false;
+            audioStart.muted = false;
+            volumeOff.classList.remove('volume-on');
+            volumeUp.classList.add('volume-on');
+        }
+    });
+}
+
+if (localStorage.getItem('max-score') === null) {
+    localStorage.clear();
     localStorage.setItem('max-score', '0');
     localStorage.setItem('last-10-games', JSON.stringify(['Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty']));
 }
 
 btn.addEventListener('click', startGame);
+btn.addEventListener('click', function playStartSound() {
+    if (audioStart.currentTime !== 0) {
+        audioStart.pause();
+        audioStart.currentTime = 0;
+        audioStart.play();
+    } else {
+        audioStart.play();
+    }
+});
+
 document.addEventListener('DOMContentLoaded', updateStatistic);
 
 function updateStatistic() {
@@ -42,6 +81,14 @@ function saveGame() {
     if (Number(scoreCount.innerHTML) > Number(maxScore)) {
         localStorage.setItem('max-score', scoreCount.innerHTML);
         bestScore.innerHTML = scoreCount.innerHTML;
+    }
+
+    if (audioStart.currentTime !== 0) {
+        audioStart.pause();
+        audioStart.currentTime = 0;
+        audioStart.play();
+    } else {
+        audioStart.play();
     }
 
     scoreCount.innerHTML = '0';
@@ -324,6 +371,13 @@ function movePlate(direction) {
                             updateScoreCount(row[i].innerHTML);
                             paintPlate(row[i], Number(row[i].innerHTML));
                             row[i - 1].remove();
+                            if (audioAction.currentTime !== 0) {
+                                audioAction.pause();
+                                audioAction.currentTime = 0;
+                                audioAction.play()
+                            } else {
+                                audioAction.play();
+                            }
                         }, 200);
                         } else if (row[i].innerHTML === row[i - 1].innerHTML && row[i].hasAttribute('merging')) {
                             row[i - 1].dataset.x = Number(row[i + 1].dataset.x) - 25;
@@ -366,6 +420,13 @@ function movePlate(direction) {
                             updateScoreCount(row[i].innerHTML);
                             paintPlate(row[i], Number(row[i].innerHTML));
                             row[i + 1].remove();
+                            if (audioAction.currentTime !== 0) {
+                                audioAction.pause();
+                                audioAction.currentTime = 0;
+                                audioAction.play()
+                            } else {
+                                audioAction.play();
+                            }
                         }, 200);
                         } else if (row[i].innerHTML === row[i + 1].innerHTML && row[i].hasAttribute('merging')) {
                             row[i + 1].dataset.x = Number(row[i - 1].dataset.x) + 25;
@@ -408,6 +469,13 @@ function movePlate(direction) {
                             updateScoreCount(column[i].innerHTML);
                             paintPlate(column[i], Number(column[i].innerHTML));
                             column[i + 1].remove();
+                            if (audioAction.currentTime !== 0) {
+                                audioAction.pause();
+                                audioAction.currentTime = 0;
+                                audioAction.play()
+                            } else {
+                                audioAction.play();
+                            }
                         }, 200);
                         } else if (column[i].innerHTML === column[i + 1].innerHTML && column[i].hasAttribute('merging')) {
                             column[i + 1].dataset.y = Number(column[i - 1].dataset.y) + 25;
@@ -450,6 +518,13 @@ function movePlate(direction) {
                             updateScoreCount(column[i].innerHTML);
                             paintPlate(column[i], Number(column[i].innerHTML));
                             column[i - 1].remove();
+                            if (audioAction.currentTime !== 0) {
+                                audioAction.pause();
+                                audioAction.currentTime = 0;
+                                audioAction.play()
+                            } else {
+                                audioAction.play();
+                            }
                         }, 200);
                         } else if (column[i].innerHTML === column[i - 1].innerHTML && column[i].hasAttribute('merging')) {
                             column[i - 1].dataset.y = Number(column[i + 1].dataset.y) - 25;
@@ -622,6 +697,14 @@ function playerAction(event) {
                 btn.classList.remove('btn-on');
                 btnSaveGame.classList.add('btn-on');
 
+                if (audioDefeat.currentTime !== 0) {
+                    audioDefeat.pause();
+                    audioDefeat.currentTime = 0;
+                    audioDefeat.play();
+                } else {
+                    audioDefeat.play();
+                }
+
                 const maxScore = localStorage.getItem('max-score');
                 if (Number(scoreCount.innerHTML) > Number(maxScore)) {
                     localStorage.setItem('max-score', scoreCount.innerHTML);
@@ -643,6 +726,14 @@ function playerAction(event) {
             if (areAnyMoves() === false) {
                 btn.classList.remove('btn-on');
                 btnSaveGame.classList.add('btn-on');
+
+                if (audioDefeat.currentTime !== 0) {
+                    audioDefeat.pause();
+                    audioDefeat.currentTime = 0;
+                    audioDefeat.play();
+                } else {
+                    audioDefeat.play();
+                }
 
                 const maxScore = localStorage.getItem('max-score');
                 if (Number(scoreCount.innerHTML) > Number(maxScore)) {
@@ -666,6 +757,14 @@ function playerAction(event) {
                 btn.classList.remove('btn-on');
                 btnSaveGame.classList.add('btn-on');
 
+                if (audioDefeat.currentTime !== 0) {
+                    audioDefeat.pause();
+                    audioDefeat.currentTime = 0;
+                    audioDefeat.play();
+                } else {
+                    audioDefeat.play();
+                }
+
                 const maxScore = localStorage.getItem('max-score');
                 if (Number(scoreCount.innerHTML) > Number(maxScore)) {
                     localStorage.setItem('max-score', scoreCount.innerHTML);
@@ -687,6 +786,14 @@ function playerAction(event) {
             if (areAnyMoves() === false) {
                 btn.classList.remove('btn-on');
                 btnSaveGame.classList.add('btn-on');
+
+                if (audioDefeat.currentTime !== 0) {
+                    audioDefeat.pause();
+                    audioDefeat.currentTime = 0;
+                    audioDefeat.play();
+                } else {
+                    audioDefeat.play();
+                }
 
                 const maxScore = localStorage.getItem('max-score');
                 if (Number(scoreCount.innerHTML) > Number(maxScore)) {
