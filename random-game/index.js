@@ -6,7 +6,8 @@ const defeatWindow = document.querySelector('.defeat-window');
 const pastGameStats = document.querySelectorAll('.past-game-stats');
 const btnSaveGame = document.querySelector('.btn-save-game');
 
-if (!localStorage.length) {
+if (localStorage.getItem('max-score') === null) {
+    localStorage.clear();
     localStorage.setItem('max-score', '0');
     localStorage.setItem('last-10-games', JSON.stringify(['Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty']));
 }
