@@ -30,7 +30,7 @@ body {
     align-items: center;
     min-height: 100dvh;
     margin: 0 auto;
-    background-color: #45524e;
+    background: linear-gradient(#183246, #4d2922);
 }
 
 .main {
@@ -51,7 +51,7 @@ body {
     letter-spacing: 10px;
 }
 
-.btn-new-game {
+.btn-new-game, .btn-save-game {
     display: none;
     width: 150px;
     height: 60px;
@@ -62,19 +62,17 @@ body {
     cursor: pointer;
     background-color: orange;
     user-select: none;
+    transition: 0.2s;
+    box-shadow: 0 0 15px 5px rgb(22, 22, 22);
+    border: none;
 }
 
-.btn-save-game {
-    display: none;
-    width: 150px;
-    height: 60px;
-    font-family: Kalam-regular;
-    font-size: 26px;
-    font-weight: bold;
-    border-radius: 15px;
-    cursor: pointer;
-    background-color: orange;
-    user-select: none;
+.btn-new-game:hover, .btn-save-game:hover {
+    box-shadow: 0 0 25px 10px rgba(120, 78, 0, 0.74);
+}
+
+.btn-new-game:active, .btn-save-game:active {
+    transform: scale(0.9);
 }
 
 .btn-on {
@@ -105,6 +103,11 @@ body {
     width: 40px;
     height: 40px;
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.volume:hover {
+    transform: scale(1.1);
 }
 
 .volume-on {
@@ -210,7 +213,6 @@ body {
     border-radius: 15px;
     border-top: 2px solid orange;
     border-bottom: 2px solid orange;
-    padding-right: 10px;
 }
 
 .desc-title {
@@ -244,6 +246,10 @@ body {
     align-items: flex-start;
     align-self: flex-start;
     gap: 20px;
+    border-left: 2px solid orange;
+    border-right: 2px solid orange;
+    border-radius: 15px;
+    padding: 0 15px;
 }
 
 .past-game, .past-game-title {
@@ -263,6 +269,69 @@ body {
 
 .footer {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    height: 60px;
+    height: 80px;
+    margin-top: 20px;
+    padding: 0 10px;
+    border-top: 2px solid orange;
+    box-shadow: 0 0 10px 3px orange;
+}
+
+.gh-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+}
+
+.gh-name {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: white;
+    font-size: 1.7rem;
+    text-decoration: none;
+    font-family: Kalam-regular;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.gh-name::before {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    content: '';
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    transition: 0.3s;
+    transform: translateX(-100%);
+}
+
+.gh-name:hover::before {
+    transform: translateX(0);
+}
+
+.gh-name:active {
+    transform: scale(0.9);
+}
+
+.year {
+    color: white;
+    font-size: 1.7rem;
+    font-family: Kalam-regular;
+}
+
+.rss-link {
+    width: 130px;
+    transition: 0.2s;
+}
+
+.rss-link:hover {
+    filter: drop-shadow(0 0 8px rgb(255, 255, 255))
+}
+
+.rss-link:active {
+    transform: scale(0.9);
 }

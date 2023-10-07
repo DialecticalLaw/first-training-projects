@@ -1,10 +1,10 @@
-const btn = document.querySelector('.btn-new-game');
 const playBoard = document.querySelector('.play-board');
 const scoreCount = document.querySelector('.score-count');
 const bestScore = document.querySelector('.best-count');
 const defeatWindow = document.querySelector('.defeat-window');
 const pastGameStats = document.querySelectorAll('.past-game-stats');
 const btnSaveGame = document.querySelector('.btn-save-game');
+const btn = document.querySelector('.btn-new-game');
 
 const audioDefeat = document.querySelector('.defeat');
 const audioAction = document.querySelector('.action');
