@@ -484,6 +484,10 @@ body {
     .plate {
         font-size: 120%;
     }
+
+    .plate, .cell {
+        padding: 5px;
+    }
 }
 
 @media screen and (max-width: 340px) {
