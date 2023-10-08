@@ -61,7 +61,11 @@ body {
     color: gold;
     filter: drop-shadow(0 0 13px gold);
     margin: 0;
-    letter-spacing: 10px;
+    letter-spacing: 12px;
+    animation-name: flicker-title;
+    animation-duration: 0.8s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
 }
 
 .btn-new-game, .btn-save-game {
@@ -86,6 +90,7 @@ body {
 
 .btn-new-game:active, .btn-save-game:active {
     transform: scale(0.9);
+    color: white;
 }
 
 .btn-on {
@@ -506,5 +511,21 @@ body {
 
     .footer {
         height: 65px;
+    }
+}
+
+@keyframes flicker-title {
+    0% {
+        filter: drop-shadow(0 0 1px rgb(255, 255, 255))
+        drop-shadow(0 0 2px rgb(255, 219, 152))
+        drop-shadow(0 0 4px rgb(255, 194, 82))
+        drop-shadow(0 0 6px orange);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 2px rgb(255, 255, 255))
+        drop-shadow(0 0 3px rgb(255, 219, 152))
+        drop-shadow(0 0 5px rgb(255, 194, 82))
+        drop-shadow(0 0 7px orange);
     }
 }
