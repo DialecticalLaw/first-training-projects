@@ -1,3 +1,4 @@
+console.log('60 / 60')
 const playBoard = document.querySelector('.play-board');
 const aboutBlock = document.querySelector('.about-block');
 const gameInfo = document.querySelector('.game-info');
@@ -744,11 +745,6 @@ function playerAction(event) {
                     audioDefeat.play();
                 }
 
-                const maxScore = localStorage.getItem('max-score');
-                if (Number(scoreCount.innerHTML) > Number(maxScore)) {
-                    localStorage.setItem('max-score', scoreCount.innerHTML);
-                    bestScore.innerHTML = scoreCount.innerHTML;
-                }
                 defeatWindow.classList.add('defeat-window-on');
                 setTimeout(() => {
                     defeatWindow.classList.add('defeat-window-appear');
@@ -774,11 +770,6 @@ function playerAction(event) {
                     audioDefeat.play();
                 }
 
-                const maxScore = localStorage.getItem('max-score');
-                if (Number(scoreCount.innerHTML) > Number(maxScore)) {
-                    localStorage.setItem('max-score', scoreCount.innerHTML);
-                    bestScore.innerHTML = scoreCount.innerHTML;
-                }
                 defeatWindow.classList.add('defeat-window-on');
                 setTimeout(() => {
                     defeatWindow.classList.add('defeat-window-appear');
@@ -804,11 +795,6 @@ function playerAction(event) {
                     audioDefeat.play();
                 }
 
-                const maxScore = localStorage.getItem('max-score');
-                if (Number(scoreCount.innerHTML) > Number(maxScore)) {
-                    localStorage.setItem('max-score', scoreCount.innerHTML);
-                    bestScore.innerHTML = scoreCount.innerHTML;
-                }
                 defeatWindow.classList.add('defeat-window-on');
                 setTimeout(() => {
                     defeatWindow.classList.add('defeat-window-appear');
@@ -834,11 +820,6 @@ function playerAction(event) {
                     audioDefeat.play();
                 }
 
-                const maxScore = localStorage.getItem('max-score');
-                if (Number(scoreCount.innerHTML) > Number(maxScore)) {
-                    localStorage.setItem('max-score', scoreCount.innerHTML);
-                    bestScore.innerHTML = scoreCount.innerHTML;
-                }
                 defeatWindow.classList.add('defeat-window-on');
                 setTimeout(() => {
                     defeatWindow.classList.add('defeat-window-appear');
@@ -851,3 +832,55 @@ function playerAction(event) {
         return;
     }
 }
+
+// touch \/
+
+let x1 = null;
+let x2 = null;
+let y1 = null;
+let y2 = null;
+
+playBoard.addEventListener('touchstart', function name(event) {
+    event.preventDefault()
+    x1 = event.changedTouches[0].screenX;
+    y1 = event.changedTouches[0].screenY;
+})
+
+playBoard.addEventListener('touchend', function name(event) {
+    event.preventDefault()
+    x2 = event.changedTouches[0].screenX;
+    y2 = event.changedTouches[0].screenY;
+    if (x1 === x2 && y1 === y2) {
+        return;
+    }
+    const minX = Math.min(x1, x2);
+    const maxX = Math.max(x1, x2);
+    const minY = Math.min(y1, y2);
+    const maxY = Math.max(y1, y2);
+    if (maxX - minX > maxY - minY) {
+        if (x1 > x2) {
+            const sendEvent = new KeyboardEvent('keydown', {
+                code: 'ArrowLeft'
+            })
+            document.dispatchEvent(sendEvent);
+        } else {
+            const sendEvent = new KeyboardEvent('keydown', {
+                code: 'ArrowRight'
+            })
+            document.dispatchEvent(sendEvent);
+        }
+    } else {
+        if (y1 > y2) {
+            const sendEvent = new KeyboardEvent('keydown', {
+                code: 'ArrowUp'
+            })
+            document.dispatchEvent(sendEvent);
+        } else {
+            const sendEvent = new KeyboardEvent('keydown', {
+                code: 'ArrowDown'
+            })
+            document.dispatchEvent(sendEvent);
+        }
+    }
+
+})
