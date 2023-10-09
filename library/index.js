@@ -1,5 +1,3 @@
-console.log('Score 200 / 200');
-
 // проверка на авторизацию - start
 setTimeout(() => {
     if (localStorage.getItem('isAuth') === 'true') {
@@ -93,6 +91,8 @@ navList.addEventListener('click', e => {
     html.classList.remove('lock')
 });
 
+// Burger menu - end
+
 function registerClose() {
     registerWrapper.classList.remove('modal-register-wrapper-on');
 }
@@ -127,8 +127,12 @@ document.addEventListener('click', e => {
         }
     } else if (myProfileMenu.classList.contains('modal-my-profile-menu-on')) { // закрыть my profile menu при клике вне его области
         if (!myProfileMenu.contains(e.target) && !svgCloseProfileInfo.contains(e.target)) {
-            myProfileWrapper.classList.remove('modal-my-profile-wrapper-blackout')
+            myProfileWrapper.classList.remove('modal-my-profile-wrapper-blackout');
             myProfileMenu.classList.remove('modal-my-profile-menu-on');
+            const pointRentedBooks = document.querySelectorAll('.point-rented-book');
+            for (let rentedBook of pointRentedBooks) {
+                rentedBook.remove();
+            }
             setTimeout(() => {             
                 myProfileWrapper.classList.remove('modal-my-profile-wrapper-on');
             }, 500);
@@ -143,8 +147,6 @@ document.addEventListener('click', e => {
         }
     }
 });
-
-// Burger menu - end
 
 const image1 = document.querySelector('.Image1');
 const image2 = document.querySelector('.Image2');
@@ -225,6 +227,24 @@ paginationAbout.addEventListener('click', function(event) {
     }
 })
 
+let currentDeviceName;
+
+if (window.innerWidth > 1400) {
+    currentDeviceName = 'Desktop';
+} else {
+    currentDeviceName = 'Tablet';
+}
+
+window.addEventListener('resize', function () {
+    console.log(currentDeviceName)
+    if (currentDeviceName === 'Tablet' && window.innerWidth > 1400) {
+        pag1.click();
+        currentDeviceName = 'Desktop';
+    } else if (currentDeviceName === 'Desktop' && window.innerWidth < 1401) {
+        currentDeviceName = 'Tablet';
+    }
+})
+
 function sizeToNumber(str) {         // функция для удаления "px" из строки вида "123px"
     return Number(str.slice(0, -2));
 }
@@ -232,7 +252,7 @@ function sizeToNumber(str) {         // функция для удаления "
 function highlightButton(oldRight, newRight) {
     if (oldRight === 0) {
         pag1.checked = false;
-        leftArrow.classList.remove('DisabledArrow')
+        leftArrow.classList.remove('DisabledArrow');
     } else if (oldRight === 475) {
         pag2.checked = false;
     } else if (oldRight === 950) {
@@ -241,12 +261,12 @@ function highlightButton(oldRight, newRight) {
         pag4.checked = false;
     } else if (oldRight === 1900) {
         pag5.checked = false;
-        rightArrow.classList.remove('DisabledArrow')
+        rightArrow.classList.remove('DisabledArrow');
     }
 
     if (newRight === 0) {
         pag1.checked = true;
-        leftArrow.classList.add('DisabledArrow')
+        leftArrow.classList.add('DisabledArrow');
     } else if (newRight === 475) {
         pag2.checked = true;
     } else if (newRight === 950) {
@@ -255,7 +275,7 @@ function highlightButton(oldRight, newRight) {
         pag4.checked = true;
     } else if (newRight === 1900) {
         pag5.checked = true;
-        rightArrow.classList.add('DisabledArrow')
+        rightArrow.classList.add('DisabledArrow');
     }
 }
 
@@ -290,10 +310,10 @@ aboutCarousel.addEventListener('click', function(event) {
 
 const favSeasons = document.querySelector('.FavoritesSeasons');
 
-const winButton = document.getElementById('Winter')
-const sprButton = document.getElementById('Spring')
-const sumButton = document.getElementById('Summer')
-const autButton = document.getElementById('Autumn')
+const winButton = document.getElementById('Winter');
+const sprButton = document.getElementById('Spring');
+const sumButton = document.getElementById('Summer');
+const autButton = document.getElementById('Autumn');
 
 const winter = document.querySelectorAll('.Winter');
 const spring = document.querySelectorAll('.Spring');
@@ -643,6 +663,10 @@ svgCopyProfileInfo.addEventListener('click', function() {
 svgCloseProfileInfo.addEventListener('click', function () {
     myProfileWrapper.classList.remove('modal-my-profile-wrapper-blackout')
     myProfileMenu.classList.remove('modal-my-profile-menu-on');
+    const pointRentedBooks = document.querySelectorAll('.point-rented-book');
+    for (let rentedBook of pointRentedBooks) {
+        rentedBook.remove();
+    }
     setTimeout(() => {
         myProfileWrapper.classList.remove('modal-my-profile-wrapper-on');
     }, 500);
@@ -805,8 +829,7 @@ const textRight = document.querySelector('.TextRight');
 
 signUp.addEventListener('click', function () {
     if (isDataForRegisterCorrect() === true) {
-        alert('Upon re-registration, the old account will be replaced with a new one\nПри повторной регистрации новый пользователь заменит старого (поддерживается только один пользователь). ТЗ не регламентирует количество пользователей.') // занесение данных пользователя в локальное хранилище
-        localStorage.setItem('firstName', removeSpaces(firstNameRegister.value));
+        localStorage.setItem('firstName', removeSpaces(firstNameRegister.value)); // занесение данных пользователя в локальное хранилище
         localStorage.setItem('lastName', removeSpaces(lastNameRegister.value));
         localStorage.setItem('email', removeSpaces(emailRegister.value));
         localStorage.setItem('password', passwordRegister.value);
