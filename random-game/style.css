@@ -45,6 +45,77 @@ body {
     background: linear-gradient(#183246, #4d2922);
 }
 
+.welcome-wrapper {
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.445);
+    backdrop-filter: blur(70px);
+    transition: 0.7s;
+    opacity: 0;
+    z-index: 2;
+}
+
+.welcome-wrapper-visible {
+    opacity: 1;
+    transition: 0.2s;
+}
+
+.welcome-wrapper-on {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.welcome-num-block {
+    display: flex;
+    border-radius: 25%;
+    outline-offset: 10px;
+    transition: 0.2s;
+}
+
+.welcome-num {
+    font-size: 600%;
+    font-family: Kalam-bold;
+    transition: 0.2s;
+}
+
+.welcome-num-block :nth-child(1)[style] {
+    filter: drop-shadow(0 0 15px orange);
+}
+
+.welcome-num-block :nth-child(2)[style] {
+    filter: drop-shadow(0 0 15px blue);
+}
+
+.welcome-num-block :nth-child(3)[style] {
+    filter: drop-shadow(0 0 15px green);
+}
+
+.welcome-num-block :nth-child(4)[style] {
+    filter: drop-shadow(0 0 15px yellow);
+}
+
+.welcome-num-block :nth-child(1) {
+    transform: translateY(100%) rotate(130deg);
+    color: orange;
+}
+
+.welcome-num-block :nth-child(2) {
+    transform: translateY(-100%) rotate(50deg);
+    color: blue;
+}
+
+.welcome-num-block :nth-child(3) {
+    transform: translateY(100%) rotate(300deg);
+    color: green;
+}
+
+.welcome-num-block :nth-child(4) {
+    transform: translateY(-100%) rotate(210deg);
+    color: yellow;
+}
+
 .main {
     display: flex;
     flex-direction: column;

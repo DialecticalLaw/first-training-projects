@@ -21,6 +21,37 @@ const volumeUp = document.querySelector('.volume-up');
 const volumeOff = document.querySelector('.volume-off');
 const volumeAll = document.querySelectorAll('.volume');
 
+const welcomeWrapper = document.querySelector('.welcome-wrapper');
+const welcomeNumBlock = document.querySelector('.welcome-num-block');
+const welcomeNums = document.querySelectorAll('.welcome-num');
+
+document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(() => {
+        welcomeNums[0].style.transform = 'none';
+    }, 200);
+    setTimeout(() => {
+        welcomeNums[1].style.transform = 'none';
+    }, 400);
+    setTimeout(() => {
+        welcomeNums[2].style.transform = 'none';
+    }, 600);
+    setTimeout(() => {
+        welcomeNums[3].style.transform = 'none';
+    }, 800);
+
+    setTimeout(() => {
+        welcomeNumBlock.style['border-top'] = '2px solid gray';
+        welcomeNumBlock.style['border-bottom'] = '2px solid gray';
+        welcomeWrapper.style['border-radius'] = '20%'
+        welcomeWrapper.style.scale = 3;
+        welcomeWrapper.classList.remove('welcome-wrapper-visible');
+        setTimeout(() => {
+            welcomeWrapper.classList.remove('welcome-wrapper-on');
+            document.addEventListener('keydown', playerAction);
+        }, 700);
+    }, 1000);
+})
+
 let playWinSoundStatus = false;
 
 window.addEventListener('resize', changeSizeOfPlayBoard);
@@ -136,15 +167,18 @@ function saveGame() {
     savePlateCoordinates(document.querySelector('.plate'));
 }
 
-startGame();
+startGame('first');
 
-function startGame() {
+function startGame(callNum) {
     if (defeatWindow.classList.contains('defeat-window-on')) {
         defeatWindow.classList.remove('defeat-window-appear');
         defeatWindow.classList.remove('defeat-window-on');
     }
 
-    document.addEventListener('keydown', playerAction);
+    if (callNum !== 'first') {
+        document.addEventListener('keydown', playerAction);
+    }
+
     playBoard.style.filter = 'none';
     playWinSoundStatus = false;
 
@@ -725,7 +759,6 @@ document.addEventListener('keydown', function preventScroll(event) {
         event.preventDefault();
     }
 })
-document.addEventListener('keydown', playerAction);
 
 function playerAction(event) {
     if (event.code === 'ArrowRight') {
@@ -840,13 +873,13 @@ let x2 = null;
 let y1 = null;
 let y2 = null;
 
-playBoard.addEventListener('touchstart', function name(event) {
+playBoard.addEventListener('touchstart', function touchStartCheck(event) {
     event.preventDefault()
     x1 = event.changedTouches[0].screenX;
     y1 = event.changedTouches[0].screenY;
 })
 
-playBoard.addEventListener('touchend', function name(event) {
+playBoard.addEventListener('touchend', function touchEndCheck(event) {
     event.preventDefault()
     x2 = event.changedTouches[0].screenX;
     y2 = event.changedTouches[0].screenY;
