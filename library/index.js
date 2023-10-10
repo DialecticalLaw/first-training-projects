@@ -236,7 +236,6 @@ if (window.innerWidth > 1400) {
 }
 
 window.addEventListener('resize', function () {
-    console.log(currentDeviceName)
     if (currentDeviceName === 'Tablet' && window.innerWidth > 1400) {
         pag1.click();
         currentDeviceName = 'Desktop';
