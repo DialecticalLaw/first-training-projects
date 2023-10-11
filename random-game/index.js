@@ -237,8 +237,10 @@ function startGame(callNum) {
 }
 
 window.addEventListener('beforeunload', function (event) {
-    event.preventDefault();
-    event.returnValue = '';
+    if (scoreCount.innerHTML !== '0') {
+        event.preventDefault();
+        event.returnValue = '';
+    }
 })
 
 function paintPlate(elem, num) {
