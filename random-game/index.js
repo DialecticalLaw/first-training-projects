@@ -183,39 +183,63 @@ function startGame(callNum) {
 
     if (callNum !== 'first') {
         document.addEventListener('keydown', playerAction);
+    } else {
+        const shiftValues = ['0%', '25%', '50%', '75%'];
+        playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: ${shiftValues[Math.floor(Math.random() * 4)]}; top: ${shiftValues[Math.floor(Math.random() * 4)]}; background-color: aqua;">2</div>`);
+        savePlateCoordinates(document.querySelector('.plate'));
+        return;
     }
 
-    playBoard.style.filter = 'none';
     playWinSoundStatus = false;
 
     if (scoreCount.innerHTML !== '0') {
-        const currentPastGames = JSON.parse(localStorage.getItem('last-10-games'));
-        currentPastGames.unshift(`${Date().slice(0, 24)} - ${scoreCount.innerHTML} points`);
-        currentPastGames.pop();
-        localStorage.setItem('last-10-games', JSON.stringify(currentPastGames));
-        for (let i = 0; i < 10; i++) {
-            if (JSON.parse(localStorage.getItem('last-10-games'))[i]) {
-                pastGameStats[i].innerHTML = JSON.parse(localStorage.getItem('last-10-games'))[i];
+        let isSure = confirm('Are you sure you want to start a new game?');
+        if (isSure) {
+            const currentPastGames = JSON.parse(localStorage.getItem('last-10-games'));
+            currentPastGames.unshift(`${Date().slice(0, 24)} - ${scoreCount.innerHTML} points`);
+            currentPastGames.pop();
+            localStorage.setItem('last-10-games', JSON.stringify(currentPastGames));
+            for (let i = 0; i < 10; i++) {
+                if (JSON.parse(localStorage.getItem('last-10-games'))[i]) {
+                    pastGameStats[i].innerHTML = JSON.parse(localStorage.getItem('last-10-games'))[i];
+                }
             }
+
+            const maxScore = localStorage.getItem('max-score');
+
+            if (Number(scoreCount.innerHTML) > Number(maxScore)) {
+                localStorage.setItem('max-score', scoreCount.innerHTML);
+                bestScore.innerHTML = scoreCount.innerHTML;
+            }
+
+            scoreCount.innerHTML = '0';
+            const plates = document.querySelectorAll('.plate');
+            for (let plate of plates) {
+                plate.remove();
+            }
+
+            const shiftValues = ['0%', '25%', '50%', '75%'];
+            playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: ${shiftValues[Math.floor(Math.random() * 4)]}; top: ${shiftValues[Math.floor(Math.random() * 4)]}; background-color: aqua;">2</div>`);
+            savePlateCoordinates(document.querySelector('.plate'));    
+        } else {
+            return;
         }
-    }
+    } else {
+        const plates = document.querySelectorAll('.plate');
+        for (let plate of plates) {
+            plate.remove();
+        }
 
-    const maxScore = localStorage.getItem('max-score');
-    if (Number(scoreCount.innerHTML) > Number(maxScore)) {
-        localStorage.setItem('max-score', scoreCount.innerHTML);
-        bestScore.innerHTML = scoreCount.innerHTML;
+        const shiftValues = ['0%', '25%', '50%', '75%'];
+        playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: ${shiftValues[Math.floor(Math.random() * 4)]}; top: ${shiftValues[Math.floor(Math.random() * 4)]}; background-color: aqua;">2</div>`);
+        savePlateCoordinates(document.querySelector('.plate'));
     }
-
-    scoreCount.innerHTML = '0';
-    const plates = document.querySelectorAll('.plate');
-    for (let plate of plates) {
-        plate.remove();
-    }
-
-    const shiftValues = ['0%', '25%', '50%', '75%'];
-    playBoard.insertAdjacentHTML('beforeend', `<div class="plate" style="left: ${shiftValues[Math.floor(Math.random() * 4)]}; top: ${shiftValues[Math.floor(Math.random() * 4)]}; background-color: aqua;">2</div>`);
-    savePlateCoordinates(document.querySelector('.plate'));
 }
+
+window.addEventListener('beforeunload', function (event) {
+    event.preventDefault();
+    event.returnValue = '';
+})
 
 function paintPlate(elem, num) {
     if (num === 4) {
