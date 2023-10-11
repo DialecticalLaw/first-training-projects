@@ -48,11 +48,12 @@ body {
 .welcome-wrapper {
     display: none;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.445);
+    background-color: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(70px);
     transition: 0.7s;
     opacity: 0;
     z-index: 2;
+    will-change: transform;
 }
 
 .welcome-wrapper-visible {
@@ -78,6 +79,7 @@ body {
     font-size: 600%;
     font-family: Kalam-bold;
     transition: 0.2s;
+    will-change: transform;
 }
 
 .welcome-num-block :nth-child(1)[style] {
@@ -134,7 +136,7 @@ body {
     margin: 0;
     letter-spacing: 12px;
     animation-name: flicker-title;
-    animation-duration: 0.8s;
+    animation-duration: 1.2s;
     animation-direction: alternate;
     animation-iteration-count: infinite;
 }
@@ -258,7 +260,6 @@ body {
     padding: 8px;
     background-color: rgb(97, 97, 97);
     background-clip: content-box;
-    filter: drop-shadow(0 0 8px rgb(32, 32, 32));
 }
 
 .grid {

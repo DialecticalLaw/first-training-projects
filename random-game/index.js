@@ -13,10 +13,10 @@ const audioDefeat = document.querySelector('.defeat');
 const audioAction = document.querySelector('.action');
 const audioStart = document.querySelector('.start');
 const audioWin = document.querySelector('.win');
-audioDefeat.volume = 0.15;
-audioAction.volume = 0.15;
-audioStart.volume = 0.15;
-audioWin.volume = 0.15;
+audioDefeat.volume = 0.2;
+audioAction.volume = 0.2;
+audioStart.volume = 0.2;
+audioWin.volume = 0.2;
 const volumeUp = document.querySelector('.volume-up');
 const volumeOff = document.querySelector('.volume-off');
 const volumeAll = document.querySelectorAll('.volume');
@@ -30,18 +30,24 @@ document.addEventListener('DOMContentLoaded', function () {
         welcomeNums[0].style.transform = 'none';
     }, 200);
     setTimeout(() => {
+        welcomeNums[0].style['text-decoration'] = 'overline orange';
+        welcomeWrapper.style['background-color'] = 'rgba(0, 0, 0, 0.7)';
         welcomeNums[1].style.transform = 'none';
     }, 400);
     setTimeout(() => {
+        welcomeNums[1].style['text-decoration'] = 'underline blue';
+        welcomeWrapper.style['background-color'] = 'rgba(0, 0, 0, 0.55)';
         welcomeNums[2].style.transform = 'none';
     }, 600);
     setTimeout(() => {
+        welcomeNums[2].style['text-decoration'] = 'overline green';
+        welcomeWrapper.style['background-color'] = 'rgba(0, 0, 0, 0.4)';
         welcomeNums[3].style.transform = 'none';
     }, 800);
 
     setTimeout(() => {
-        welcomeNumBlock.style['border-top'] = '2px solid gray';
-        welcomeNumBlock.style['border-bottom'] = '2px solid gray';
+        welcomeNums[3].style['text-decoration'] = 'underline yellow';
+        welcomeWrapper.style['background-color'] = 'rgba(0, 0, 0, 0.25)';
         welcomeWrapper.style['border-radius'] = '20%'
         welcomeWrapper.style.scale = 3;
         welcomeWrapper.classList.remove('welcome-wrapper-visible');
@@ -233,7 +239,6 @@ function paintPlate(elem, num) {
         elem.style.filter = 'drop-shadow(0px 0px 16px gold)';
         if (playWinSoundStatus === false) {
             audioWin.play();
-            playBoard.style.filter = 'drop-shadow(0 0 10px gold)';
             playWinSoundStatus = true;
         }
     } else if (num === 4096) {
