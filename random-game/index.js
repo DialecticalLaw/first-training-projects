@@ -95,7 +95,7 @@ for (let volume of volumeAll) {
     });
 }
 
-if (localStorage.getItem('max-score') === null) {
+if (localStorage.getItem('max-score') === null || localStorage.length > 2) {
     localStorage.clear();
     localStorage.setItem('max-score', '0');
     localStorage.setItem('last-10-games', JSON.stringify(['Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty']));
