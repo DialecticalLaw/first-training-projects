@@ -472,7 +472,7 @@ function movePlate(direction) {
                         row[i - 1].dataset.x = row[i].dataset.x;
                         updatePlateCoordinates(row[i - 1]);
                         
-                        row[i].style.transform = 'scale(1.2)';
+                        row[i].style.transform = 'scale(1.1)';
                         row[i - 1].style.transform = 'scale(0.8)';
                         setTimeout(() => {
                             row[i].style.transform = 'none';
@@ -525,7 +525,7 @@ function movePlate(direction) {
                         row[i + 1].dataset.x = row[i].dataset.x;
                         updatePlateCoordinates(row[i + 1]);
 
-                        row[i].style.transform = 'scale(1.2)';
+                        row[i].style.transform = 'scale(1.1)';
                         row[i + 1].style.transform = 'scale(0.8)';
                         setTimeout(() => {
                             row[i].style.transform = 'none';
@@ -578,7 +578,7 @@ function movePlate(direction) {
                         column[i + 1].dataset.y = column[i].dataset.y;
                         updatePlateCoordinates(column[i + 1]);
 
-                        column[i].style.transform = 'scale(1.2)';
+                        column[i].style.transform = 'scale(1.1)';
                         column[i + 1].style.transform = 'scale(0.8)';
                         setTimeout(() => {
                             column[i].style.transform = 'none';
@@ -631,7 +631,7 @@ function movePlate(direction) {
                         column[i - 1].dataset.y = column[i].dataset.y;
                         updatePlateCoordinates(column[i - 1]);
 
-                        column[i].style.transform = 'scale(1.2)';
+                        column[i].style.transform = 'scale(1.1)';
                         column[i - 1].style.transform = 'scale(0.8)';
                         setTimeout(() => {
                             column[i].style.transform = 'none';
