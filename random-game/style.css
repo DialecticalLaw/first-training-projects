@@ -260,6 +260,7 @@ body {
     padding: 8px;
     background-color: rgb(97, 97, 97);
     background-clip: content-box;
+    border-radius: 20px;
 }
 
 .grid {
@@ -286,6 +287,7 @@ body {
     color: white;
     user-select: none;
     transition: 0.2s;
+    border-radius: 20px;
 }
 
 .about-block {

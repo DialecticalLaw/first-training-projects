@@ -471,7 +471,11 @@ function movePlate(direction) {
                         row[i - 1].setAttribute('merging', true);
                         row[i - 1].dataset.x = row[i].dataset.x;
                         updatePlateCoordinates(row[i - 1]);
+                        
+                        row[i].style.transform = 'scale(1.2)';
+                        row[i - 1].style.transform = 'scale(0.8)';
                         setTimeout(() => {
+                            row[i].style.transform = 'none';
                             row[i].innerHTML = Number(row[i].innerHTML) + Number(row[i - 1].innerHTML);
                             updateScoreCount(row[i].innerHTML);
                             paintPlate(row[i], Number(row[i].innerHTML));
@@ -520,7 +524,11 @@ function movePlate(direction) {
                         row[i + 1].setAttribute('merging', true);
                         row[i + 1].dataset.x = row[i].dataset.x;
                         updatePlateCoordinates(row[i + 1]);
+
+                        row[i].style.transform = 'scale(1.2)';
+                        row[i + 1].style.transform = 'scale(0.8)';
                         setTimeout(() => {
+                            row[i].style.transform = 'none';
                             row[i].innerHTML = Number(row[i].innerHTML) + Number(row[i + 1].innerHTML);
                             updateScoreCount(row[i].innerHTML);
                             paintPlate(row[i], Number(row[i].innerHTML));
@@ -569,7 +577,11 @@ function movePlate(direction) {
                         column[i + 1].setAttribute('merging', true);
                         column[i + 1].dataset.y = column[i].dataset.y;
                         updatePlateCoordinates(column[i + 1]);
+
+                        column[i].style.transform = 'scale(1.2)';
+                        column[i + 1].style.transform = 'scale(0.8)';
                         setTimeout(() => {
+                            column[i].style.transform = 'none';
                             column[i].innerHTML = Number(column[i].innerHTML) + Number(column[i + 1].innerHTML);
                             updateScoreCount(column[i].innerHTML);
                             paintPlate(column[i], Number(column[i].innerHTML));
@@ -618,7 +630,11 @@ function movePlate(direction) {
                         column[i - 1].setAttribute('merging', true);
                         column[i - 1].dataset.y = column[i].dataset.y;
                         updatePlateCoordinates(column[i - 1]);
+
+                        column[i].style.transform = 'scale(1.2)';
+                        column[i - 1].style.transform = 'scale(0.8)';
                         setTimeout(() => {
+                            column[i].style.transform = 'none';
                             column[i].innerHTML = Number(column[i].innerHTML) + Number(column[i - 1].innerHTML);
                             updateScoreCount(column[i].innerHTML);
                             paintPlate(column[i], Number(column[i].innerHTML));
