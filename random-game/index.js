@@ -4,6 +4,7 @@ const aboutBlock = document.querySelector('.about-block');
 const gameInfo = document.querySelector('.game-info');
 const scoreCount = document.querySelector('.score-count');
 const bestScore = document.querySelector('.best-count');
+const scoreCountBlock = document.querySelector('.score-count-block');
 const defeatWindow = document.querySelector('.defeat-window');
 const pastGameStats = document.querySelectorAll('.past-game-stats');
 const btnSaveGame = document.querySelector('.btn-save-game');
@@ -70,10 +71,10 @@ function changeSizeOfPlayBoard() {
         aboutBlock.style.width = '75dvh';
         gameInfo.style.width = '75dvh';
     } else if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
-        playBoard.style.height = '75vw';
-        playBoard.style.width = '75vw';
-        aboutBlock.style.width = '75vw';
-        gameInfo.style.width = '75vw';
+        playBoard.style.height = '95vw';
+        playBoard.style.width = '95vw';
+        aboutBlock.style.width = '95vw';
+        gameInfo.style.width = '95vw';
     }
 }
 
@@ -444,6 +445,7 @@ function updateScoreCount(score) {
 function movePlate(direction) {
     let horizontal = [];
     let vertical = [];
+    let countSum = 0;
 
     switch (direction) {
         case 'right':
@@ -471,7 +473,7 @@ function movePlate(direction) {
                         row[i - 1].setAttribute('merging', true);
                         row[i - 1].dataset.x = row[i].dataset.x;
                         updatePlateCoordinates(row[i - 1]);
-                        
+                        countSum = countSum + Number(row[i].innerHTML) + Number(row[i - 1].innerHTML);
                         row[i].style.transform = 'scale(1.1)';
                         row[i - 1].style.transform = 'scale(0.8)';
                         setTimeout(() => {
@@ -524,7 +526,7 @@ function movePlate(direction) {
                         row[i + 1].setAttribute('merging', true);
                         row[i + 1].dataset.x = row[i].dataset.x;
                         updatePlateCoordinates(row[i + 1]);
-
+                        countSum = countSum + Number(row[i].innerHTML) + Number(row[i + 1].innerHTML);
                         row[i].style.transform = 'scale(1.1)';
                         row[i + 1].style.transform = 'scale(0.8)';
                         setTimeout(() => {
@@ -577,7 +579,7 @@ function movePlate(direction) {
                         column[i + 1].setAttribute('merging', true);
                         column[i + 1].dataset.y = column[i].dataset.y;
                         updatePlateCoordinates(column[i + 1]);
-
+                        countSum = countSum + Number(column[i].innerHTML) + Number(column[i + 1].innerHTML);
                         column[i].style.transform = 'scale(1.1)';
                         column[i + 1].style.transform = 'scale(0.8)';
                         setTimeout(() => {
@@ -630,7 +632,7 @@ function movePlate(direction) {
                         column[i - 1].setAttribute('merging', true);
                         column[i - 1].dataset.y = column[i].dataset.y;
                         updatePlateCoordinates(column[i - 1]);
-
+                        countSum = countSum + Number(column[i].innerHTML) + Number(column[i - 1].innerHTML);
                         column[i].style.transform = 'scale(1.1)';
                         column[i - 1].style.transform = 'scale(0.8)';
                         setTimeout(() => {
@@ -661,6 +663,21 @@ function movePlate(direction) {
         default:
             break;
     }
+    if (countSum !== 0) {
+        showCountSum(countSum)
+    }
+}
+
+function showCountSum(num) {
+    scoreCountBlock.insertAdjacentHTML('afterbegin', `<p class="count-sum">${num}</p>`);
+    const appearNumber = document.querySelector('.count-sum');
+    setTimeout(() => {
+        appearNumber.classList.add('count-sum-translate');
+        setTimeout(() => {
+            appearNumber.remove();
+        }, 700);
+    }, 10);
+    
 }
 
 function areAnyMoves() { // lots of repeating code from the movePlates function
