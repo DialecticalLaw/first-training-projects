@@ -460,7 +460,7 @@ body {
         font-size: 200%;
     }
 
-    .score-text {
+    .score-text, .count-sum {
         font-size: 25px;
     }
 
@@ -499,7 +499,7 @@ body {
         font-size: 200%;
     }
 
-    .score-text {
+    .score-text, .count-sum {
         font-size: 25px;
     }
 
@@ -564,7 +564,7 @@ body {
         height: 20px;
     }
 
-    .score-text {
+    .score-text, .count-sum {
         font-size: 20px;
     }
 
