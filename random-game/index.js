@@ -669,13 +669,13 @@ function movePlate(direction) {
 }
 
 function showCountSum(num) {
-    scoreCountBlock.insertAdjacentHTML('afterbegin', `<p class="count-sum">${num}</p>`);
+    scoreCountBlock.insertAdjacentHTML('afterbegin', `<p class="count-sum">+${num}</p>`);
     const appearNumber = document.querySelector('.count-sum');
     setTimeout(() => {
         appearNumber.classList.add('count-sum-translate');
         setTimeout(() => {
             appearNumber.remove();
-        }, 700);
+        }, 1000);
     }, 10);
     
 }
